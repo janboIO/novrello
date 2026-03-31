@@ -38,6 +38,13 @@ import Header from '../components/Header.astro';
             <h3>Sleep Trackers</h3>
             <p>Compare signal quality, battery life, and readiness insights from top wearables.</p>
           </a>
+          <a class="card reveal" href="/magnesium-glycinate-sleep">
+            <p class="card-tag">Sleep · Science</p>
+            <h3>Magnesium Glycinate for Sleep</h3>
+            <p>
+              Does it actually work? We break down the mechanisms, the real studies, and the correct dosage.
+            </p>
+          </a>
           <a class="card reveal" href="/circadian-optimization">
             <h3>Circadian Optimization</h3>
             <p>Use light, meal timing, and movement to align your internal clock.</p>
@@ -163,7 +170,7 @@ import Header from '../components/Header.astro';
 
   .cards {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.95rem;
   }
 
@@ -194,6 +201,16 @@ import Header from '../components/Header.astro';
     margin: 0;
     color: var(--nv-muted);
     line-height: 1.55;
+  }
+
+  .card-tag {
+    margin: 0 0 0.4rem;
+    color: var(--nv-accent);
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+      'Courier New', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
 
   .site-footer {
