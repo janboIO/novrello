@@ -1,0 +1,286 @@
+---
+type Props = {
+  /**
+   * Current route pathname (e.g. `/`, `/protocol`).
+   * Used to highlight the active nav link.
+   */
+  currentPath?: string;
+};
+
+const { currentPath = '/' } = Astro.props as Props;
+
+const links: Array<{ label: string; href: string }> = [
+  { label: 'Home', href: '/' },
+  { label: 'Sleep', href: '/best-sleep-trackers-2026' },
+  { label: 'Protocol', href: '/protocol' },
+];
+
+function isActive(href: string) {
+  if (href === '/') return currentPath === '/' || currentPath === '';
+  return currentPath === href || currentPath.startsWith(`${href}/`);
+}
+---
+
+<header class="nv-header" role="banner">
+  <div class="nv-inner">
+    <a class="nv-logo" href="/" aria-label="Novrello">
+      <span class="nv-logo-pre">Novrell</span><span class="nv-logo-accent">o</span>
+    </a>
+
+    <input id="nv-nav-toggle" class="nv-toggle" type="checkbox" aria-hidden="true" />
+
+    <label class="nv-burger" for="nv-nav-toggle">
+      <span class="nv-burger-lines" aria-hidden="true">
+        <span class="nv-bar" />
+        <span class="nv-bar" />
+        <span class="nv-bar" />
+      </span>
+      <span class="nv-sr-only">Toggle navigation</span>
+    </label>
+
+    <nav id="nv-nav" class="nv-nav" aria-label="Primary">
+      {
+        links.map((link) => {
+          const active = isActive(link.href);
+          return (
+            <a
+              class={`nv-link${active ? ' is-active' : ''}`}
+              href={link.href}
+              aria-current={active ? 'page' : undefined}
+            >
+              {link.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+  </div>
+</header>
+
+<style is:global>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --nv-bg: #080e12;
+    --nv-accent: #10d98a;
+    --nv-text: #e7f0f2;
+    --nv-muted: rgba(231, 240, 242, 0.78);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    background: var(--nv-bg);
+    color: var(--nv-text);
+    font-family: 'IBM Plex Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'DM Serif Display', Georgia, 'Times New Roman', Times, serif;
+  }
+
+  code,
+  pre,
+  .nv-mono {
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+      'Courier New', monospace;
+  }
+
+  body {
+    margin: 0;
+    padding-top: 72px; /* prevent fixed header overlap */
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .nv-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    top: 0;
+    z-index: 1000;
+    background: rgba(8, 14, 18, 0.86);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(16, 217, 138, 0.22);
+  }
+
+  .nv-inner {
+    position: relative;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+  }
+
+  .nv-logo {
+    text-decoration: none;
+    font-family: 'DM Serif Display', Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.65rem;
+    letter-spacing: 0.2px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .nv-logo-pre {
+    color: var(--nv-text);
+  }
+
+  .nv-logo-accent {
+    color: var(--nv-accent);
+  }
+
+  .nv-nav {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+  }
+
+  .nv-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 4px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: var(--nv-muted);
+    border-radius: 10px;
+    transition: color 150ms ease, background 150ms ease, box-shadow 150ms ease;
+  }
+
+  .nv-link:hover {
+    color: var(--nv-text);
+    background: rgba(16, 217, 138, 0.08);
+  }
+
+  .nv-link.is-active {
+    color: var(--nv-accent);
+    background: rgba(16, 217, 138, 0.12);
+    box-shadow: 0 0 0 1px rgba(16, 217, 138, 0.25) inset;
+  }
+
+  .nv-mobile {
+    display: none;
+  }
+
+  .nv-toggle {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .nv-burger {
+    cursor: pointer;
+    user-select: none;
+    width: 46px;
+    height: 46px;
+    display: none; /* shown only on small screens */
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    border: 1px solid rgba(231, 240, 242, 0.18);
+    background: rgba(8, 14, 18, 0.35);
+    transition: border-color 150ms ease, background 150ms ease;
+  }
+
+  .nv-burger:hover {
+    border-color: rgba(16, 217, 138, 0.35);
+    background: rgba(16, 217, 138, 0.06);
+  }
+
+  .nv-burger-lines {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .nv-bar {
+    width: 18px;
+    height: 2px;
+    background: var(--nv-accent);
+    border-radius: 2px;
+    transition: transform 180ms ease, opacity 160ms ease;
+    transform-origin: center;
+  }
+
+  /* Mobile layout */
+  @media (max-width: 639px) {
+    body {
+      padding-top: 66px;
+    }
+
+    .nv-inner {
+      padding: 12px 16px;
+    }
+
+    .nv-burger {
+      display: inline-flex;
+    }
+
+    .nv-nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      width: 100%;
+      padding: 10px 14px 16px;
+      margin: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+      display: none;
+      background: rgba(8, 14, 18, 0.96);
+      border-bottom-left-radius: 18px;
+      border-bottom-right-radius: 18px;
+      border: 1px solid rgba(16, 217, 138, 0.18);
+      border-top: none;
+    }
+
+    .nv-link {
+      width: 100%;
+      justify-content: flex-start;
+      height: 44px;
+      padding: 0 10px;
+      border-radius: 12px;
+    }
+
+    /* Show menu when toggled */
+    #nv-nav-toggle:checked ~ #nv-nav {
+      display: flex;
+    }
+
+    /* Animate burger into an "X" */
+    #nv-nav-toggle:checked + .nv-burger .nv-bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    #nv-nav-toggle:checked + .nv-burger .nv-bar:nth-child(2) {
+      opacity: 0;
+    }
+    #nv-nav-toggle:checked + .nv-burger .nv-bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+
+  .nv-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+
