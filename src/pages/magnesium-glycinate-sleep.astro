@@ -103,6 +103,15 @@ const faqSchema = {
           </p>
         </header>
 
+        <figure class="hero-media reveal">
+          <img
+            src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=1200&q=80"
+            alt="Magnesium supplement capsules on a dark surface"
+            loading="eager"
+            decoding="async"
+          />
+        </figure>
+
         <section id="introduction" class="reveal">
           <h2>Introduction</h2>
           <p>
@@ -126,7 +135,13 @@ const faqSchema = {
             status may be one piece of the sleep puzzle rather than a magic switch.
           </p>
           <p class="ref">
-            PubMed reference: <a href="https://pubmed.ncbi.nlm.nih.gov/34883514/" rel="noopener noreferrer">PMID: 34883514</a>
+            PubMed reference:
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/34883514/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 34883514</a
+            >
           </p>
         </section>
 
@@ -153,12 +168,62 @@ const faqSchema = {
             when you are trying to compare outcomes across studies.
           </p>
           <p class="ref">
-            PubMed reference: <a href="https://pubmed.ncbi.nlm.nih.gov/7815675/" rel="noopener noreferrer">PMID: 7815675</a>
+            PubMed reference:
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/7815675/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 7815675</a
+            >
           </p>
         </section>
 
         <section id="mechanisms" class="reveal">
           <h2>How it affects sleep (mechanisms)</h2>
+          <div class="pathway" aria-label="Mechanism pathway diagram">
+            <svg viewBox="0 0 980 170" role="img" aria-label="Magnesium to better sleep pathway">
+              <defs>
+                <marker
+                  id="arrow"
+                  viewBox="0 0 10 10"
+                  refX="9"
+                  refY="5"
+                  markerWidth="8"
+                  markerHeight="8"
+                  orient="auto-start-reverse"
+                >
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--nv-accent)" />
+                </marker>
+              </defs>
+
+              <rect x="20" y="35" width="210" height="100" rx="14" fill="rgba(16, 217, 138, 0.08)" stroke="rgba(16, 217, 138, 0.45)" />
+              <text x="125" y="92" text-anchor="middle" fill="var(--nv-text)" font-size="26" font-family="IBM Plex Sans, system-ui">
+                Magnesium
+              </text>
+
+              <line x1="240" y1="85" x2="340" y2="85" stroke="var(--nv-accent)" stroke-width="4" marker-end="url(#arrow)" />
+
+              <rect x="350" y="35" width="240" height="100" rx="14" fill="rgba(16, 217, 138, 0.06)" stroke="rgba(16, 217, 138, 0.35)" />
+              <text x="470" y="83" text-anchor="middle" fill="var(--nv-text)" font-size="24" font-family="IBM Plex Sans, system-ui">
+                GABA Receptors
+              </text>
+
+              <line x1="600" y1="85" x2="700" y2="85" stroke="var(--nv-accent)" stroke-width="4" marker-end="url(#arrow)" />
+
+              <rect x="710" y="35" width="250" height="100" rx="14" fill="rgba(16, 217, 138, 0.06)" stroke="rgba(16, 217, 138, 0.35)" />
+              <text x="835" y="76" text-anchor="middle" fill="var(--nv-text)" font-size="24" font-family="IBM Plex Sans, system-ui">
+                Reduced Cortisol
+              </text>
+              <text x="835" y="104" text-anchor="middle" fill="rgba(231, 240, 242, 0.72)" font-size="18" font-family="IBM Plex Mono, ui-monospace">
+                (less hyperarousal)
+              </text>
+
+              <line x1="835" y1="138" x2="835" y2="160" stroke="var(--nv-accent)" stroke-width="4" marker-end="url(#arrow)" />
+              <text x="835" y="168" text-anchor="middle" fill="var(--nv-accent)" font-size="22" font-family="DM Serif Display, serif">
+                Better Sleep
+              </text>
+            </svg>
+          </div>
           <p>
             Magnesium influences sleep through several biologically plausible routes. The first is neural
             excitability. Magnesium ions interact with NMDA receptor channels, and that interaction helps
@@ -185,8 +250,18 @@ const faqSchema = {
           </p>
           <p class="ref">
             PubMed references:
-            <a href="https://pubmed.ncbi.nlm.nih.gov/8828416/" rel="noopener noreferrer">PMID: 8828416</a>,
-            <a href="https://pubmed.ncbi.nlm.nih.gov/23853635/" rel="noopener noreferrer">PMID: 23853635</a>
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/8828416/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 8828416</a
+            >,
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/23853635/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 23853635</a
+            >
           </p>
         </section>
 
@@ -221,10 +296,35 @@ const faqSchema = {
           </p>
           <p class="ref">
             PubMed references:
-            <a href="https://pubmed.ncbi.nlm.nih.gov/23853635/" rel="noopener noreferrer">PMID: 23853635</a>,
-            <a href="https://pubmed.ncbi.nlm.nih.gov/33865376/" rel="noopener noreferrer">PMID: 33865376</a>,
-            <a href="https://pubmed.ncbi.nlm.nih.gov/21226679/" rel="noopener noreferrer">PMID: 21226679</a>
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/23853635/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 23853635</a
+            >,
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/33865376/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 33865376</a
+            >,
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/21226679/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 21226679</a
+            >
           </p>
+
+          <figure class="inline-media reveal">
+            <img
+              src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&q=80"
+              alt="Person sleeping peacefully in a dark room"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Quality sleep is the highest-leverage health intervention available.</figcaption>
+          </figure>
         </section>
 
         <section id="dosage-timing" class="reveal">
@@ -251,7 +351,13 @@ const faqSchema = {
             supplements only after sleep behaviors are stable.
           </p>
           <p class="ref">
-            PubMed reference: <a href="https://pubmed.ncbi.nlm.nih.gov/33865376/" rel="noopener noreferrer">PMID: 33865376</a>
+            PubMed reference:
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/33865376/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 33865376</a
+            >
           </p>
         </section>
 
@@ -277,8 +383,18 @@ const faqSchema = {
           </p>
           <p class="ref">
             PubMed references:
-            <a href="https://pubmed.ncbi.nlm.nih.gov/14596323/" rel="noopener noreferrer">PMID: 14596323</a>,
-            <a href="https://pubmed.ncbi.nlm.nih.gov/7815675/" rel="noopener noreferrer">PMID: 7815675</a>
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/14596323/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 14596323</a
+            >,
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/7815675/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 7815675</a
+            >
           </p>
         </section>
 
@@ -307,7 +423,13 @@ const faqSchema = {
             support screening your overall magnesium intake before dismissing the mineral entirely.
           </p>
           <p class="ref">
-            PubMed reference: <a href="https://pubmed.ncbi.nlm.nih.gov/34883514/" rel="noopener noreferrer">PMID: 34883514</a>
+            PubMed reference:
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/34883514/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 34883514</a
+            >
           </p>
         </section>
 
@@ -331,7 +453,13 @@ const faqSchema = {
             over anecdotes every time.
           </p>
           <p class="ref">
-            PubMed reference: <a href="https://pubmed.ncbi.nlm.nih.gov/33865376/" rel="noopener noreferrer">PMID: 33865376</a>
+            PubMed reference:
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/33865376/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 33865376</a
+            >
           </p>
         </section>
 
@@ -409,6 +537,52 @@ const faqSchema = {
     border-bottom: 1px solid var(--nv-border);
     padding-bottom: 1.1rem;
     margin-bottom: 1.6rem;
+  }
+
+  .hero-media,
+  .inline-media {
+    margin: 1.2rem 0 1.6rem;
+  }
+
+  .hero-media img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid rgba(16, 217, 138, 0.18);
+  }
+
+  .inline-media img {
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid rgba(16, 217, 138, 0.18);
+  }
+
+  .inline-media figcaption {
+    margin-top: 0.55rem;
+    color: var(--nv-muted);
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+      'Courier New', monospace;
+    font-size: 0.82rem;
+    line-height: 1.7;
+  }
+
+  .pathway {
+    margin: 0.85rem 0 1.2rem;
+    padding: 0.9rem 0.9rem 0.7rem;
+    border: 1px solid rgba(16, 217, 138, 0.18);
+    border-radius: 12px;
+    background: rgba(16, 217, 138, 0.04);
+    overflow-x: auto;
+  }
+
+  .pathway svg {
+    width: 100%;
+    min-width: 820px;
+    height: auto;
+    display: block;
   }
 
   .kicker {
