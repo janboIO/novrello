@@ -34,24 +34,12 @@ import Header from '../components/Header.astro';
       <section class="research">
         <h2>Latest research</h2>
         <div class="cards">
-          <a class="card reveal" href="/best-sleep-trackers-2026">
-            <h3>Sleep Trackers</h3>
-            <p>Compare signal quality, battery life, and readiness insights from top wearables.</p>
-          </a>
           <a class="card reveal" href="/magnesium-glycinate-sleep">
             <p class="card-tag">Sleep · Science</p>
             <h3>Magnesium Glycinate for Sleep</h3>
             <p>
               Does it actually work? We break down the mechanisms, the real studies, and the correct dosage.
             </p>
-          </a>
-          <a class="card reveal" href="/circadian-optimization">
-            <h3>Circadian Optimization</h3>
-            <p>Use light, meal timing, and movement to align your internal clock.</p>
-          </a>
-          <a class="card reveal" href="/articles">
-            <h3>Research Articles</h3>
-            <p>Readable breakdowns of peer-reviewed studies with practical takeaways.</p>
           </a>
         </div>
       </section>
@@ -170,7 +158,7 @@ import Header from '../components/Header.astro';
 
   .cards {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 0.95rem;
   }
 
