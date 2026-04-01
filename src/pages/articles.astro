@@ -1,0 +1,444 @@
+---
+import Header from '../components/Header.astro';
+
+const title = 'Research Articles';
+const description =
+  'Evidence-based breakdowns of the interventions that actually move the needle. No supplements sponsored. No conclusions overstated.';
+const canonical = 'https://novrello.com/articles';
+const publishedDate = '2026-03-31';
+
+const collectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: `Novrello — ${title}`,
+  description,
+  url: canonical,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'Novrello',
+    url: 'https://novrello.com',
+  },
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        url: 'https://novrello.com/magnesium-glycinate-sleep',
+        name: 'Magnesium Glycinate for Sleep: What the Research Actually Shows',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        url: 'https://novrello.com/best-sleep-trackers-2026',
+        name: 'Best Sleep Trackers 2026: Ranked by a Biohacker Who Actually Tested Them',
+      },
+    ],
+  },
+  datePublished: publishedDate,
+  dateModified: publishedDate,
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} | Novrello</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <script type="application/ld+json" set:html={JSON.stringify(collectionSchema)} />
+  </head>
+  <body>
+    <Header currentPath={Astro.url.pathname} />
+
+    <main class="page">
+      <header class="hero reveal">
+        <p class="eyebrow">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          The Human Lab
+        </p>
+        <h1>Research Articles</h1>
+        <p class="subtext">
+          Evidence-based breakdowns of the interventions that actually move the needle. No supplements
+          sponsored. No conclusions overstated.
+        </p>
+      </header>
+
+      <section class="filters reveal" aria-label="Categories">
+        <input class="filter-input" type="radio" name="cat" id="cat-all" checked />
+        <input class="filter-input" type="radio" name="cat" id="cat-sleep" />
+        <input class="filter-input" type="radio" name="cat" id="cat-cognition" />
+        <input class="filter-input" type="radio" name="cat" id="cat-longevity" />
+        <input class="filter-input" type="radio" name="cat" id="cat-recovery" />
+
+        <div class="filter-bar" role="tablist" aria-label="Article categories">
+          <label class="filter-pill" for="cat-all" role="tab">ALL</label>
+          <label class="filter-pill" for="cat-sleep" role="tab">SLEEP</label>
+          <label class="filter-pill" for="cat-cognition" role="tab">COGNITION</label>
+          <label class="filter-pill" for="cat-longevity" role="tab">LONGEVITY</label>
+          <label class="filter-pill" for="cat-recovery" role="tab">RECOVERY</label>
+        </div>
+
+        <div class="cards" aria-label="Articles">
+          <a class="card reveal" href="/magnesium-glycinate-sleep" data-cat="sleep">
+            <div class="card-top">
+              <span class="badge">FEATURED</span>
+              <span class="tag">SLEEP</span>
+            </div>
+            <h2 class="card-title">Magnesium Glycinate for Sleep: What the Research Actually Shows</h2>
+            <p class="card-desc">
+              Does magnesium glycinate meaningfully improve sleep? We separate mechanism from marketing,
+              summarize the controlled trials, and give practical dosage guidance.
+            </p>
+            <div class="card-meta">
+              <span>March 2026</span>
+              <span aria-hidden="true">•</span>
+              <span>8 min read</span>
+              <span class="meta-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+
+          <a class="card reveal" href="/best-sleep-trackers-2026" data-cat="sleep">
+            <div class="card-top">
+              <span class="tag">SLEEP</span>
+            </div>
+            <h2 class="card-title">Best Sleep Trackers 2026: Ranked by a Biohacker Who Actually Tested Them</h2>
+            <p class="card-desc">
+              Nine devices tested across 90 consecutive nights. Oura Ring 4, WHOOP 5.0, Garmin Fenix 8 and
+              more — here is what the data actually showed.
+            </p>
+            <div class="card-meta">
+              <span>March 2026</span>
+              <span aria-hidden="true">•</span>
+              <span>14 min read</span>
+              <span class="meta-arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="soon reveal">
+        <p class="soon-title">More coming soon.</p>
+        <p class="soon-copy">
+          We publish slowly and deliberately. Every article goes through multiple rounds of fact-checking
+          against primary sources before it goes live. Quality over volume.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer reveal">
+      <p>&copy; {new Date().getFullYear()} Novrello. All rights reserved.</p>
+      <p class="disclaimer">
+        Medical disclaimer: Content is educational only and is not a substitute for professional medical
+        advice, diagnosis, or treatment.
+      </p>
+    </footer>
+  </body>
+</html>
+
+<style>
+  :global(:root) {
+    --nv-bg: #080e12;
+    --nv-accent: #10d98a;
+    --nv-text: #e7f0f2;
+    --nv-muted: rgba(231, 240, 242, 0.72);
+    --nv-stroke: rgba(16, 217, 138, 0.24);
+  }
+
+  :global(body) {
+    background: var(--nv-bg);
+    color: var(--nv-text);
+    font-family: 'IBM Plex Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  }
+
+  .page {
+    width: min(1120px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 3rem 0 2.75rem;
+  }
+
+  .hero {
+    padding: 0.6rem 0 1.25rem;
+    border-bottom: 1px solid rgba(16, 217, 138, 0.18);
+  }
+
+  .eyebrow {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--nv-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+      'Courier New', monospace;
+    font-size: 0.82rem;
+  }
+
+  .pulse-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background: var(--nv-accent);
+    box-shadow: 0 0 0 rgba(16, 217, 138, 0.75);
+    animation: pulse 1.7s ease-out infinite;
+  }
+
+  h1 {
+    margin: 0.75rem 0 0.6rem;
+    font-family: 'DM Serif Display', Georgia, 'Times New Roman', Times, serif;
+    font-size: clamp(2.1rem, 5.2vw, 3.35rem);
+    line-height: 1.08;
+    letter-spacing: 0.02em;
+  }
+
+  .subtext {
+    margin: 0;
+    max-width: 78ch;
+    color: var(--nv-muted);
+    font-size: 1.08rem;
+    line-height: 1.75;
+  }
+
+  .filters {
+    padding: 1.4rem 0 0.2rem;
+  }
+
+  .filter-input {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.6rem;
+    border: 1px solid rgba(231, 240, 242, 0.12);
+    border-radius: 16px;
+    background: rgba(16, 217, 138, 0.05);
+  }
+
+  .filter-pill {
+    cursor: pointer;
+    user-select: none;
+    padding: 0.55rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid rgba(231, 240, 242, 0.14);
+    color: var(--nv-muted);
+    background: rgba(8, 14, 18, 0.25);
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+      'Courier New', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+  }
+
+  .filter-pill:hover {
+    border-color: rgba(16, 217, 138, 0.3);
+    color: var(--nv-text);
+  }
+
+  #cat-all:checked ~ .filter-bar label[for='cat-all'],
+  #cat-sleep:checked ~ .filter-bar label[for='cat-sleep'],
+  #cat-cognition:checked ~ .filter-bar label[for='cat-cognition'],
+  #cat-longevity:checked ~ .filter-bar label[for='cat-longevity'],
+  #cat-recovery:checked ~ .filter-bar label[for='cat-recovery'] {
+    color: var(--nv-accent);
+    border-color: rgba(16, 217, 138, 0.5);
+    background: rgba(16, 217, 138, 0.09);
+    box-shadow: 0 0 0 1px rgba(16, 217, 138, 0.18) inset;
+  }
+
+  .cards {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.95rem;
+  }
+
+  .card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 18px;
+    border: 1px solid var(--nv-stroke);
+    background: linear-gradient(180deg, rgba(16, 217, 138, 0.08), rgba(16, 217, 138, 0.04));
+    padding: 1.1rem 1rem 0.95rem;
+    transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(16, 217, 138, 0.46);
+    background: linear-gradient(180deg, rgba(16, 217, 138, 0.12), rgba(16, 217, 138, 0.06));
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+    padding: 0 0.55rem;
+    border-radius: 999px;
+    background: rgba(16, 217, 138, 0.16);
+    border: 1px solid rgba(16, 217, 138, 0.55);
+    color: var(--nv-accent);
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+      'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .tag {
+    color: var(--nv-accent);
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+      'Courier New', monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .card-title {
+    margin: 0 0 0.55rem;
+    font-family: 'DM Serif Display', Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.55rem;
+    line-height: 1.2;
+  }
+
+  .card-desc {
+    margin: 0;
+    color: var(--nv-muted);
+    line-height: 1.6;
+  }
+
+  .card-meta {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: rgba(231, 240, 242, 0.68);
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+      'Courier New', monospace;
+    font-size: 0.78rem;
+  }
+
+  .meta-arrow {
+    margin-left: auto;
+    color: var(--nv-accent);
+    font-size: 1.05rem;
+    line-height: 1;
+  }
+
+  /* Pure CSS filter behavior */
+  #cat-sleep:checked ~ .cards .card:not([data-cat='sleep']),
+  #cat-cognition:checked ~ .cards .card,
+  #cat-longevity:checked ~ .cards .card,
+  #cat-recovery:checked ~ .cards .card {
+    display: none;
+  }
+
+  #cat-all:checked ~ .cards .card {
+    display: block;
+  }
+
+  .soon {
+    margin-top: 1.35rem;
+    padding: 1.05rem 1rem;
+    border: 1px solid rgba(231, 240, 242, 0.12);
+    border-radius: 16px;
+    background: rgba(8, 14, 18, 0.22);
+  }
+
+  .soon-title {
+    margin: 0 0 0.35rem;
+    color: var(--nv-text);
+    font-family: 'DM Serif Display', Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.25rem;
+  }
+
+  .soon-copy {
+    margin: 0;
+    color: var(--nv-muted);
+    line-height: 1.75;
+  }
+
+  .site-footer {
+    width: min(1120px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 2.3rem 0 2.6rem;
+    border-top: 1px solid rgba(16, 217, 138, 0.18);
+    color: var(--nv-muted);
+    font-size: 0.93rem;
+  }
+
+  .site-footer p {
+    margin: 0.32rem 0;
+  }
+
+  .disclaimer {
+    max-width: 90ch;
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+      'Courier New', monospace;
+    font-size: 0.8rem;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: fade-up 600ms ease-out forwards;
+    animation-timeline: view();
+    animation-range: entry 10% cover 36%;
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(16, 217, 138, 0.75);
+    }
+    70% {
+      box-shadow: 0 0 0 14px rgba(16, 217, 138, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(16, 217, 138, 0);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .pulse-dot {
+      animation: none !important;
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
+
