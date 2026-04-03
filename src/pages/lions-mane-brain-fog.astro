@@ -1,0 +1,779 @@
+---
+import Header from '../components/Header.astro';
+
+const title = "Lion's Mane and Brain Fog: What the Research Actually Says";
+const description =
+  'An evidence-based, no-hype look at lion’s mane (Hericium erinaceus) for brain fog: what’s promising, what’s uncertain, and how to think about dose, timing, and expectations.';
+const canonical = 'https://novrello.com/lions-mane-brain-fog';
+const publishedDate = '2026-04-03';
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  mainEntityOfPage: canonical,
+  datePublished: publishedDate,
+  dateModified: publishedDate,
+  author: { '@type': 'Organization', name: 'Novrello' },
+  publisher: { '@type': 'Organization', name: 'Novrello' },
+  articleSection: [
+    'Introduction',
+    'What is lion’s mane mushroom (Hericium erinaceus)',
+    'The NGF connection',
+    'What the human trials actually show',
+    'Brain fog specifically',
+    'Dosage, timing and form',
+    'Who might benefit and who probably won’t',
+    'Conclusion',
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How long does lion\'s mane take to work?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'In human studies for cognitive and subjective symptoms, effects are usually measured over 4 to 16 weeks. If you’re looking for brain-fog changes, I’d treat the first 2 weeks as a “tolerance and baseline” window, then decide whether you’re seeing consistent movement over the next month or two.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What dose of lion\'s mane is effective for brain fog?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'There is no single, validated dose specifically for “brain fog.” Trials have used different products and forms, including 250 mg tablets of standardized extract taken three times daily (for 16 weeks in mild cognitive impairment), multi-capsule daily dosing of erinacine-enriched mycelia (for 49 weeks in early Alzheimer’s disease), and a high daily intake in a short 4-week study that found no cognitive/metabolic benefit. Dose selection needs to match your product, goals, and how you’ll measure changes.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is lion\'s mane safe to take daily?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Lion’s mane has been studied as a daily supplement in clinical trials, but “safe daily” depends on your dose, your health status, and your product quality. Reported adverse events across the trials are often mild, yet not every study is large enough to guarantee long-term safety for every person. If you have chronic conditions or take medications, check with a clinician.',
+      },
+    },
+  ],
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} | Novrello</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </head>
+  <body>
+    <Header currentPath={Astro.url.pathname} />
+
+    <main class="article-page">
+      <nav class="breadcrumbs reveal" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span aria-hidden="true">→</span>
+        <span>Cognition</span>
+        <span aria-hidden="true">→</span>
+        <span>Lion's Mane</span>
+      </nav>
+
+      <article class="article">
+        <header class="article-header reveal">
+          <p class="kicker">The Human Lab</p>
+          <h1>{title}</h1>
+          <p class="dek">
+            Brain fog is one of those problems that feels obvious in the moment and maddening in
+            research. People describe it differently. They measure it differently. And marketers
+            happily fill the uncertainty with stories. Lion’s mane (Hericium erinaceus) is interesting
+            because it sits at the intersection of neurotrophic biology and real-world supplement use.
+            Let’s separate signal from hype.
+          </p>
+        </header>
+
+        <figure class="hero-media reveal">
+          <img
+            src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&q=80"
+            alt="Lion's mane mushroom in nature"
+            loading="eager"
+            decoding="async"
+          />
+        </figure>
+
+        <section id="introduction" class="reveal">
+          <h2>Introduction — why brain fog is hard to study and why lion’s mane is interesting anyway</h2>
+          <p>
+            Brain fog is a personal experience. “I feel slow” is not the same as “my executive function tests
+            improved” and it’s definitely not the same as “neurochemistry moved in the direction we hoped.”
+            In a clinical setting, researchers get around this by using structured assessments — sleep questionnaires,
+            mood scales, cognitive tasks, and sometimes biomarkers. On the internet, the definition is whichever
+            explanation is most satisfying that day.
+          </p>
+          <p>
+            That’s why the evidence for supplements often looks contradictory. A study might show improved cognitive
+            scores but participants still feel “foggy.” Another study might show mood changes and people interpret that
+            as brain fog relief. It’s not that the biology is fake. It’s that brain fog is a multi-causal symptom:
+            sleep disruption, stress, depression/anxiety, low-grade inflammation, and sometimes cognitive impairment
+            itself.
+          </p>
+          <p>
+            Lion’s mane is interesting because it has credible “upstream” reasons to be relevant. Constituents like
+            hericenones and erinacines have been studied in ways that connect to nerve growth factor (NGF) signaling
+            and neurotrophic pathways — the sort of biology that tends to matter for learning and synaptic maintenance.
+            But interesting biology still needs human outcomes. The rest of this page is about what we know from
+            actual trials.
+          </p>
+          <p class="ref">
+            PubMed reference:
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/20834180/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 20834180</a
+            >
+          </p>
+        </section>
+
+        <section id="what-is-lions-mane" class="reveal">
+          <h2>What is lion’s mane mushroom (Hericium erinaceus) — brief, not bloated</h2>
+          <p>
+            Hericium erinaceus is a fruiting-body mushroom (and also a mycelium-based supplement in many products)
+            used traditionally in East Asian contexts. Modern supplement products vary a lot: some standardize to
+            fruiting-body extract, others to mycelial compounds, and some are blends that aim for broad “neurotrophic”
+            effects.
+          </p>
+          <p>
+            The key point isn’t trivia — it’s that product form affects how you interpret the evidence. The studies
+            you’ll see cited for lion’s mane don’t all use the same preparation or dose. That matters because “lion’s mane”
+            is not a single active ingredient. It’s a complex extract with multiple bioactive constituents.
+          </p>
+          <p>
+            A systematic review covering safety, side effects, and the general evidence landscape can give you a better map
+            than individual marketing claims. It won’t turn the uncertain into certain. What it does do is keep you from
+            mixing together studies that shouldn’t be mixed.
+          </p>
+          <p class="ref">
+            PubMed reference:
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/40959699/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 40959699</a
+            >
+          </p>
+        </section>
+
+        <section id="ngf" class="reveal">
+          <h2>The NGF connection: how lion’s mane may support brain function</h2>
+          <p>
+            NGF (nerve growth factor) is one of the neurotrophins that supports neuron survival and maintenance.
+            If you’ve heard people talk about lion’s mane “boosting NGF,” that’s the idea they’re pointing to.
+            The best-supported story is not “this supplement will regenerate your neurons overnight.”
+            It’s more careful: lion’s mane constituents can be studied in systems that show NGF-related signaling
+            changes — which creates a plausible bridge from the mushroom to cognitive function.
+          </p>
+          <p>
+            In vitro work and animal models are where you see the “NGF pathway” described most clearly. In human studies,
+            the story is more indirect. Some trials measure outcomes like cognition scores or contrast sensitivity, while
+            others measure subjective mood/stress or infer neurotrophic relevance through biomarkers.
+          </p>
+          <p>
+            So my stance is: NGF is plausible. But if you want “brain fog improvement” you still need clinical endpoints.
+            Biology supports a hypothesis, not a guarantee.
+          </p>
+          <figure class="inline-media reveal">
+            <img
+              src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1200&q=80"
+              alt="Neuroscience illustration background"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              NGF (nerve growth factor) plays a central role in maintaining and regenerating neurons — lion's mane appears to stimulate its production.
+            </figcaption>
+          </figure>
+          <p class="ref">
+            PubMed reference:
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/18758067/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 18758067</a
+            >
+          </p>
+        </section>
+
+        <section id="human-trials" class="reveal">
+          <h2>What the human trials actually show — honest assessment</h2>
+
+          <div class="diagram-wrap" aria-label="Timeline of key lion's mane human studies">
+            <svg viewBox="0 0 980 280" role="img" aria-label="Lion's mane study timeline">
+              <defs>
+                <marker
+                  id="arrow"
+                  viewBox="0 0 10 10"
+                  refX="9"
+                  refY="5"
+                  markerWidth="8"
+                  markerHeight="8"
+                  orient="auto-start-reverse"
+                >
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--nv-accent)" />
+                </marker>
+              </defs>
+
+              <rect x="30" y="40" width="920" height="200" rx="18" fill="rgba(16, 217, 138, 0.04)" stroke="rgba(16, 217, 138, 0.22)" />
+
+              <line x1="110" y1="140" x2="870" y2="140" stroke="var(--nv-accent)" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)" />
+
+              <g>
+                <rect x="70" y="85" width="150" height="110" rx="14" fill="rgba(16, 217, 138, 0.08)" stroke="rgba(16, 217, 138, 0.45)" />
+                <text x="145" y="125" text-anchor="middle" fill="var(--nv-text)" font-size="22" font-family="IBM Plex Sans, system-ui">
+                  2009
+                </text>
+                <text x="145" y="155" text-anchor="middle" fill="rgba(231, 240, 242, 0.78)" font-size="13" font-family="IBM Plex Mono, ui-monospace">
+                  MCI: higher
+                </text>
+                <text x="145" y="173" text-anchor="middle" fill="rgba(231, 240, 242, 0.78)" font-size="13" font-family="IBM Plex Mono, ui-monospace">
+                  cognitive scores vs
+                </text>
+                <text x="145" y="191" text-anchor="middle" fill="rgba(16, 217, 138, 0.95)" font-size="13" font-family="IBM Plex Mono, ui-monospace">
+                  placebo (16w)
+                </text>
+              </g>
+
+              <g>
+                <rect x="315" y="85" width="150" height="110" rx="14" fill="rgba(16, 217, 138, 0.08)" stroke="rgba(16, 217, 138, 0.45)" />
+                <text x="390" y="125" text-anchor="middle" fill="var(--nv-text)" font-size="22" font-family="IBM Plex Sans, system-ui">
+                  2019
+                </text>
+                <text x="390" y="155" text-anchor="middle" fill="rgba(231, 240, 242, 0.78)" font-size="13" font-family="IBM Plex Mono, ui-monospace">
+                  MMSE improved /
+                </text>
+                <text x="390" y="173" text-anchor="middle" fill="rgba(16, 217, 138, 0.95)" font-size="13" font-family="IBM Plex Mono, ui-monospace">
+                  slowed decline (12w)
+                </text>
+              </g>
+
+              <g>
+                <rect x="560" y="85" width="190" height="110" rx="14" fill="rgba(16, 217, 138, 0.08)" stroke="rgba(16, 217, 138, 0.45)" />
+                <text x="655" y="125" text-anchor="middle" fill="var(--nv-text)" font-size="22" font-family="IBM Plex Sans, system-ui">
+                  2020
+                </text>
+                <text x="655" y="155" text-anchor="middle" fill="rgba(231, 240, 242, 0.78)" font-size="13" font-family="IBM Plex Mono, ui-monospace">
+                  Early AD pilot:
+                </text>
+                <text x="655" y="173" text-anchor="middle" fill="rgba(16, 217, 138, 0.95)" font-size="13" font-family="IBM Plex Mono, ui-monospace">
+                  better MMSE / IADL
+                </text>
+              </g>
+
+              <g>
+                <rect x="770" y="85" width="150" height="110" rx="14" fill="rgba(16, 217, 138, 0.08)" stroke="rgba(16, 217, 138, 0.45)" />
+                <text x="845" y="125" text-anchor="middle" fill="var(--nv-text)" font-size="22" font-family="IBM Plex Sans, system-ui">
+                  2023
+                </text>
+                <text x="845" y="155" text-anchor="middle" fill="rgba(231, 240, 242, 0.78)" font-size="13" font-family="IBM Plex Mono, ui-monospace">
+                  No effect on
+                </text>
+                <text x="845" y="173" text-anchor="middle" fill="rgba(231, 240, 242, 0.78)" font-size="13" font-family="IBM Plex Mono, ui-monospace">
+                  cognition/metabolic
+                </text>
+                <text x="845" y="191" text-anchor="middle" fill="rgba(16, 217, 138, 0.95)" font-size="13" font-family="IBM Plex Mono, ui-monospace">
+                  flexibility (4w)
+                </text>
+              </g>
+
+              <text x="60" y="245" fill="rgba(231, 240, 242, 0.62)" font-size="12" font-family="IBM Plex Mono, ui-monospace">
+                Timeline shows examples of key trials; outcomes vary by population and product form.
+              </text>
+            </svg>
+          </div>
+
+          <p>
+            Here’s the honest assessment: we have a small number of human trials, and they don’t form one clean story.
+            A trial in mild cognitive impairment reported cognitive score improvements versus placebo during the intake period.
+            Another cognitive study over 12 weeks reported benefits in specific measures (with the strongest signal on MMSE).
+            A longer pilot study in early Alzheimer’s disease suggests the extract may help preserve certain cognitive and functional scores.
+            Then there’s the counterexample: a short, single-blind study in healthy young adults that found no impact on markers of cognition
+            and metabolic flexibility.
+          </p>
+          <p>
+            If you’re hoping for a universal “brain fog fix,” this is where I get skeptical. The same supplement can plausibly help
+            one subgroup while showing no signal in another. That doesn’t mean lion’s mane is useless. It means your outcomes might
+            depend on what you’re starting from: sleep quality, stress burden, baseline cognitive function, age, and which product you’re taking.
+          </p>
+          <p>
+            Also, pay attention to what is actually measured. “Cognition” is broad. Some studies use cognitive scales designed for dementia
+            risk. Others use working memory and executive tasks. Brain fog is more like the lived overlap of attention, speed, and effort tolerance.
+            When the study outcomes don’t match the way you personally experience fog, the evidence can feel confusing even if it’s still valid.
+          </p>
+
+          <p class="ref">
+            PubMed references:
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/18844328/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 18844328</a
+            >,
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/31413233/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 31413233</a
+            >,
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/32581767/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 32581767</a
+            >,
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/36582308/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 36582308</a
+            >
+          </p>
+        </section>
+
+        <section id="brain-fog" class="reveal">
+          <h2>Brain fog specifically: what we know and don’t know</h2>
+          <p>
+            Brain fog sits at the messy boundary between cognition and symptoms. In practice, it often co-travels with stress, low sleep quality,
+            and anxious rumination. If lion’s mane improves mood or reduces subjective complaints, some people will interpret that as “clearer thinking.”
+            If it affects cognitive performance in a test battery, others will report less mental drag.
+          </p>
+          <p>
+            The limitation is that most lion’s mane trials aren’t designed for the specific label “brain fog.” They’re designed for cognitive decline,
+            dementia prevention, or broader mood and sleep quality outcomes. That means we have to translate carefully. Improvements in depression/anxiety or “indefinite complaints”
+            can be relevant to fog — but it’s not the same thing as proving that lion’s mane improves the cognitive microstates of attention
+            that people mean when they say “brain fog.”
+          </p>
+          <p>
+            In the real world, I’d treat lion’s mane as one possible lever in a bigger troubleshooting workflow.
+            If your fog is actually poor sleep plus caffeine timing plus late-night light exposure, lion’s mane might look like it “does something”
+            simply because you’ll be experimenting and tracking along the way. The more honest move is to stabilize the basics, then test the supplement separately.
+            If you’re already following a sleep plan, consider your baseline: you might want to pair your cognitive experiment with our <a href="/sleep-hygiene-biohacking">sleep hygiene</a> guide
+            rather than treating supplements like a magic off-switch.
+          </p>
+          <p class="ref">
+            PubMed reference:
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/20834180/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 20834180</a
+            >
+          </p>
+        </section>
+
+        <section id="dosage" class="reveal">
+          <h2>Dosage, timing and form: what matters</h2>
+          <p>
+            Here’s where people get sloppy. They buy whatever is cheapest with the label “lion’s mane,” take it whenever, and then
+            treat the outcome as a property of lion’s mane itself. But studies show that form and dosing schedules vary dramatically.
+            That’s not a minor detail; it’s the difference between a plausible trial and an untestable hunch.
+          </p>
+          <p>
+            In mild cognitive impairment, one commonly cited double-blind placebo-controlled trial used a standardized 96% extract
+            in 250 mg tablets taken three times daily for 16 weeks. In the cognitive function trial,
+            supplementation was taken daily for 12 weeks, and the strongest signal was on MMSE. In the erinacine-enriched mycelia pilot
+            study in early Alzheimer’s disease, dosing ran for 49 weeks with three daily capsules. Meanwhile, a different short trial in healthy
+            young adults used a much higher daily intake (10 g/day) for four weeks and found no impact on measured outcomes.
+          </p>
+          <p>
+            So what should you do? I prefer a protocol mindset:
+            pick a product whose dose matches a published study as closely as you can,
+            keep it consistent (same time, same daily amount),
+            run it long enough to clear the most likely placebo noise (usually at least 4 weeks),
+            and measure outcomes you actually care about — not just “I feel better” but also attention stability,
+            reaction time feel, and sleep quality consistency.
+          </p>
+          <p>
+            I also don’t love the idea of “stack everything and hope.” If you want to test lion’s mane for fog, test lion’s mane.
+            If you also suspect sleep quality is the upstream problem, you can stack cautiously with behavior changes,
+            and if you’re considering a supplement alongside it, keep the variables limited. For sleep-focused cognition support,
+            some readers pair cognitive experiments with <a href="/magnesium-glycinate-sleep">magnesium glycinate</a> — not because it’s a guaranteed cognitive enhancer,
+            but because sleep improvement often shows up as mental clarity. Pairing still needs discipline: change one lever at a time.
+          </p>
+          <p class="ref">
+            PubMed references:
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/18844328/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 18844328</a
+            >,
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/31413233/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 31413233</a
+            >,
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/32581767/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 32581767</a
+            >,
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/36582308/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 36582308</a
+            >
+          </p>
+        </section>
+
+        <section id="who-benefits" class="reveal">
+          <h2>Who might benefit and who probably won’t</h2>
+          <p>
+            If you have true cognitive impairment risk, lion’s mane may be worth treating as a “low-stakes trial with a time horizon,”
+            because that’s where the human trials often point. Mild cognitive impairment populations and early Alzheimer’s disease pilot work
+            are closer to what a neurotrophic hypothesis would target—at least conceptually.
+          </p>
+          <p>
+            If you’re a healthy adult with consistently good sleep, low stress, and sharp attention, the “no effect” outcomes matter.
+            A short trial in healthy young adults reported no measurable improvement in cognition or metabolic flexibility. That doesn’t mean lion’s mane is harmless or useless.
+            It means the effect you want might not exist in your baseline condition — or it might require a longer intervention, a different product,
+            or a different outcome measure.
+          </p>
+          <p>
+            Where I land is skeptical but not dismissive. For some people, especially those experiencing cognitive symptoms or mood-related fog,
+            lion’s mane could be a helpful amplifier. For others, it’s likely a slow, uncertain bet with small expected effect sizes.
+            If you’re the skeptical type (you probably are if you’re reading Novrello), you’ll do better running a disciplined self-trial
+            while keeping your sleep and stress foundations strong. If you want to explore broader evidence instead of supplement chasing,
+            the <a href="/articles">research articles</a> index is the fastest way to avoid turning your life into a product testing spreadsheet.
+          </p>
+          <p class="ref">
+            PubMed references:
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/40959699/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 40959699</a
+            >,
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/36582308/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 36582308</a
+            >
+          </p>
+        </section>
+
+        <section id="conclusion" class="reveal">
+          <h2>Conclusion — honest verdict</h2>
+          <p>
+            Lion’s mane is not snake oil, but it’s also not a guaranteed brain fog erase button.
+            The best case for it is a neurotrophic hypothesis supported by NGF-related mechanisms,
+            plus human trials that show potential cognitive and subjective-symptom benefits in certain populations.
+            The worst case is equally real: human trials exist where outcomes don’t move, especially in healthy cohorts and short timelines.
+          </p>
+          <p>
+            If you want my “friend who read the studies” advice, it’s this: treat lion’s mane like a structured experiment.
+            Start with sleep, light, and stress hygiene. If fog persists in a stable baseline state, try a product that’s close to a trial’s dosing pattern.
+            Give it enough time to interpret honestly. Then stop if you don’t see consistent movement.
+            That’s not pessimism. That’s how you make the data actually serve you.
+          </p>
+          <p>
+            And if your main bottleneck is sleep quality, cognitive supplements can’t fully compensate.
+            That’s why we keep linking back to behavioral foundations — not because supplements are forbidden,
+            but because they work best when your physiology has already stopped fighting you.
+          </p>
+          <p class="ref">
+            PubMed reference:
+            <a
+              href="https://pubmed.ncbi.nlm.nih.gov/40959699/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >PMID: 40959699</a
+            >
+          </p>
+        </section>
+
+        <section id="faq" class="faq reveal">
+          <h2>FAQ</h2>
+
+          <h3>How long does lion's mane take to work?</h3>
+          <p>
+            In human trials relevant to cognition and related subjective symptoms, effects are commonly assessed over several weeks.
+            If you’re running a self-experiment, I’d start by treating the first couple of weeks as a baseline/tolerance window,
+            then decide based on a longer, consistent trial period.
+          </p>
+
+          <h3>What dose of lion's mane is effective for brain fog?</h3>
+          <p>
+            There isn’t a single validated dose for brain fog specifically. Doses in trials range from standardized extract tablets taken multiple times daily
+            (for months) to high daily intakes in short studies that found no clear cognitive benefit. The most honest approach is to match your product and dose
+            to a published study as closely as possible and to evaluate outcomes you can actually measure.
+          </p>
+
+          <h3>Is lion's mane safe to take daily?</h3>
+          <p>
+            Lion’s mane has been studied as a daily supplement in clinical research, with many reported adverse events being mild.
+            Still, “safe daily” depends on dose, product quality, and your individual medical context. If you have chronic conditions or take medications,
+            discuss it with a clinician.
+          </p>
+        </section>
+      </article>
+    </main>
+
+    <footer class="site-footer reveal">
+      <p>&copy; {new Date().getFullYear()} Novrello. All rights reserved.</p>
+      <p class="disclaimer">
+        Medical disclaimer: Content is educational only and is not a substitute for professional medical advice,
+        diagnosis, or treatment.
+      </p>
+    </footer>
+  </body>
+</html>
+
+<style>
+  :global(:root) {
+    --nv-bg: #080e12;
+    --nv-accent: #10d98a;
+    --nv-text: #e7f0f2;
+    --nv-muted: rgba(231, 240, 242, 0.78);
+    --nv-border: rgba(16, 217, 138, 0.24);
+  }
+
+  :global(body) {
+    margin: 0;
+    background: var(--nv-bg);
+    color: var(--nv-text);
+    font-family: 'IBM Plex Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  }
+
+  .article-page {
+    width: min(860px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 2.7rem 0 4rem;
+  }
+
+  .breadcrumbs {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--nv-muted);
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+      'Courier New', monospace;
+    font-size: 0.84rem;
+    margin-bottom: 1.45rem;
+  }
+
+  .breadcrumbs a {
+    color: var(--nv-muted);
+    text-decoration: none;
+  }
+
+  .breadcrumbs a:hover {
+    color: var(--nv-accent);
+  }
+
+  .article-header {
+    border-bottom: 1px solid var(--nv-border);
+    padding-bottom: 1.1rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .kicker {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--nv-accent);
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+      'Courier New', monospace;
+    font-size: 0.83rem;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: 'DM Serif Display', Georgia, 'Times New Roman', Times, serif;
+    letter-spacing: 0.01em;
+  }
+
+  h1 {
+    margin: 0.55rem 0 0.65rem;
+    font-size: clamp(2rem, 5vw, 3.15rem);
+    line-height: 1.08;
+  }
+
+  .dek {
+    margin: 0;
+    color: var(--nv-muted);
+    font-size: 1.08rem;
+    line-height: 1.75;
+  }
+
+  h2 {
+    margin: 2rem 0 0.8rem;
+    font-size: clamp(1.55rem, 3vw, 2.12rem);
+  }
+
+  h3 {
+    margin: 1.25rem 0 0.4rem;
+    font-size: 1.32rem;
+  }
+
+  p,
+  li {
+    font-size: 1.06rem;
+    line-height: 1.9;
+  }
+
+  p {
+    margin: 0 0 1rem;
+    color: #dce8eb;
+  }
+
+  .article a {
+    color: var(--nv-accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  .article a:hover {
+    color: #6ff0be;
+  }
+
+  .ref {
+    margin-top: 0.55rem;
+    color: var(--nv-muted);
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+      'Courier New', monospace;
+    font-size: 0.82rem;
+    line-height: 1.7;
+  }
+
+  .hero-media img {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid rgba(16, 217, 138, 0.18);
+    margin: 1.15rem 0 1.6rem;
+    display: block;
+  }
+
+  .inline-media {
+    margin: 1.15rem 0 1.6rem;
+  }
+
+  .inline-media img {
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid rgba(16, 217, 138, 0.18);
+    display: block;
+  }
+
+  .inline-media figcaption {
+    margin-top: 0.55rem;
+    color: var(--nv-muted);
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+      'Courier New', monospace;
+    font-size: 0.82rem;
+    line-height: 1.7;
+  }
+
+  .diagram-wrap {
+    margin: 1rem 0 1.5rem;
+    padding: 0.85rem;
+    border: 1px solid rgba(16, 217, 138, 0.18);
+    border-radius: 12px;
+    background: rgba(16, 217, 138, 0.04);
+    overflow-x: auto;
+  }
+
+  .diagram-wrap svg {
+    width: 100%;
+    min-width: 760px;
+    height: auto;
+    display: block;
+  }
+
+  .faq {
+    margin-top: 2rem;
+    padding: 1rem 1rem 0.3rem;
+    border: 1px solid var(--nv-border);
+    border-radius: 14px;
+    background: rgba(16, 217, 138, 0.05);
+  }
+
+  .site-footer {
+    width: min(1120px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 2.3rem 0 2.6rem;
+    border-top: 1px solid rgba(16, 217, 138, 0.18);
+    color: var(--nv-muted);
+    font-size: 0.93rem;
+  }
+
+  .site-footer p {
+    margin: 0.32rem 0;
+  }
+
+  .disclaimer {
+    max-width: 90ch;
+    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+      'Courier New', monospace;
+    font-size: 0.8rem;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fade-up 650ms ease-out forwards;
+    animation-timeline: view();
+    animation-range: entry 12% cover 34%;
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 680px) {
+    .article-page {
+      padding-top: 2.1rem;
+    }
+
+    p,
+    li {
+      line-height: 1.82;
+      font-size: 1.01rem;
+    }
+
+    .faq {
+      padding: 0.85rem 0.8rem 0.25rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      animation: none !important;
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
+
