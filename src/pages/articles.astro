@@ -81,22 +81,16 @@ const collectionSchema = {
       </header>
 
       <section class="filters reveal" aria-label="Categories">
-        <input class="filter-input" type="radio" name="cat" id="cat-all" checked />
-        <input class="filter-input" type="radio" name="cat" id="cat-sleep" />
-        <input class="filter-input" type="radio" name="cat" id="cat-cognition" />
-        <input class="filter-input" type="radio" name="cat" id="cat-longevity" />
-        <input class="filter-input" type="radio" name="cat" id="cat-recovery" />
-
         <div class="filter-bar" role="tablist" aria-label="Article categories">
-          <label class="filter-pill" for="cat-all" role="tab">ALL</label>
-          <label class="filter-pill" for="cat-sleep" role="tab">SLEEP</label>
-          <label class="filter-pill" for="cat-cognition" role="tab">COGNITION</label>
-          <label class="filter-pill" for="cat-longevity" role="tab">LONGEVITY</label>
-          <label class="filter-pill" for="cat-recovery" role="tab">RECOVERY</label>
+          <button class="filter-pill is-active" type="button" data-filter="all" aria-pressed="true">ALL</button>
+          <button class="filter-pill" type="button" data-filter="sleep" aria-pressed="false">SLEEP</button>
+          <button class="filter-pill" type="button" data-filter="cognition" aria-pressed="false">COGNITION</button>
+          <button class="filter-pill" type="button" data-filter="longevity" aria-pressed="false">LONGEVITY</button>
+          <button class="filter-pill" type="button" data-filter="recovery" aria-pressed="false">RECOVERY</button>
         </div>
 
         <div class="cards" aria-label="Articles">
-          <a class="card reveal" href="/magnesium-glycinate-sleep" data-cat="sleep">
+          <a class="card reveal" href="/magnesium-glycinate-sleep" data-category="sleep">
             <div class="card-top">
               <span class="badge">FEATURED</span>
               <span class="tag">SLEEP</span>
@@ -114,7 +108,7 @@ const collectionSchema = {
             </div>
           </a>
 
-          <a class="card reveal" href="/sleep-hygiene-biohacking" data-cat="sleep">
+          <a class="card reveal" href="/sleep-hygiene-biohacking" data-category="sleep">
             <div class="card-top">
               <span class="tag">SLEEP</span>
             </div>
@@ -131,7 +125,7 @@ const collectionSchema = {
             </div>
           </a>
 
-          <a class="card reveal" href="/deep-sleep-naturally" data-cat="sleep">
+          <a class="card reveal" href="/deep-sleep-naturally" data-category="sleep">
             <div class="card-top">
               <span class="tag">SLEEP</span>
             </div>
@@ -148,7 +142,7 @@ const collectionSchema = {
             </div>
           </a>
 
-          <a class="card reveal" href="/lions-mane-brain-fog" data-cat="cognition">
+          <a class="card reveal" href="/lions-mane-brain-fog" data-category="cognition">
             <div class="card-top">
               <span class="tag">COGNITION</span>
             </div>
@@ -185,6 +179,28 @@ const collectionSchema = {
     </footer>
   </body>
 </html>
+
+<script>
+  const filterButtons = Array.from(document.querySelectorAll('.filter-pill'));
+  const cards = Array.from(document.querySelectorAll('.cards .card'));
+
+  function applyFilter(filter) {
+    filterButtons.forEach((button) => {
+      const active = button.dataset.filter === filter;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+
+    cards.forEach((card) => {
+      const matches = filter === 'all' || card.dataset.category === filter;
+      card.hidden = !matches;
+    });
+  }
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => applyFilter(button.dataset.filter || 'all'));
+  });
+</script>
 
 <style>
   :global(:root) {
@@ -254,11 +270,6 @@ const collectionSchema = {
     padding: 1.4rem 0 0.2rem;
   }
 
-  .filter-input {
-    position: absolute;
-    left: -9999px;
-  }
-
   .filter-bar {
     display: flex;
     flex-wrap: wrap;
@@ -283,6 +294,7 @@ const collectionSchema = {
     letter-spacing: 0.06em;
     text-transform: uppercase;
     transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+    appearance: none;
   }
 
   .filter-pill:hover {
@@ -290,11 +302,7 @@ const collectionSchema = {
     color: var(--nv-text);
   }
 
-  #cat-all:checked ~ .filter-bar label[for='cat-all'],
-  #cat-sleep:checked ~ .filter-bar label[for='cat-sleep'],
-  #cat-cognition:checked ~ .filter-bar label[for='cat-cognition'],
-  #cat-longevity:checked ~ .filter-bar label[for='cat-longevity'],
-  #cat-recovery:checked ~ .filter-bar label[for='cat-recovery'] {
+  .filter-pill.is-active {
     color: var(--nv-accent);
     border-color: rgba(16, 217, 138, 0.5);
     background: rgba(16, 217, 138, 0.09);
@@ -388,16 +396,8 @@ const collectionSchema = {
     line-height: 1;
   }
 
-  /* Pure CSS filter behavior */
-  #cat-sleep:checked ~ .cards .card:not([data-cat='sleep']),
-  #cat-cognition:checked ~ .cards .card,
-  #cat-longevity:checked ~ .cards .card,
-  #cat-recovery:checked ~ .cards .card {
+  .cards .card[hidden] {
     display: none;
-  }
-
-  #cat-all:checked ~ .cards .card {
-    display: block;
   }
 
   .soon {
