@@ -10,10 +10,7 @@ import Header from '../components/Header.astro';
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>Novrello | Optimize your biology</title>
-    <meta
-      name="description"
-      content="Science-backed protocols for sleep, performance, and longevity. No fluff, just data."
-    />
+    <meta name="description" content="Science-backed protocols for sleep, performance, and longevity. No fluff, just data." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -58,37 +55,68 @@ import Header from '../components/Header.astro';
 
         <div class="hero-visual" aria-hidden="true">
           <svg viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg" class="bio-svg">
-            <!-- Outer ring -->
             <circle cx="210" cy="210" r="180" stroke="rgba(16,217,138,0.12)" stroke-width="1"/>
             <circle cx="210" cy="210" r="140" stroke="rgba(16,217,138,0.10)" stroke-width="1"/>
             <circle cx="210" cy="210" r="100" stroke="rgba(16,217,138,0.15)" stroke-width="1"/>
-
-            <!-- Rotating dashed ring -->
             <circle cx="210" cy="210" r="160" stroke="rgba(16,217,138,0.22)" stroke-width="1" stroke-dasharray="6 10" class="spin-slow"/>
-
-            <!-- Sleep arc -->
             <path d="M 210 70 A 140 140 0 0 1 350 210" stroke="#10d98a" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
-
-            <!-- Nodes -->
             <circle cx="210" cy="70" r="6" fill="#10d98a" opacity="0.9"/>
             <circle cx="350" cy="210" r="6" fill="#10d98a" opacity="0.6"/>
             <circle cx="120" cy="320" r="5" fill="#10d98a" opacity="0.4"/>
             <circle cx="80" cy="180" r="4" fill="#10d98a" opacity="0.3"/>
-
-            <!-- Center orb -->
             <circle cx="210" cy="210" r="38" fill="rgba(16,217,138,0.08)" stroke="rgba(16,217,138,0.35)" stroke-width="1.5"/>
             <circle cx="210" cy="210" r="22" fill="rgba(16,217,138,0.15)"/>
             <circle cx="210" cy="210" r="10" fill="#10d98a" opacity="0.85"/>
-
-            <!-- EEG-like wave -->
-            <polyline points="60,210 90,210 105,170 120,250 135,185 150,230 165,210 360,210"
-              stroke="rgba(16,217,138,0.45)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-
-            <!-- Labels -->
+            <polyline points="60,210 90,210 105,170 120,250 135,185 150,230 165,210 360,210" stroke="rgba(16,217,138,0.45)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
             <text x="220" y="66" fill="rgba(16,217,138,0.8)" font-size="10" font-family="IBM Plex Mono">SLEEP</text>
             <text x="356" y="214" fill="rgba(16,217,138,0.6)" font-size="10" font-family="IBM Plex Mono">COGNITION</text>
             <text x="60" y="328" fill="rgba(16,217,138,0.45)" font-size="10" font-family="IBM Plex Mono">LONGEVITY</text>
           </svg>
+        </div>
+      </section>
+
+      <!-- ── QUIZ ── -->
+      <section class="quiz reveal" aria-labelledby="sleep-quiz-title">
+        <div class="quiz-header">
+          <div class="quiz-header-text">
+            <p class="quiz-eyebrow">Sleep Score Quiz</p>
+            <h2 id="sleep-quiz-title">How Well Are You Actually Sleeping?</h2>
+            <p class="quiz-subtitle">5 questions based on validated sleep research. Not a diagnosis — a starting point.</p>
+          </div>
+          <p class="quiz-note">Based on the Pittsburgh Sleep Quality Index (Buysse et al., 1989)</p>
+        </div>
+
+        <div class="quiz-body">
+          <div class="quiz-progress-wrap" aria-live="polite">
+            <div class="quiz-progress-head">
+              <span id="quiz-step">Question 1 / 5</span>
+              <span id="quiz-percent">20%</span>
+            </div>
+            <div class="quiz-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20">
+              <div id="quiz-progress-fill" class="quiz-progress-fill"></div>
+            </div>
+          </div>
+
+          <div id="quiz-card" aria-live="polite">
+            <h3 id="quiz-question" class="quiz-question"></h3>
+            <div id="quiz-answers" class="quiz-answers"></div>
+            <button id="quiz-next" class="quiz-next" type="button" hidden>Next &rarr;</button>
+          </div>
+
+          <div id="quiz-result" class="quiz-result" hidden>
+            <div class="quiz-result-score-wrap">
+              <p id="quiz-score" class="quiz-score"></p>
+            </div>
+            <h3 id="quiz-result-title" class="quiz-result-title"></h3>
+            <p id="quiz-result-copy" class="quiz-result-copy"></p>
+            <p class="quiz-psqi-ref">
+              A PSQI score above 5 has demonstrated 89.6% sensitivity and 86.5% specificity in distinguishing good from poor sleepers (Buysse et al., 1989). For informational purposes only.
+            </p>
+            <div class="quiz-result-actions">
+              <a id="quiz-result-link" class="cta" href="#">Read recommended protocol &rarr;</a>
+              <button id="quiz-restart" class="cta-ghost-btn" type="button">Retake quiz</button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -122,55 +150,11 @@ import Header from '../components/Header.astro';
         </div>
       </section>
 
-      <!-- ── QUIZ ── -->
-      <section class="quiz reveal" aria-labelledby="sleep-quiz-title">
-        <div class="quiz-intro">
-          <p class="quiz-eyebrow">Sleep Score Quiz</p>
-          <h2 id="sleep-quiz-title">How Well Are You Actually Sleeping?</h2>
-          <p class="quiz-subtitle">
-            5 questions based on validated sleep research domains. Not a diagnosis — a starting point.
-          </p>
-          <p class="quiz-note">Inspired by the Pittsburgh Sleep Quality Index (Buysse et al., 1989)</p>
-        </div>
-
-        <div class="quiz-progress-wrap" aria-live="polite">
-          <div class="quiz-progress-head">
-            <span id="quiz-step">Question 1 / 5</span>
-            <span id="quiz-percent">20%</span>
-          </div>
-          <div class="quiz-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20">
-            <div id="quiz-progress-fill" class="quiz-progress-fill"></div>
-          </div>
-        </div>
-
-        <div id="quiz-card" class="quiz-card" aria-live="polite">
-          <h3 id="quiz-question" class="quiz-question"></h3>
-          <div id="quiz-answers" class="quiz-answers"></div>
-          <button id="quiz-next" class="quiz-next" type="button" hidden>Next &rarr;</button>
-        </div>
-
-        <div id="quiz-result" class="quiz-result" hidden>
-          <p id="quiz-score" class="quiz-score"></p>
-          <h3 id="quiz-result-title" class="quiz-result-title"></h3>
-          <p id="quiz-result-copy" class="quiz-result-copy"></p>
-          <p class="quiz-psqi-ref">
-            A PSQI score above 5 has demonstrated 89.6% sensitivity and 86.5% specificity in distinguishing
-            good from poor sleepers (Buysse et al., 1989). This quiz is for informational purposes only and
-            is not a substitute for professional evaluation.
-          </p>
-          <a id="quiz-result-link" class="quiz-result-link" href="#">Read your recommended next step &rarr;</a>
-          <button id="quiz-restart" class="quiz-restart" type="button">Retake quiz</button>
-        </div>
-      </section>
-
     </main>
 
     <footer class="site-footer reveal">
       <p>&copy; {new Date().getFullYear()} Novrello. All rights reserved.</p>
-      <p class="disclaimer">
-        Medical disclaimer: Content is educational only and is not a substitute for professional
-        medical advice, diagnosis, or treatment.
-      </p>
+      <p class="disclaimer">Medical disclaimer: Content is educational only and is not a substitute for professional medical advice, diagnosis, or treatment.</p>
     </footer>
   </body>
 </html>
@@ -178,48 +162,48 @@ import Header from '../components/Header.astro';
 <script>
   const quizQuestions = [
     {
-      question: 'On average, how long does it take you to fall asleep after getting into bed?',
+      question: 'How long does it take you to fall asleep?',
       answers: [
-        { label: 'Less than 15 minutes', points: 0 },
-        { label: '16–30 minutes', points: 1 },
-        { label: '31–60 minutes', points: 2 },
-        { label: 'More than 60 minutes', points: 3 },
+        { label: '< 15 min', sublabel: 'Head hits pillow, out cold', points: 0 },
+        { label: '16–30 min', sublabel: 'Takes a little while', points: 1 },
+        { label: '31–60 min', sublabel: 'Lying awake, thinking', points: 2 },
+        { label: '60+ min', sublabel: 'Takes over an hour', points: 3 },
       ],
     },
     {
-      question: 'How many hours of actual sleep do you get per night?',
+      question: 'How many hours do you actually sleep?',
       answers: [
-        { label: 'More than 7 hours', points: 0 },
-        { label: '6–7 hours', points: 1 },
-        { label: '5–6 hours', points: 2 },
-        { label: 'Less than 5 hours', points: 3 },
+        { label: '7+ hours', sublabel: 'Full night, well rested', points: 0 },
+        { label: '6–7 hours', sublabel: 'Slightly short', points: 1 },
+        { label: '5–6 hours', sublabel: 'Noticeably tired', points: 2 },
+        { label: '< 5 hours', sublabel: 'Running on empty', points: 3 },
       ],
     },
     {
-      question: 'How often do you wake up during the night or early morning?',
+      question: 'How often do you wake up at night?',
       answers: [
-        { label: 'Less than once a week', points: 0 },
-        { label: 'Once or twice a week', points: 1 },
-        { label: 'Three or more times a week', points: 2 },
-        { label: 'Every night', points: 3 },
+        { label: 'Rarely', sublabel: 'Sleep straight through', points: 0 },
+        { label: '1–2×/week', sublabel: 'Occasional wakeups', points: 1 },
+        { label: '3+×/week', sublabel: 'Often interrupted', points: 2 },
+        { label: 'Every night', sublabel: 'Never sleep through', points: 3 },
       ],
     },
     {
-      question: 'How often do you have trouble staying awake during the day?',
+      question: 'Do you struggle to stay awake during the day?',
       answers: [
-        { label: 'Rarely or never', points: 0 },
-        { label: 'Once or twice a week', points: 1 },
-        { label: 'Three or more times a week', points: 2 },
-        { label: 'Every day', points: 3 },
+        { label: 'Never', sublabel: 'Alert all day', points: 0 },
+        { label: 'Sometimes', sublabel: 'Occasional dips', points: 1 },
+        { label: 'Often', sublabel: 'Regular afternoon crashes', points: 2 },
+        { label: 'Daily', sublabel: 'Constant fatigue', points: 3 },
       ],
     },
     {
-      question: 'Overall, how would you rate your sleep quality over the past month?',
+      question: 'How would you rate your sleep overall?',
       answers: [
-        { label: 'Very good', points: 0 },
-        { label: 'Fairly good', points: 1 },
-        { label: 'Fairly bad', points: 2 },
-        { label: 'Very bad', points: 3 },
+        { label: 'Very good', sublabel: 'Waking up refreshed', points: 0 },
+        { label: 'Fairly good', sublabel: 'Could be better', points: 1 },
+        { label: 'Fairly bad', sublabel: 'Not restorative', points: 2 },
+        { label: 'Very bad', sublabel: 'Genuinely suffering', points: 3 },
       ],
     },
   ];
@@ -227,20 +211,20 @@ import Header from '../components/Header.astro';
   const results = [
     {
       min: 0, max: 4,
-      title: 'Good sleeper',
-      copy: 'Your sleep quality is in a healthy range. Fine-tune with our advanced protocols.',
+      title: '😴 Good sleeper',
+      copy: 'Your sleep is in a healthy range. Fine-tune with our advanced protocols to go from good to optimal.',
       href: '/deep-sleep-naturally',
     },
     {
       min: 5, max: 8,
-      title: 'Borderline',
-      copy: 'Mild sleep difficulties. Targeted interventions could meaningfully improve your quality of life.',
+      title: '⚠️ Borderline',
+      copy: 'Mild sleep difficulties detected. Targeted interventions can meaningfully improve your quality of life.',
       href: '/sleep-hygiene-biohacking',
     },
     {
       min: 9, max: 15,
-      title: 'Poor sleeper',
-      copy: 'This score range is associated with significant sleep impairment in clinical research. The interventions that help most are simpler than you think.',
+      title: '🔴 Poor sleeper',
+      copy: 'This score is associated with significant sleep impairment in clinical research. The fixes are simpler than you think.',
       href: '/magnesium-glycinate-sleep',
     },
   ];
@@ -249,7 +233,6 @@ import Header from '../components/Header.astro';
   const percentEl = document.getElementById('quiz-percent');
   const progressTrack = document.querySelector('.quiz-progress-track');
   const progressFill = document.getElementById('quiz-progress-fill');
-  const quizCard = document.getElementById('quiz-card');
   const questionEl = document.getElementById('quiz-question');
   const answersEl = document.getElementById('quiz-answers');
   const nextBtn = document.getElementById('quiz-next');
@@ -272,14 +255,6 @@ import Header from '../components/Header.astro';
     progressTrack.setAttribute('aria-valuenow', String(percent));
   }
 
-  function animateCard(renderFn) {
-    quizCard.classList.add('is-transitioning');
-    window.setTimeout(() => {
-      renderFn();
-      quizCard.classList.remove('is-transitioning');
-    }, 180);
-  }
-
   function renderQuestion() {
     const q = quizQuestions[currentIndex];
     selectedPoints = null;
@@ -290,7 +265,7 @@ import Header from '../components/Header.astro';
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'quiz-answer';
-      button.textContent = answer.label;
+      button.innerHTML = `<span class="qa-label">${answer.label}</span><span class="qa-sub">${answer.sublabel}</span>`;
       button.addEventListener('click', () => {
         answersEl.querySelectorAll('.quiz-answer').forEach((el) => el.classList.remove('is-selected'));
         button.classList.add('is-selected');
@@ -301,12 +276,22 @@ import Header from '../components/Header.astro';
     });
   }
 
+  function animateAnswers() {
+    answersEl.classList.add('is-transitioning');
+    questionEl.classList.add('is-transitioning');
+    window.setTimeout(() => {
+      renderQuestion();
+      answersEl.classList.remove('is-transitioning');
+      questionEl.classList.remove('is-transitioning');
+    }, 180);
+  }
+
   function showResult() {
-    const result = results.find((item) => totalScore >= item.min && totalScore <= item.max) || results[1];
-    quizCard.hidden = true;
+    const result = results.find((r) => totalScore >= r.min && totalScore <= r.max) || results[1];
+    document.getElementById('quiz-card').hidden = true;
     document.querySelector('.quiz-progress-wrap').hidden = true;
     resultEl.hidden = false;
-    scoreEl.textContent = `Your PSQI-inspired score: ${totalScore}/15`;
+    scoreEl.textContent = `Score: ${totalScore} / 15`;
     resultTitleEl.textContent = result.title;
     resultCopyEl.textContent = result.copy;
     resultLinkEl.href = result.href;
@@ -318,18 +303,16 @@ import Header from '../components/Header.astro';
     if (currentIndex === quizQuestions.length - 1) { showResult(); return; }
     currentIndex += 1;
     updateProgress();
-    animateCard(renderQuestion);
+    animateAnswers();
   });
 
   restartBtn.addEventListener('click', () => {
-    currentIndex = 0;
-    selectedPoints = null;
-    totalScore = 0;
-    quizCard.hidden = false;
+    currentIndex = 0; selectedPoints = null; totalScore = 0;
+    document.getElementById('quiz-card').hidden = false;
     document.querySelector('.quiz-progress-wrap').hidden = false;
     resultEl.hidden = true;
     updateProgress();
-    animateCard(renderQuestion);
+    renderQuestion();
   });
 
   updateProgress();
@@ -370,10 +353,7 @@ import Header from '../components/Header.astro';
     animation: fade-up 700ms ease-out both;
   }
 
-  .hero-content {
-    display: grid;
-    gap: 1rem;
-  }
+  .hero-content { display: grid; gap: 1rem; }
 
   .eyebrow {
     margin: 0;
@@ -388,8 +368,7 @@ import Header from '../components/Header.astro';
   }
 
   .pulse-dot {
-    width: 9px;
-    height: 9px;
+    width: 9px; height: 9px;
     border-radius: 999px;
     background: var(--nv-accent);
     animation: pulse 1.7s ease-out infinite;
@@ -421,6 +400,7 @@ import Header from '../components/Header.astro';
   }
 
   .cta {
+    display: inline-flex;
     text-decoration: none;
     color: #062015;
     background: var(--nv-accent);
@@ -428,6 +408,10 @@ import Header from '../components/Header.astro';
     border-radius: 999px;
     padding: 0.78rem 1.3rem;
     transition: transform 180ms ease, box-shadow 180ms ease;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
   }
 
   .cta:hover {
@@ -450,6 +434,26 @@ import Header from '../components/Header.astro';
     background: rgba(16, 217, 138, 0.07);
   }
 
+  .cta-ghost-btn {
+    display: inline-flex;
+    text-decoration: none;
+    color: var(--nv-accent);
+    font-weight: 500;
+    border: 1px solid rgba(16, 217, 138, 0.35);
+    border-radius: 999px;
+    padding: 0.78rem 1.3rem;
+    transition: border-color 180ms ease, background 180ms ease;
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+  }
+
+  .cta-ghost-btn:hover {
+    border-color: rgba(16, 217, 138, 0.7);
+    background: rgba(16, 217, 138, 0.07);
+  }
+
   .hero-stats {
     display: flex;
     align-items: center;
@@ -457,11 +461,7 @@ import Header from '../components/Header.astro';
     margin-top: 0.5rem;
   }
 
-  .stat {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-  }
+  .stat { display: flex; flex-direction: column; gap: 0.15rem; }
 
   .stat-num {
     font-family: 'IBM Plex Mono', monospace;
@@ -470,39 +470,246 @@ import Header from '../components/Header.astro';
     font-weight: 500;
   }
 
-  .stat-label {
-    font-size: 0.75rem;
-    color: var(--nv-muted);
-  }
+  .stat-label { font-size: 0.75rem; color: var(--nv-muted); }
 
   .stat-divider {
-    width: 1px;
-    height: 32px;
+    width: 1px; height: 32px;
     background: rgba(16, 217, 138, 0.2);
   }
 
-  /* SVG illustration */
   .hero-visual {
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  .bio-svg {
-    width: 100%;
-    max-width: 380px;
-    opacity: 0.9;
-  }
+  .bio-svg { width: 100%; max-width: 380px; opacity: 0.9; }
 
   .spin-slow {
     transform-origin: 210px 210px;
     animation: spin 18s linear infinite;
   }
 
-  /* ── RESEARCH ── */
-  .research {
-    padding: 0 0 2.5rem;
+  /* ── QUIZ ── */
+  .quiz {
+    margin: 0 0 3rem;
+    border: 1px solid rgba(16, 217, 138, 0.2);
+    border-radius: 24px;
+    overflow: hidden;
+    background: linear-gradient(160deg, rgba(16, 217, 138, 0.06) 0%, rgba(8, 14, 18, 0) 60%);
   }
+
+  .quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+    padding: 2rem 2rem 1.5rem;
+    border-bottom: 1px solid rgba(16, 217, 138, 0.12);
+  }
+
+  .quiz-header-text { flex: 1; }
+
+  .quiz-eyebrow {
+    margin: 0 0 0.5rem;
+    color: var(--nv-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+  }
+
+  .quiz-header h2 {
+    margin: 0 0 0.4rem;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+  }
+
+  .quiz-subtitle {
+    margin: 0;
+    color: var(--nv-muted);
+    font-size: 0.95rem;
+  }
+
+  .quiz-note {
+    margin: 0;
+    color: rgba(231, 240, 242, 0.4);
+    font-size: 0.75rem;
+    font-family: 'IBM Plex Mono', monospace;
+    text-align: right;
+    max-width: 22ch;
+    line-height: 1.5;
+  }
+
+  .quiz-body {
+    padding: 1.75rem 2rem 2rem;
+  }
+
+  .quiz-progress-wrap { margin-bottom: 1.75rem; }
+
+  .quiz-progress-head {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    color: var(--nv-muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+  }
+
+  .quiz-progress-track {
+    width: 100%; height: 4px;
+    border-radius: 999px;
+    background: rgba(231, 240, 242, 0.08);
+    overflow: hidden;
+  }
+
+  .quiz-progress-fill {
+    width: 20%; height: 100%;
+    background: linear-gradient(90deg, #10d98a, #4cf0b0);
+    transition: width 300ms ease;
+  }
+
+  .quiz-question {
+    margin: 0 0 1.25rem;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    line-height: 1.3;
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  .quiz-question.is-transitioning {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  /* 2x2 grid answers */
+  .quiz-answers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    transition: opacity 180ms ease;
+  }
+
+  .quiz-answers.is-transitioning { opacity: 0; }
+
+  .quiz-answer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    text-align: left;
+    border: 1px solid rgba(231, 240, 242, 0.12);
+    background: rgba(8, 14, 18, 0.5);
+    color: var(--nv-text);
+    border-radius: 14px;
+    padding: 1rem 1.1rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 150ms ease, background 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+    position: relative;
+  }
+
+  .quiz-answer:hover {
+    border-color: rgba(16, 217, 138, 0.35);
+    background: rgba(16, 217, 138, 0.05);
+    transform: translateY(-2px);
+  }
+
+  .quiz-answer.is-selected {
+    border-color: var(--nv-accent);
+    background: rgba(16, 217, 138, 0.1);
+    box-shadow: 0 0 0 1px rgba(16, 217, 138, 0.2), 0 4px 20px rgba(16, 217, 138, 0.12);
+    transform: translateY(-2px);
+  }
+
+  .qa-label {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--nv-text);
+    transition: color 150ms;
+  }
+
+  .quiz-answer.is-selected .qa-label { color: var(--nv-accent); }
+
+  .qa-sub {
+    font-size: 0.82rem;
+    color: var(--nv-muted);
+    line-height: 1.4;
+  }
+
+  .quiz-next {
+    margin-top: 1.25rem;
+    border: none;
+    border-radius: 999px;
+    padding: 0.72rem 1.4rem;
+    font: inherit;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #062015;
+    background: var(--nv-accent);
+    cursor: pointer;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+
+  .quiz-next:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(16, 217, 138, 0.3);
+  }
+
+  /* Result */
+  .quiz-result {
+    border: 1px solid rgba(16, 217, 138, 0.25);
+    border-radius: 16px;
+    padding: 1.5rem;
+    background: rgba(16, 217, 138, 0.06);
+  }
+
+  .quiz-result-score-wrap {
+    margin-bottom: 0.5rem;
+  }
+
+  .quiz-score {
+    margin: 0;
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--nv-accent);
+    font-size: 0.8rem;
+    background: rgba(16, 217, 138, 0.1);
+    border: 1px solid rgba(16, 217, 138, 0.25);
+    border-radius: 999px;
+    padding: 0.2rem 0.75rem;
+  }
+
+  .quiz-result-title {
+    margin: 0.6rem 0 0.5rem;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.5rem;
+  }
+
+  .quiz-result-copy {
+    margin: 0 0 0.75rem;
+    color: var(--nv-muted);
+    line-height: 1.65;
+    max-width: 60ch;
+  }
+
+  .quiz-psqi-ref {
+    margin: 0 0 1.25rem;
+    color: rgba(231, 240, 242, 0.45);
+    font-size: 0.78rem;
+    font-family: 'IBM Plex Mono', monospace;
+    line-height: 1.7;
+    max-width: 70ch;
+  }
+
+  .quiz-result-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  /* ── RESEARCH ── */
+  .research { padding: 0 0 2.5rem; }
 
   .section-head {
     display: flex;
@@ -573,193 +780,6 @@ import Header from '../components/Header.astro';
     text-transform: uppercase;
   }
 
-  /* ── QUIZ ── */
-  .quiz {
-    margin: 0 0 2.5rem;
-    border: 1px solid rgba(16, 217, 138, 0.22);
-    border-radius: 20px;
-    padding: 2rem;
-    background: linear-gradient(180deg, rgba(16, 217, 138, 0.07), rgba(16, 217, 138, 0.02));
-  }
-
-  .quiz-intro {
-    margin-bottom: 1.5rem;
-  }
-
-  .quiz-eyebrow {
-    margin: 0 0 0.5rem;
-    color: var(--nv-accent);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.78rem;
-  }
-
-  .quiz-intro h2 {
-    margin: 0 0 0.5rem;
-  }
-
-  .quiz-subtitle {
-    margin: 0 0 0.3rem;
-    color: var(--nv-muted);
-    max-width: 74ch;
-  }
-
-  .quiz-note {
-    margin: 0;
-    color: rgba(231, 240, 242, 0.55);
-    font-size: 0.82rem;
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .quiz-progress-wrap { margin-bottom: 1.1rem; }
-
-  .quiz-progress-head {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.45rem;
-    color: var(--nv-muted);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.78rem;
-  }
-
-  .quiz-progress-track {
-    width: 100%;
-    height: 6px;
-    border-radius: 999px;
-    background: rgba(231, 240, 242, 0.1);
-    overflow: hidden;
-  }
-
-  .quiz-progress-fill {
-    width: 20%;
-    height: 100%;
-    background: linear-gradient(90deg, #10d98a, #4cf0b0);
-    transition: width 220ms ease;
-  }
-
-  .quiz-card {
-    border: 1px solid rgba(231, 240, 242, 0.12);
-    border-radius: 14px;
-    padding: 1.2rem;
-    background: rgba(8, 14, 18, 0.5);
-    transition: opacity 180ms ease, transform 180ms ease;
-  }
-
-  .quiz-card.is-transitioning {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-
-  .quiz-question {
-    margin: 0 0 1rem;
-    font-family: 'DM Serif Display', Georgia, serif;
-    font-size: 1.15rem;
-  }
-
-  .quiz-answers {
-    display: grid;
-    gap: 0.5rem;
-  }
-
-  .quiz-answer {
-    text-align: left;
-    border: 1px solid rgba(231, 240, 242, 0.14);
-    background: rgba(8, 14, 18, 0.3);
-    color: var(--nv-text);
-    border-radius: 10px;
-    padding: 0.78rem 1rem;
-    font: inherit;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: border-color 140ms ease, background 140ms ease, transform 140ms ease;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .quiz-answer::before {
-    content: '';
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    border: 1.5px solid rgba(16, 217, 138, 0.35);
-    flex-shrink: 0;
-    transition: background 140ms, border-color 140ms;
-  }
-
-  .quiz-answer:hover {
-    border-color: rgba(16, 217, 138, 0.4);
-    transform: translateX(3px);
-  }
-
-  .quiz-answer.is-selected {
-    border-color: rgba(16, 217, 138, 0.6);
-    background: rgba(16, 217, 138, 0.12);
-  }
-
-  .quiz-answer.is-selected::before {
-    background: var(--nv-accent);
-    border-color: var(--nv-accent);
-  }
-
-  .quiz-next, .quiz-restart {
-    margin-top: 1rem;
-    border: none;
-    border-radius: 999px;
-    padding: 0.68rem 1.2rem;
-    font: inherit;
-    font-weight: 600;
-    color: #062015;
-    background: var(--nv-accent);
-    cursor: pointer;
-    transition: transform 160ms ease, box-shadow 160ms ease;
-  }
-
-  .quiz-next:hover, .quiz-restart:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 8px 18px rgba(16, 217, 138, 0.26);
-  }
-
-  .quiz-result {
-    border: 1px solid rgba(16, 217, 138, 0.3);
-    border-radius: 14px;
-    padding: 1.2rem;
-    background: rgba(16, 217, 138, 0.07);
-  }
-
-  .quiz-score {
-    margin: 0;
-    font-family: 'IBM Plex Mono', monospace;
-    color: var(--nv-accent);
-    font-size: 0.8rem;
-  }
-
-  .quiz-result-title {
-    margin: 0.4rem 0 0.5rem;
-    font-family: 'DM Serif Display', Georgia, serif;
-  }
-
-  .quiz-result-copy { margin: 0; color: var(--nv-muted); }
-
-  .quiz-psqi-ref {
-    margin: 0.8rem 0 0;
-    color: rgba(231, 240, 242, 0.6);
-    font-size: 0.82rem;
-    line-height: 1.7;
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .quiz-result-link {
-    display: inline-flex;
-    margin-top: 0.9rem;
-    color: var(--nv-accent);
-    font-weight: 600;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(16, 217, 138, 0.35);
-    padding-bottom: 1px;
-  }
-
   /* ── FOOTER ── */
   .site-footer {
     width: min(1120px, calc(100% - 2rem));
@@ -810,12 +830,14 @@ import Header from '../components/Header.astro';
       min-height: auto;
       padding: 1.5rem 0 2rem;
     }
-
     .hero-visual { display: none; }
-
-    .cards {
-      grid-template-columns: 1fr;
+    .cards { grid-template-columns: 1fr; }
+    .quiz-answers { grid-template-columns: 1fr; }
+    .quiz-header {
+      flex-direction: column;
+      align-items: flex-start;
     }
+    .quiz-note { text-align: left; max-width: none; }
   }
 
   @media (prefers-reduced-motion: reduce) {
