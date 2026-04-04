@@ -14,6 +14,52 @@ import Header from '../components/Header.astro';
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      .quiz-answer {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        background: rgba(8, 14, 18, 0.5) !important;
+        color: #e7f0f2 !important;
+        border: 1px solid rgba(231, 240, 242, 0.12) !important;
+        border-radius: 14px !important;
+        padding: 1rem 1.1rem !important;
+        width: 100% !important;
+        cursor: pointer !important;
+        font-family: 'IBM Plex Sans', system-ui, sans-serif !important;
+        font-size: 1rem !important;
+        -webkit-appearance: none !important;
+        appearance: none !important;
+        box-sizing: border-box !important;
+      }
+      .quiz-answer:hover {
+        border-color: rgba(16, 217, 138, 0.35) !important;
+        background: rgba(16, 217, 138, 0.05) !important;
+        transform: translateY(-2px);
+      }
+      .quiz-answer.is-selected {
+        border-color: #10d98a !important;
+        background: rgba(16, 217, 138, 0.1) !important;
+        box-shadow: 0 0 0 1px rgba(16, 217, 138, 0.2), 0 4px 20px rgba(16, 217, 138, 0.12) !important;
+        transform: translateY(-2px);
+      }
+      .quiz-answer .qa-label {
+        display: block !important;
+        font-weight: 600 !important;
+        font-size: 1rem !important;
+        color: #e7f0f2 !important;
+      }
+      .quiz-answer.is-selected .qa-label {
+        color: #10d98a !important;
+      }
+      .quiz-answer .qa-sub {
+        display: block !important;
+        font-size: 0.82rem !important;
+        color: rgba(231, 240, 242, 0.65) !important;
+        margin-top: 0.2rem !important;
+      }
+    </style>
   </head>
   <body>
     <Header currentPath={Astro.url.pathname} />
@@ -261,48 +307,32 @@ import Header from '../components/Header.astro';
     nextBtn.hidden = true;
     questionEl.textContent = q.question;
     answersEl.innerHTML = '';
+
     q.answers.forEach((answer) => {
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'quiz-answer';
 
-      button.style.cssText = `
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
-        border: 1px solid rgba(231, 240, 242, 0.12);
-        background: rgba(8, 14, 18, 0.5);
-        color: #e7f0f2;
-        border-radius: 14px;
-        padding: 1rem 1.1rem;
-        font-family: inherit;
-        cursor: pointer;
-        width: 100%;
-        transition: border-color 150ms ease, background 150ms ease, transform 150ms ease;
-      `;
-      
       const labelEl = document.createElement('span');
-      labelEl.style.cssText = 'display:block; font-weight:600; font-size:1rem;';
+      labelEl.className = 'qa-label';
       labelEl.textContent = answer.label;
-      
+
       const subEl = document.createElement('span');
-      subEl.style.cssText = 'display:block; font-size:0.82rem; opacity:0.65; margin-top:0.2rem;';
+      subEl.className = 'qa-sub';
       subEl.textContent = answer.sublabel;
-      
+
       button.appendChild(labelEl);
       button.appendChild(subEl);
-      
+
       button.addEventListener('click', () => {
         answersEl.querySelectorAll('.quiz-answer').forEach((el) => {
           el.classList.remove('is-selected');
-          el.querySelector('span')?.style.removeProperty('color');
         });
         button.classList.add('is-selected');
-        labelEl.style.color = '#10d98a';
         selectedPoints = answer.points;
         nextBtn.hidden = false;
       });
+
       answersEl.appendChild(button);
     });
   }
@@ -350,8 +380,8 @@ import Header from '../components/Header.astro';
   renderQuestion();
 </script>
 
-<style>
-  :global(:root) {
+<style is:global>
+  :root {
     --nv-bg: #080e12;
     --nv-accent: #10d98a;
     --nv-text: #e7f0f2;
@@ -360,7 +390,7 @@ import Header from '../components/Header.astro';
     --nv-stroke: rgba(16, 217, 138, 0.24);
   }
 
-  :global(body) {
+  body {
     background: var(--nv-bg);
     color: var(--nv-text);
     font-family: 'IBM Plex Sans', system-ui, sans-serif;
@@ -620,52 +650,6 @@ import Header from '../components/Header.astro';
   }
 
   .quiz-answers.is-transitioning { opacity: 0; }
-
-  .quiz-answer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.3rem;
-    text-align: left;
-    border: 1px solid rgba(231, 240, 242, 0.12);
-    background: rgba(8, 14, 18, 0.5);
-    color: var(--nv-text);
-    border-radius: 14px;
-    padding: 1rem 1.1rem;
-    font-family: inherit;
-    cursor: pointer;
-    transition: border-color 150ms ease, background 150ms ease, transform 150ms ease, box-shadow 150ms ease;
-  }
-
-  .quiz-answer:hover {
-    border-color: rgba(16, 217, 138, 0.35);
-    background: rgba(16, 217, 138, 0.05);
-    transform: translateY(-2px);
-  }
-
-  .quiz-answer.is-selected {
-    border-color: var(--nv-accent);
-    background: rgba(16, 217, 138, 0.1);
-    box-shadow: 0 0 0 1px rgba(16, 217, 138, 0.2), 0 4px 20px rgba(16, 217, 138, 0.12);
-    transform: translateY(-2px);
-  }
-
-  .qa-label {
-    display: block;
-    font-weight: 600;
-    font-size: 1rem;
-    color: var(--nv-text);
-    transition: color 150ms;
-  }
-
-  .quiz-answer.is-selected .qa-label { color: var(--nv-accent); }
-
-  .qa-sub {
-    display: block;
-    font-size: 0.82rem;
-    color: var(--nv-muted);
-    line-height: 1.4;
-  }
 
   .quiz-next {
     margin-top: 1.25rem;
