@@ -14,52 +14,6 @@ import Header from '../components/Header.astro';
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-    <style>
-      .quiz-answer {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        text-align: left !important;
-        background: rgba(8, 14, 18, 0.5) !important;
-        color: #e7f0f2 !important;
-        border: 1px solid rgba(231, 240, 242, 0.12) !important;
-        border-radius: 14px !important;
-        padding: 1rem 1.1rem !important;
-        width: 100% !important;
-        cursor: pointer !important;
-        font-family: 'IBM Plex Sans', system-ui, sans-serif !important;
-        font-size: 1rem !important;
-        -webkit-appearance: none !important;
-        appearance: none !important;
-        box-sizing: border-box !important;
-      }
-      .quiz-answer:hover {
-        border-color: rgba(16, 217, 138, 0.35) !important;
-        background: rgba(16, 217, 138, 0.05) !important;
-        transform: translateY(-2px);
-      }
-      .quiz-answer.is-selected {
-        border-color: #10d98a !important;
-        background: rgba(16, 217, 138, 0.1) !important;
-        box-shadow: 0 0 0 1px rgba(16, 217, 138, 0.2), 0 4px 20px rgba(16, 217, 138, 0.12) !important;
-        transform: translateY(-2px);
-      }
-      .quiz-answer .qa-label {
-        display: block !important;
-        font-weight: 600 !important;
-        font-size: 1rem !important;
-        color: #e7f0f2 !important;
-      }
-      .quiz-answer.is-selected .qa-label {
-        color: #10d98a !important;
-      }
-      .quiz-answer .qa-sub {
-        display: block !important;
-        font-size: 0.82rem !important;
-        color: rgba(231, 240, 242, 0.65) !important;
-        margin-top: 0.2rem !important;
-      }
-    </style>
   </head>
   <body>
     <Header currentPath={Astro.url.pathname} />
@@ -146,7 +100,7 @@ import Header from '../components/Header.astro';
           <div id="quiz-card" aria-live="polite">
             <h3 id="quiz-question" class="quiz-question"></h3>
             <div id="quiz-answers" class="quiz-answers"></div>
-            <button id="quiz-next" class="quiz-next" type="button" hidden>Next &rarr;</button>
+            <div id="quiz-next" class="quiz-next" role="button" tabindex="0" hidden>Next &rarr;</div>
           </div>
 
           <div id="quiz-result" class="quiz-result" hidden>
@@ -160,7 +114,7 @@ import Header from '../components/Header.astro';
             </p>
             <div class="quiz-result-actions">
               <a id="quiz-result-link" class="cta" href="#">Read recommended protocol &rarr;</a>
-              <button id="quiz-restart" class="cta-ghost-btn" type="button">Retake quiz</button>
+              <div id="quiz-restart" class="cta-ghost-btn" role="button" tabindex="0">Retake quiz</div>
             </div>
           </div>
         </div>
@@ -309,71 +263,106 @@ import Header from '../components/Header.astro';
     answersEl.innerHTML = '';
 
     q.answers.forEach((answer) => {
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'quiz-answer';
+      const div = document.createElement('div');
+      div.role = 'button';
+      div.tabIndex = 0;
+      div.style.cssText = [
+        'display: flex',
+        'flex-direction: column',
+        'gap: 0.3rem',
+        'text-align: left',
+        'border: 1px solid rgba(231,240,242,0.12)',
+        'background: rgba(8,14,18,0.6)',
+        'color: #e7f0f2',
+        'border-radius: 14px',
+        'padding: 1rem 1.1rem',
+        'cursor: pointer',
+        'transition: border-color 150ms ease, background 150ms ease, transform 150ms ease',
+      ].join(';');
 
-      const labelEl = document.createElement('span');
-      labelEl.className = 'qa-label';
+      const labelEl = document.createElement('strong');
+      labelEl.style.cssText = 'font-size: 1rem; font-weight: 600; color: #e7f0f2;';
       labelEl.textContent = answer.label;
 
       const subEl = document.createElement('span');
-      subEl.className = 'qa-sub';
+      subEl.style.cssText = 'font-size: 0.82rem; color: rgba(231,240,242,0.6);';
       subEl.textContent = answer.sublabel;
 
-      button.appendChild(labelEl);
-      button.appendChild(subEl);
+      div.appendChild(labelEl);
+      div.appendChild(subEl);
 
-      button.addEventListener('click', () => {
-        answersEl.querySelectorAll('.quiz-answer').forEach((el) => {
-          el.classList.remove('is-selected');
+      const select = () => {
+        answersEl.querySelectorAll('[role="button"]').forEach((el) => {
+          (el as HTMLElement).style.borderColor = 'rgba(231,240,242,0.12)';
+          (el as HTMLElement).style.background = 'rgba(8,14,18,0.6)';
+          (el as HTMLElement).style.transform = '';
+          const lbl = el.querySelector('strong');
+          if (lbl) (lbl as HTMLElement).style.color = '#e7f0f2';
         });
-        button.classList.add('is-selected');
+        div.style.borderColor = '#10d98a';
+        div.style.background = 'rgba(16,217,138,0.1)';
+        div.style.transform = 'translateY(-2px)';
+        labelEl.style.color = '#10d98a';
         selectedPoints = answer.points;
         nextBtn.hidden = false;
+      };
+
+      div.addEventListener('click', select);
+      div.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(); }
       });
 
-      answersEl.appendChild(button);
+      answersEl.appendChild(div);
     });
   }
 
   function animateAnswers() {
-    answersEl.classList.add('is-transitioning');
-    questionEl.classList.add('is-transitioning');
+    answersEl.style.opacity = '0';
+    questionEl.style.opacity = '0';
     window.setTimeout(() => {
       renderQuestion();
-      answersEl.classList.remove('is-transitioning');
-      questionEl.classList.remove('is-transitioning');
+      answersEl.style.opacity = '1';
+      questionEl.style.opacity = '1';
     }, 180);
   }
 
   function showResult() {
     const result = results.find((r) => totalScore >= r.min && totalScore <= r.max) || results[1];
-    document.getElementById('quiz-card').hidden = true;
-    document.querySelector('.quiz-progress-wrap').hidden = true;
-    resultEl.hidden = false;
-    scoreEl.textContent = `Score: ${totalScore} / 15`;
-    resultTitleEl.textContent = result.title;
-    resultCopyEl.textContent = result.copy;
-    resultLinkEl.href = result.href;
+    document.getElementById('quiz-card')!.hidden = true;
+    document.querySelector('.quiz-progress-wrap')!.setAttribute('hidden', '');
+    resultEl!.hidden = false;
+    scoreEl!.textContent = `Score: ${totalScore} / 15`;
+    resultTitleEl!.textContent = result.title;
+    resultCopyEl!.textContent = result.copy;
+    (resultLinkEl as HTMLAnchorElement).href = result.href;
   }
 
-  nextBtn.addEventListener('click', () => {
+  const handleNext = () => {
     if (selectedPoints === null) return;
     totalScore += selectedPoints;
     if (currentIndex === quizQuestions.length - 1) { showResult(); return; }
     currentIndex += 1;
     updateProgress();
     animateAnswers();
+  };
+
+  nextBtn.addEventListener('click', handleNext);
+  nextBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleNext(); }
   });
 
-  restartBtn.addEventListener('click', () => {
+  const handleRestart = () => {
     currentIndex = 0; selectedPoints = null; totalScore = 0;
-    document.getElementById('quiz-card').hidden = false;
-    document.querySelector('.quiz-progress-wrap').hidden = false;
-    resultEl.hidden = true;
+    document.getElementById('quiz-card')!.hidden = false;
+    document.querySelector('.quiz-progress-wrap')!.removeAttribute('hidden');
+    resultEl!.hidden = true;
     updateProgress();
     renderQuestion();
+  };
+
+  restartBtn.addEventListener('click', handleRestart);
+  restartBtn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleRestart(); }
   });
 
   updateProgress();
@@ -634,12 +623,7 @@ import Header from '../components/Header.astro';
     font-family: 'DM Serif Display', Georgia, serif;
     font-size: clamp(1.1rem, 2vw, 1.4rem);
     line-height: 1.3;
-    transition: opacity 180ms ease, transform 180ms ease;
-  }
-
-  .quiz-question.is-transitioning {
-    opacity: 0;
-    transform: translateY(6px);
+    transition: opacity 180ms ease;
   }
 
   .quiz-answers {
@@ -649,20 +633,21 @@ import Header from '../components/Header.astro';
     transition: opacity 180ms ease;
   }
 
-  .quiz-answers.is-transitioning { opacity: 0; }
-
   .quiz-next {
+    display: inline-flex;
+    align-items: center;
     margin-top: 1.25rem;
     border: none;
     border-radius: 999px;
     padding: 0.72rem 1.4rem;
-    font: inherit;
+    font-family: inherit;
     font-weight: 600;
     font-size: 0.95rem;
     color: #062015;
     background: var(--nv-accent);
     cursor: pointer;
     transition: transform 160ms ease, box-shadow 160ms ease;
+    user-select: none;
   }
 
   .quiz-next:hover {
