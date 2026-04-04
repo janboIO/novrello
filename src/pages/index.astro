@@ -265,10 +265,25 @@ import Header from '../components/Header.astro';
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'quiz-answer';
-      button.innerHTML = `<span class="qa-label">${answer.label}</span><span class="qa-sub">${answer.sublabel}</span>`;
+      
+      const labelEl = document.createElement('span');
+      labelEl.style.cssText = 'display:block; font-weight:600; font-size:1rem;';
+      labelEl.textContent = answer.label;
+      
+      const subEl = document.createElement('span');
+      subEl.style.cssText = 'display:block; font-size:0.82rem; opacity:0.65; margin-top:0.2rem;';
+      subEl.textContent = answer.sublabel;
+      
+      button.appendChild(labelEl);
+      button.appendChild(subEl);
+      
       button.addEventListener('click', () => {
-        answersEl.querySelectorAll('.quiz-answer').forEach((el) => el.classList.remove('is-selected'));
+        answersEl.querySelectorAll('.quiz-answer').forEach((el) => {
+          el.classList.remove('is-selected');
+          el.querySelector('span')?.style.removeProperty('color');
+        });
         button.classList.add('is-selected');
+        labelEl.style.color = '#10d98a';
         selectedPoints = answer.points;
         nextBtn.hidden = false;
       });
