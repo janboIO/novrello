@@ -14,30 +14,124 @@ import Header from '../components/Header.astro';
       name="description"
       content="Science-backed protocols for sleep, performance, and longevity. No fluff, just data."
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   </head>
   <body>
     <Header currentPath={Astro.url.pathname} />
 
     <main class="home">
+
+      <!-- ── HERO ── -->
       <section class="hero">
-        <p class="eyebrow">
-          <span class="pulse-dot" aria-hidden="true"></span>
-          The Human Lab
-        </p>
-        <h1>Optimize your <span class="accent">biology.</span></h1>
-        <p class="hero-copy">
-          Science-backed protocols for sleep, performance, and longevity. No fluff, just data.
-        </p>
-        <a class="cta" href="/sleep-hygiene-biohacking">Start with sleep &rarr;</a>
+        <div class="hero-content">
+          <p class="eyebrow">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            The Human Lab
+          </p>
+          <h1>Optimize your <span class="accent">biology.</span></h1>
+          <p class="hero-copy">
+            Science-backed protocols for sleep, performance, and longevity. No fluff, just data.
+          </p>
+          <div class="hero-actions">
+            <a class="cta" href="/sleep-hygiene-biohacking">Start with sleep &rarr;</a>
+            <a class="cta-ghost" href="/articles">Browse all articles</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-num">4</span>
+              <span class="stat-label">Evidence-based guides</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+              <span class="stat-num">PubMed</span>
+              <span class="stat-label">Referenced sources</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+              <span class="stat-num">0</span>
+              <span class="stat-label">Fluff. Just data.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <svg viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg" class="bio-svg">
+            <!-- Outer ring -->
+            <circle cx="210" cy="210" r="180" stroke="rgba(16,217,138,0.12)" stroke-width="1"/>
+            <circle cx="210" cy="210" r="140" stroke="rgba(16,217,138,0.10)" stroke-width="1"/>
+            <circle cx="210" cy="210" r="100" stroke="rgba(16,217,138,0.15)" stroke-width="1"/>
+
+            <!-- Rotating dashed ring -->
+            <circle cx="210" cy="210" r="160" stroke="rgba(16,217,138,0.22)" stroke-width="1" stroke-dasharray="6 10" class="spin-slow"/>
+
+            <!-- Sleep arc -->
+            <path d="M 210 70 A 140 140 0 0 1 350 210" stroke="#10d98a" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+
+            <!-- Nodes -->
+            <circle cx="210" cy="70" r="6" fill="#10d98a" opacity="0.9"/>
+            <circle cx="350" cy="210" r="6" fill="#10d98a" opacity="0.6"/>
+            <circle cx="120" cy="320" r="5" fill="#10d98a" opacity="0.4"/>
+            <circle cx="80" cy="180" r="4" fill="#10d98a" opacity="0.3"/>
+
+            <!-- Center orb -->
+            <circle cx="210" cy="210" r="38" fill="rgba(16,217,138,0.08)" stroke="rgba(16,217,138,0.35)" stroke-width="1.5"/>
+            <circle cx="210" cy="210" r="22" fill="rgba(16,217,138,0.15)"/>
+            <circle cx="210" cy="210" r="10" fill="#10d98a" opacity="0.85"/>
+
+            <!-- EEG-like wave -->
+            <polyline points="60,210 90,210 105,170 120,250 135,185 150,230 165,210 360,210"
+              stroke="rgba(16,217,138,0.45)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+            <!-- Labels -->
+            <text x="220" y="66" fill="rgba(16,217,138,0.8)" font-size="10" font-family="IBM Plex Mono">SLEEP</text>
+            <text x="356" y="214" fill="rgba(16,217,138,0.6)" font-size="10" font-family="IBM Plex Mono">COGNITION</text>
+            <text x="60" y="328" fill="rgba(16,217,138,0.45)" font-size="10" font-family="IBM Plex Mono">LONGEVITY</text>
+          </svg>
+        </div>
       </section>
 
+      <!-- ── ARTICLES ── -->
+      <section class="research">
+        <div class="section-head">
+          <h2>Latest research</h2>
+          <a class="see-all" href="/articles">See all &rarr;</a>
+        </div>
+        <div class="cards">
+          <a class="card reveal" href="/magnesium-glycinate-sleep">
+            <p class="card-tag">Sleep · Science</p>
+            <h3>Magnesium Glycinate for Sleep</h3>
+            <p>Does it actually work? We break down the mechanisms, the real studies, and the correct dosage.</p>
+          </a>
+          <a class="card reveal" href="/sleep-hygiene-biohacking">
+            <p class="card-tag">Sleep · Protocol</p>
+            <h3>Sleep Hygiene Biohacking</h3>
+            <p>The evidence-backed habits that actually move the needle on sleep quality.</p>
+          </a>
+          <a class="card reveal" href="/deep-sleep-naturally">
+            <p class="card-tag">Sleep · Deep Dive</p>
+            <h3>Increase Deep Sleep Naturally</h3>
+            <p>How to spend more time in slow-wave sleep — the stage that matters most for recovery.</p>
+          </a>
+          <a class="card reveal" href="/lions-mane-brain-fog">
+            <p class="card-tag">Cognition · Science</p>
+            <h3>Lion's Mane for Brain Fog</h3>
+            <p>What the research actually says about NGF, neurogenesis, and cognitive performance.</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- ── QUIZ ── -->
       <section class="quiz reveal" aria-labelledby="sleep-quiz-title">
-        <p class="quiz-eyebrow">Sleep Score Quiz</p>
-        <h2 id="sleep-quiz-title">How Well Are You Actually Sleeping?</h2>
-        <p class="quiz-subtitle">
-          5 questions based on validated sleep research domains. Not a diagnosis — a starting point.
-        </p>
-        <p class="quiz-note">Inspired by the Pittsburgh Sleep Quality Index (Buysse et al., 1989)</p>
+        <div class="quiz-intro">
+          <p class="quiz-eyebrow">Sleep Score Quiz</p>
+          <h2 id="sleep-quiz-title">How Well Are You Actually Sleeping?</h2>
+          <p class="quiz-subtitle">
+            5 questions based on validated sleep research domains. Not a diagnosis — a starting point.
+          </p>
+          <p class="quiz-note">Inspired by the Pittsburgh Sleep Quality Index (Buysse et al., 1989)</p>
+        </div>
 
         <div class="quiz-progress-wrap" aria-live="polite">
           <div class="quiz-progress-head">
@@ -52,7 +146,7 @@ import Header from '../components/Header.astro';
         <div id="quiz-card" class="quiz-card" aria-live="polite">
           <h3 id="quiz-question" class="quiz-question"></h3>
           <div id="quiz-answers" class="quiz-answers"></div>
-          <button id="quiz-next" class="quiz-next" type="button" hidden>Next</button>
+          <button id="quiz-next" class="quiz-next" type="button" hidden>Next &rarr;</button>
         </div>
 
         <div id="quiz-result" class="quiz-result" hidden>
@@ -64,23 +158,11 @@ import Header from '../components/Header.astro';
             good from poor sleepers (Buysse et al., 1989). This quiz is for informational purposes only and
             is not a substitute for professional evaluation.
           </p>
-          <a id="quiz-result-link" class="quiz-result-link" href="#">Read your recommended next step</a>
+          <a id="quiz-result-link" class="quiz-result-link" href="#">Read your recommended next step &rarr;</a>
           <button id="quiz-restart" class="quiz-restart" type="button">Retake quiz</button>
         </div>
       </section>
 
-      <section class="research">
-        <h2>Latest research</h2>
-        <div class="cards">
-          <a class="card reveal" href="/magnesium-glycinate-sleep">
-            <p class="card-tag">Sleep · Science</p>
-            <h3>Magnesium Glycinate for Sleep</h3>
-            <p>
-              Does it actually work? We break down the mechanisms, the real studies, and the correct dosage.
-            </p>
-          </a>
-        </div>
-      </section>
     </main>
 
     <footer class="site-footer reveal">
@@ -98,68 +180,65 @@ import Header from '../components/Header.astro';
     {
       question: 'On average, how long does it take you to fall asleep after getting into bed?',
       answers: [
-        { label: 'A) Less than 15 minutes', points: 0 },
-        { label: 'B) 16–30 minutes', points: 1 },
-        { label: 'C) 31–60 minutes', points: 2 },
-        { label: 'D) More than 60 minutes', points: 3 },
+        { label: 'Less than 15 minutes', points: 0 },
+        { label: '16–30 minutes', points: 1 },
+        { label: '31–60 minutes', points: 2 },
+        { label: 'More than 60 minutes', points: 3 },
       ],
     },
     {
       question: 'How many hours of actual sleep do you get per night?',
       answers: [
-        { label: 'A) More than 7 hours', points: 0 },
-        { label: 'B) 6–7 hours', points: 1 },
-        { label: 'C) 5–6 hours', points: 2 },
-        { label: 'D) Less than 5 hours', points: 3 },
+        { label: 'More than 7 hours', points: 0 },
+        { label: '6–7 hours', points: 1 },
+        { label: '5–6 hours', points: 2 },
+        { label: 'Less than 5 hours', points: 3 },
       ],
     },
     {
       question: 'How often do you wake up during the night or early morning?',
       answers: [
-        { label: 'A) Less than once a week', points: 0 },
-        { label: 'B) Once or twice a week', points: 1 },
-        { label: 'C) Three or more times a week', points: 2 },
-        { label: 'D) Every night', points: 3 },
+        { label: 'Less than once a week', points: 0 },
+        { label: 'Once or twice a week', points: 1 },
+        { label: 'Three or more times a week', points: 2 },
+        { label: 'Every night', points: 3 },
       ],
     },
     {
       question: 'How often do you have trouble staying awake during the day?',
       answers: [
-        { label: 'A) Rarely or never', points: 0 },
-        { label: 'B) Once or twice a week', points: 1 },
-        { label: 'C) Three or more times a week', points: 2 },
-        { label: 'D) Every day', points: 3 },
+        { label: 'Rarely or never', points: 0 },
+        { label: 'Once or twice a week', points: 1 },
+        { label: 'Three or more times a week', points: 2 },
+        { label: 'Every day', points: 3 },
       ],
     },
     {
       question: 'Overall, how would you rate your sleep quality over the past month?',
       answers: [
-        { label: 'A) Very good', points: 0 },
-        { label: 'B) Fairly good', points: 1 },
-        { label: 'C) Fairly bad', points: 2 },
-        { label: 'D) Very bad', points: 3 },
+        { label: 'Very good', points: 0 },
+        { label: 'Fairly good', points: 1 },
+        { label: 'Fairly bad', points: 2 },
+        { label: 'Very bad', points: 3 },
       ],
     },
   ];
 
   const results = [
     {
-      min: 0,
-      max: 4,
+      min: 0, max: 4,
       title: 'Good sleeper',
       copy: 'Your sleep quality is in a healthy range. Fine-tune with our advanced protocols.',
       href: '/deep-sleep-naturally',
     },
     {
-      min: 5,
-      max: 8,
+      min: 5, max: 8,
       title: 'Borderline',
       copy: 'Mild sleep difficulties. Targeted interventions could meaningfully improve your quality of life.',
       href: '/sleep-hygiene-biohacking',
     },
     {
-      min: 9,
-      max: 15,
+      min: 9, max: 15,
       title: 'Poor sleeper',
       copy: 'This score range is associated with significant sleep impairment in clinical research. The interventions that help most are simpler than you think.',
       href: '/magnesium-glycinate-sleep',
@@ -207,7 +286,6 @@ import Header from '../components/Header.astro';
     nextBtn.hidden = true;
     questionEl.textContent = q.question;
     answersEl.innerHTML = '';
-
     q.answers.forEach((answer) => {
       const button = document.createElement('button');
       button.type = 'button';
@@ -237,10 +315,7 @@ import Header from '../components/Header.astro';
   nextBtn.addEventListener('click', () => {
     if (selectedPoints === null) return;
     totalScore += selectedPoints;
-    if (currentIndex === quizQuestions.length - 1) {
-      showResult();
-      return;
-    }
+    if (currentIndex === quizQuestions.length - 1) { showResult(); return; }
     currentIndex += 1;
     updateProgress();
     animateCard(renderQuestion);
@@ -274,21 +349,30 @@ import Header from '../components/Header.astro';
   :global(body) {
     background: var(--nv-bg);
     color: var(--nv-text);
-    font-family: 'IBM Plex Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    margin: 0;
   }
 
   .home {
     width: min(1120px, calc(100% - 2rem));
     margin: 0 auto;
-    padding: 3.25rem 0 2.5rem;
+    padding: 1rem 0 2.5rem;
   }
 
+  /* ── HERO ── */
   .hero {
-    min-height: min(68vh, 740px);
     display: grid;
-    align-content: center;
-    gap: 1rem;
+    grid-template-columns: 1fr 420px;
+    gap: 2rem;
+    align-items: center;
+    min-height: min(52vh, 520px);
+    padding: 2rem 0 3rem;
     animation: fade-up 700ms ease-out both;
+  }
+
+  .hero-content {
+    display: grid;
+    gap: 1rem;
   }
 
   .eyebrow {
@@ -299,8 +383,7 @@ import Header from '../components/Header.astro';
     color: var(--nv-muted);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-      'Courier New', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.82rem;
   }
 
@@ -309,41 +392,41 @@ import Header from '../components/Header.astro';
     height: 9px;
     border-radius: 999px;
     background: var(--nv-accent);
-    box-shadow: 0 0 0 rgba(16, 217, 138, 0.75);
     animation: pulse 1.7s ease-out infinite;
   }
 
   h1 {
     margin: 0;
-    font-family: 'DM Serif Display', Georgia, 'Times New Roman', Times, serif;
-    font-size: clamp(2.2rem, 6vw, 4.6rem);
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(2.4rem, 5.5vw, 4.2rem);
     line-height: 1.05;
-    letter-spacing: 0.02em;
     max-width: 14ch;
   }
 
-  .accent {
-    color: var(--nv-accent);
-  }
+  .accent { color: var(--nv-accent); }
 
   .hero-copy {
-    margin: 0.15rem 0 0;
+    margin: 0;
     color: var(--nv-muted);
-    font-size: clamp(1rem, 1.9vw, 1.25rem);
-    line-height: 1.6;
-    max-width: 62ch;
+    font-size: clamp(1rem, 1.8vw, 1.18rem);
+    line-height: 1.65;
+    max-width: 52ch;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
   }
 
   .cta {
-    margin-top: 0.55rem;
-    width: fit-content;
     text-decoration: none;
     color: #062015;
     background: var(--nv-accent);
     font-weight: 600;
     border-radius: 999px;
-    padding: 0.8rem 1.1rem;
-    border: 1px solid transparent;
+    padding: 0.78rem 1.3rem;
     transition: transform 180ms ease, box-shadow 180ms ease;
   }
 
@@ -352,58 +435,199 @@ import Header from '../components/Header.astro';
     box-shadow: 0 10px 24px rgba(16, 217, 138, 0.28);
   }
 
+  .cta-ghost {
+    text-decoration: none;
+    color: var(--nv-accent);
+    font-weight: 500;
+    border: 1px solid rgba(16, 217, 138, 0.35);
+    border-radius: 999px;
+    padding: 0.78rem 1.3rem;
+    transition: border-color 180ms ease, background 180ms ease;
+  }
+
+  .cta-ghost:hover {
+    border-color: rgba(16, 217, 138, 0.7);
+    background: rgba(16, 217, 138, 0.07);
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-top: 0.5rem;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .stat-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1rem;
+    color: var(--nv-accent);
+    font-weight: 500;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--nv-muted);
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 32px;
+    background: rgba(16, 217, 138, 0.2);
+  }
+
+  /* SVG illustration */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bio-svg {
+    width: 100%;
+    max-width: 380px;
+    opacity: 0.9;
+  }
+
+  .spin-slow {
+    transform-origin: 210px 210px;
+    animation: spin 18s linear infinite;
+  }
+
+  /* ── RESEARCH ── */
+  .research {
+    padding: 0 0 2.5rem;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 1.2rem;
+  }
+
+  .see-all {
+    color: var(--nv-accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    opacity: 0.8;
+    transition: opacity 150ms;
+  }
+
+  .see-all:hover { opacity: 1; }
+
+  h2 {
+    margin: 0;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: linear-gradient(160deg, rgba(16, 217, 138, 0.07), rgba(16, 217, 138, 0.03));
+    border: 1px solid var(--nv-stroke);
+    border-radius: 16px;
+    padding: 1.2rem 1.1rem 1.1rem;
+    transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(16, 217, 138, 0.45);
+    background: linear-gradient(160deg, rgba(16, 217, 138, 0.12), rgba(16, 217, 138, 0.06));
+  }
+
+  h3 {
+    margin: 0 0 0.5rem;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.25rem;
+  }
+
+  .card p:last-child {
+    margin: 0;
+    color: var(--nv-muted);
+    line-height: 1.55;
+    font-size: 0.95rem;
+  }
+
+  .card-tag {
+    margin: 0 0 0.4rem;
+    color: var(--nv-accent);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ── QUIZ ── */
   .quiz {
-    margin: 0.95rem 0 2rem;
-    border: 1px solid rgba(16, 217, 138, 0.24);
-    border-radius: 18px;
-    padding: 1.1rem 1rem 1.25rem;
-    background: linear-gradient(180deg, rgba(16, 217, 138, 0.08), rgba(16, 217, 138, 0.03));
+    margin: 0 0 2.5rem;
+    border: 1px solid rgba(16, 217, 138, 0.22);
+    border-radius: 20px;
+    padding: 2rem;
+    background: linear-gradient(180deg, rgba(16, 217, 138, 0.07), rgba(16, 217, 138, 0.02));
+  }
+
+  .quiz-intro {
+    margin-bottom: 1.5rem;
   }
 
   .quiz-eyebrow {
-    margin: 0;
+    margin: 0 0 0.5rem;
     color: var(--nv-accent);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-      'Courier New', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.78rem;
   }
 
+  .quiz-intro h2 {
+    margin: 0 0 0.5rem;
+  }
+
   .quiz-subtitle {
-    margin: 0.2rem 0 0.32rem;
+    margin: 0 0 0.3rem;
     color: var(--nv-muted);
     max-width: 74ch;
   }
 
   .quiz-note {
-    margin: 0 0 1rem;
-    color: rgba(231, 240, 242, 0.64);
-    font-size: 0.85rem;
-    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-      'Courier New', monospace;
+    margin: 0;
+    color: rgba(231, 240, 242, 0.55);
+    font-size: 0.82rem;
+    font-family: 'IBM Plex Mono', monospace;
   }
 
-  .quiz-progress-wrap {
-    margin-bottom: 1rem;
-  }
+  .quiz-progress-wrap { margin-bottom: 1.1rem; }
 
   .quiz-progress-head {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     margin-bottom: 0.45rem;
     color: var(--nv-muted);
-    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-      'Courier New', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.78rem;
   }
 
   .quiz-progress-track {
     width: 100%;
-    height: 8px;
+    height: 6px;
     border-radius: 999px;
-    background: rgba(231, 240, 242, 0.12);
+    background: rgba(231, 240, 242, 0.1);
     overflow: hidden;
   }
 
@@ -415,10 +639,10 @@ import Header from '../components/Header.astro';
   }
 
   .quiz-card {
-    border: 1px solid rgba(231, 240, 242, 0.14);
+    border: 1px solid rgba(231, 240, 242, 0.12);
     border-radius: 14px;
-    padding: 0.95rem 0.9rem;
-    background: rgba(8, 14, 18, 0.38);
+    padding: 1.2rem;
+    background: rgba(8, 14, 18, 0.5);
     transition: opacity 180ms ease, transform 180ms ease;
   }
 
@@ -428,43 +652,62 @@ import Header from '../components/Header.astro';
   }
 
   .quiz-question {
-    margin: 0 0 0.8rem;
+    margin: 0 0 1rem;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1.15rem;
   }
 
   .quiz-answers {
     display: grid;
-    gap: 0.55rem;
+    gap: 0.5rem;
   }
 
   .quiz-answer {
     text-align: left;
-    border: 1px solid rgba(231, 240, 242, 0.16);
-    background: rgba(8, 14, 18, 0.45);
+    border: 1px solid rgba(231, 240, 242, 0.14);
+    background: rgba(8, 14, 18, 0.3);
     color: var(--nv-text);
-    border-radius: 12px;
-    padding: 0.72rem 0.75rem;
+    border-radius: 10px;
+    padding: 0.78rem 1rem;
     font: inherit;
+    font-size: 0.95rem;
     cursor: pointer;
     transition: border-color 140ms ease, background 140ms ease, transform 140ms ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .quiz-answer::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(16, 217, 138, 0.35);
+    flex-shrink: 0;
+    transition: background 140ms, border-color 140ms;
   }
 
   .quiz-answer:hover {
     border-color: rgba(16, 217, 138, 0.4);
-    transform: translateY(-1px);
+    transform: translateX(3px);
   }
 
   .quiz-answer.is-selected {
-    border-color: rgba(16, 217, 138, 0.62);
-    background: rgba(16, 217, 138, 0.14);
-    box-shadow: 0 0 0 1px rgba(16, 217, 138, 0.16) inset;
+    border-color: rgba(16, 217, 138, 0.6);
+    background: rgba(16, 217, 138, 0.12);
   }
 
-  .quiz-next,
-  .quiz-restart {
-    margin-top: 0.8rem;
-    border: 1px solid transparent;
+  .quiz-answer.is-selected::before {
+    background: var(--nv-accent);
+    border-color: var(--nv-accent);
+  }
+
+  .quiz-next, .quiz-restart {
+    margin-top: 1rem;
+    border: none;
     border-radius: 999px;
-    padding: 0.62rem 0.95rem;
+    padding: 0.68rem 1.2rem;
     font: inherit;
     font-weight: 600;
     color: #062015;
@@ -473,127 +716,69 @@ import Header from '../components/Header.astro';
     transition: transform 160ms ease, box-shadow 160ms ease;
   }
 
-  .quiz-next:hover,
-  .quiz-restart:hover {
+  .quiz-next:hover, .quiz-restart:hover {
     transform: translateY(-1px);
     box-shadow: 0 8px 18px rgba(16, 217, 138, 0.26);
   }
 
   .quiz-result {
-    border: 1px solid rgba(16, 217, 138, 0.35);
+    border: 1px solid rgba(16, 217, 138, 0.3);
     border-radius: 14px;
-    padding: 0.9rem;
-    background: rgba(16, 217, 138, 0.08);
+    padding: 1.2rem;
+    background: rgba(16, 217, 138, 0.07);
   }
 
   .quiz-score {
     margin: 0;
-    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-      'Courier New', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     color: var(--nv-accent);
     font-size: 0.8rem;
   }
 
   .quiz-result-title {
-    margin: 0.3rem 0 0.45rem;
+    margin: 0.4rem 0 0.5rem;
+    font-family: 'DM Serif Display', Georgia, serif;
   }
 
-  .quiz-result-copy {
-    margin: 0;
-    color: var(--nv-muted);
-  }
+  .quiz-result-copy { margin: 0; color: var(--nv-muted); }
 
   .quiz-psqi-ref {
-    margin: 0.75rem 0 0;
-    color: rgba(231, 240, 242, 0.7);
-    font-size: 0.84rem;
+    margin: 0.8rem 0 0;
+    color: rgba(231, 240, 242, 0.6);
+    font-size: 0.82rem;
     line-height: 1.7;
+    font-family: 'IBM Plex Mono', monospace;
   }
 
   .quiz-result-link {
     display: inline-flex;
-    margin-top: 0.8rem;
+    margin-top: 0.9rem;
     color: var(--nv-accent);
-    text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
     font-weight: 600;
-  }
-
-  .research {
-    padding: 1.25rem 0 2rem;
-  }
-
-  h2 {
-    margin: 0 0 1.2rem;
-    font-family: 'DM Serif Display', Georgia, 'Times New Roman', Times, serif;
-    font-size: clamp(1.6rem, 3vw, 2.3rem);
-  }
-
-  .cards {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.95rem;
-  }
-
-  .card {
-    display: block;
     text-decoration: none;
-    color: inherit;
-    background: linear-gradient(180deg, rgba(16, 217, 138, 0.08), rgba(16, 217, 138, 0.04));
-    border: 1px solid var(--nv-stroke);
-    border-radius: 16px;
-    padding: 1.15rem 1rem 1rem;
-    transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    border-bottom: 1px solid rgba(16, 217, 138, 0.35);
+    padding-bottom: 1px;
   }
 
-  .card:hover {
-    transform: translateY(-2px);
-    border-color: rgba(16, 217, 138, 0.45);
-    background: linear-gradient(180deg, rgba(16, 217, 138, 0.12), rgba(16, 217, 138, 0.06));
-  }
-
-  h3 {
-    margin: 0 0 0.5rem;
-    font-family: 'DM Serif Display', Georgia, 'Times New Roman', Times, serif;
-    font-size: 1.35rem;
-  }
-
-  .card p {
-    margin: 0;
-    color: var(--nv-muted);
-    line-height: 1.55;
-  }
-
-  .card-tag {
-    margin: 0 0 0.4rem;
-    color: var(--nv-accent);
-    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-      'Courier New', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-
+  /* ── FOOTER ── */
   .site-footer {
     width: min(1120px, calc(100% - 2rem));
     margin: 0 auto;
-    padding: 2.3rem 0 2.6rem;
-    border-top: 1px solid rgba(16, 217, 138, 0.18);
+    padding: 2rem 0 2.5rem;
+    border-top: 1px solid rgba(16, 217, 138, 0.15);
     color: var(--nv-muted);
-    font-size: 0.93rem;
+    font-size: 0.9rem;
   }
 
-  .site-footer p {
-    margin: 0.32rem 0;
-  }
+  .site-footer p { margin: 0.3rem 0; }
 
   .disclaimer {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
     max-width: 90ch;
-    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-      'Courier New', monospace;
-    font-size: 0.8rem;
   }
 
+  /* ── ANIMATIONS ── */
   .reveal {
     opacity: 0;
     transform: translateY(18px);
@@ -602,44 +787,39 @@ import Header from '../components/Header.astro';
     animation-range: entry 10% cover 36%;
   }
 
-  @keyframes pulse {
-    0% {
-      box-shadow: 0 0 0 0 rgba(16, 217, 138, 0.75);
-    }
-    70% {
-      box-shadow: 0 0 0 14px rgba(16, 217, 138, 0);
-    }
-    100% {
-      box-shadow: 0 0 0 0 rgba(16, 217, 138, 0);
-    }
-  }
-
   @keyframes fade-up {
-    from {
-      opacity: 0;
-      transform: translateY(18px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  @media (max-width: 900px) {
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(16, 217, 138, 0.75); }
+    70% { box-shadow: 0 0 0 14px rgba(16, 217, 138, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 217, 138, 0); }
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 860px) {
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+      padding: 1.5rem 0 2rem;
+    }
+
+    .hero-visual { display: none; }
+
     .cards {
       grid-template-columns: 1fr;
-    }
-
-    .hero {
-      min-height: auto;
-      padding-top: 0.4rem;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .reveal,
-    .hero,
-    .pulse-dot {
+    .reveal, .hero, .pulse-dot, .spin-slow {
       animation: none !important;
       opacity: 1;
       transform: none;
