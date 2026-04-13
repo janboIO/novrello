@@ -1,0 +1,617 @@
+---
+// src/pages/about.astro
+const title = "About Novrello | The Human Lab";
+const description = "Meet the team behind Novrello — Jan Tore Boe and Linda Myreng-Boe. 30+ years in medical technology, a registered nurse, and a decade of personal biohacking data.";
+const canonicalURL = "https://novrello.com/about";
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalURL} />
+
+  <!-- Schema.org: AboutPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Novrello",
+    "url": "https://novrello.com/about",
+    "description": "Meet the founders of Novrello — Jan Tore Boe and Linda Myreng-Boe.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Novrello",
+      "url": "https://novrello.com"
+    },
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Jan Tore Boe",
+        "jobTitle": "Founder, Medical Technology Specialist",
+        "url": "https://novrello.com/about"
+      },
+      {
+        "@type": "Person",
+        "name": "Linda Myreng-Boe",
+        "jobTitle": "Medical Reviewer, OR Nurse",
+        "url": "https://novrello.com/about"
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg:        #020812;
+      --surface:   #0f172a;
+      --border:    #1e293b;
+      --emerald:   #10b981;
+      --emerald-dim: #065f46;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body:    'IBM Plex Sans', system-ui, sans-serif;
+      --font-mono:    'IBM Plex Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* ── Google Fonts ── */
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+    /* ── NAV (minimal) ── */
+    nav {
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    nav a {
+      color: var(--emerald);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+    nav span { color: var(--muted); font-size: 0.8rem; }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 5rem 0 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--emerald);
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 640px;
+      line-height: 1.75;
+    }
+
+    /* ── PHILOSOPHY ── */
+    .philosophy {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .philosophy h2 {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      color: #fff;
+      margin-bottom: 1.25rem;
+    }
+    .philosophy p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+      max-width: 680px;
+    }
+    .philosophy p strong {
+      color: var(--text);
+    }
+
+    /* ── TEAM ── */
+    .team {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .team-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--emerald);
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 640px) {
+      .team-grid { grid-template-columns: 1fr; }
+    }
+    .profile-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--emerald);
+    }
+    .profile-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--emerald-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--emerald);
+      margin-bottom: 1.25rem;
+      border: 2px solid var(--emerald-dim);
+    }
+    .profile-name {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 0.25rem;
+    }
+    .profile-role {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--emerald);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .profile-bio {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .profile-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .stat-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+    }
+    .stat-icon {
+      color: var(--emerald);
+      font-size: 0.85rem;
+      width: 16px;
+      flex-shrink: 0;
+    }
+    .stat-text { color: var(--muted); }
+    .stat-text strong { color: var(--text); }
+
+    /* ── CREDENTIALS ── */
+    .credentials {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .credentials h2 {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      color: #fff;
+      margin-bottom: 2rem;
+    }
+    .cred-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
+    .cred-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .cred-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .cred-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .cred-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── EDITORIAL STANDARDS ── */
+    .standards {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .standards h2 {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .standards p {
+      color: var(--muted);
+      max-width: 680px;
+      margin-bottom: 2rem;
+    }
+    .evidence-levels {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-width: 680px;
+    }
+    .evidence-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+    }
+    .evidence-badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .badge-research { background: rgba(16,185,129,0.15); color: var(--emerald); border: 1px solid var(--emerald-dim); }
+    .badge-expert   { background: rgba(99,102,241,0.15); color: #818cf8; border: 1px solid rgba(99,102,241,0.3); }
+    .badge-anecdote { background: rgba(251,191,36,0.1);  color: #fbbf24; border: 1px solid rgba(251,191,36,0.25); }
+    .badge-editorial{ background: rgba(148,163,184,0.1); color: var(--muted); border: 1px solid var(--border); }
+    .evidence-text {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .evidence-text strong { color: var(--text); display: block; margin-bottom: 0.2rem; }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      padding: 3rem 0;
+    }
+    .disclaimer-box {
+      background: rgba(16,185,129,0.05);
+      border: 1px solid var(--emerald-dim);
+      border-radius: 10px;
+      padding: 1.75rem 2rem;
+    }
+    .disclaimer-box h3 {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--emerald);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .disclaimer-box p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+    }
+    footer a { color: var(--emerald); text-decoration: none; }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/">Novrello</a>
+    <span>/</span>
+    <span>About</span>
+  </nav>
+
+  <main class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+      <p class="hero-label">The Human Lab</p>
+      <h1>Real data.<br/>Real people.<br/>Real science.</h1>
+      <p>
+        Novrello was built on one conviction: the gap between published research and practical
+        daily application is far too wide. We exist to close that gap — with no pseudoscience,
+        no supplement hype, and no shortcuts.
+      </p>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section class="philosophy">
+      <h2>Why we built this</h2>
+      <p>
+        The biohacking space is crowded with opinion dressed up as science. Influencers cite
+        cherry-picked studies. Supplement brands fund their own research. Wellness content
+        optimizes for clicks, not outcomes.
+      </p>
+      <p>
+        <strong>We took a different path.</strong> Between us, we bring over three decades of
+        hands-on experience in medical technology and clinical nursing — fields where evidence
+        standards are not optional. We applied that same rigor to our personal health, tracking
+        sleep, recovery, and performance data continuously for over ten years.
+      </p>
+      <p>
+        Novrello is the site we always wished existed: deeply researched, clearly sourced, and
+        written for people who want to make informed decisions about their own biology.
+      </p>
+    </section>
+
+    <!-- TEAM -->
+    <section class="team">
+      <p class="team-label">The Team</p>
+      <div class="team-grid">
+
+        <!-- Jan Tore -->
+        <div class="profile-card">
+          <div class="profile-avatar">JT</div>
+          <h2 class="profile-name">Jan Tore Boe</h2>
+          <p class="profile-role">Founder &amp; Lead Researcher</p>
+          <p class="profile-bio">
+            Jan Tore has spent over 30 years working in the medical technology industry —
+            a field where understanding clinical evidence, device performance, and human
+            physiology is part of the job. That background shapes everything written on
+            Novrello: a commitment to primary sources, a skepticism of marketing claims,
+            and a preference for mechanism over anecdote.
+          </p>
+          <p class="profile-bio">
+            Outside the lab, he is an endurance athlete and dedicated self-experimenter,
+            tracking his own sleep architecture, HRV, and recovery metrics using wearable
+            technology since before most people knew what HRV stood for.
+          </p>
+          <div class="profile-stats">
+            <div class="stat-row">
+              <span class="stat-icon">⌚</span>
+              <span class="stat-text"><strong>Garmin Epix</strong> — primary tracking device</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-icon">📊</span>
+              <span class="stat-text"><strong>10+ years</strong> of continuous biometric data</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-icon">🏥</span>
+              <span class="stat-text"><strong>30+ years</strong> in medical technology</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-icon">🏔️</span>
+              <span class="stat-text">Active in training, nutrition &amp; longevity</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Linda -->
+        <div class="profile-card">
+          <div class="profile-avatar">LM</div>
+          <h2 class="profile-name">Linda Myreng-Boe</h2>
+          <p class="profile-role">Medical Reviewer, RN</p>
+          <p class="profile-bio">
+            Linda is a registered nurse with a specialty in operating room care — an
+            environment that demands precise clinical judgment, a thorough understanding
+            of human anatomy, and zero tolerance for error. She reviews all health-related
+            content on Novrello to ensure accuracy, appropriate scope, and alignment with
+            current clinical standards.
+          </p>
+          <p class="profile-bio">
+            Her review process flags unsupported claims, ensures dosage information is
+            grounded in evidence, and verifies that our medical disclaimers are clear and
+            appropriately positioned throughout the site.
+          </p>
+          <div class="profile-stats">
+            <div class="stat-row">
+              <span class="stat-icon">⌚</span>
+              <span class="stat-text"><strong>Apple Watch Ultra</strong> — primary tracking device</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-icon">📊</span>
+              <span class="stat-text"><strong>10+ years</strong> of continuous biometric data</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-icon">🏥</span>
+              <span class="stat-text"><strong>Registered Nurse</strong> — OR specialty</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-icon">💪</span>
+              <span class="stat-text">Active in training, nutrition &amp; wellness</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Alba Easter egg -->
+      <p style="margin-top: 2rem; font-size: 0.82rem; color: var(--muted); font-style: italic;">
+        And Alba — our three-year-old miniature poodle — who serves as an unwilling but
+        enthusiastic test subject for the sleep quality research. She consistently scores
+        better than either of us.
+      </p>
+
+    </section>
+
+    <!-- CREDENTIALS -->
+    <section class="credentials">
+      <h2>What qualifies us to write this</h2>
+      <div class="cred-grid">
+        <div class="cred-item">
+          <span class="cred-icon">🔬</span>
+          <div>
+            <p class="cred-title">Medical Technology Background</p>
+            <p class="cred-desc">30+ years navigating clinical evidence, device validation, and healthcare standards.</p>
+          </div>
+        </div>
+        <div class="cred-item">
+          <span class="cred-icon">🏥</span>
+          <div>
+            <p class="cred-title">Clinical Nursing Review</p>
+            <p class="cred-desc">All health content reviewed by a registered OR nurse for clinical accuracy.</p>
+          </div>
+        </div>
+        <div class="cred-item">
+          <span class="cred-icon">📈</span>
+          <div>
+            <p class="cred-title">10+ Years of Personal Data</p>
+            <p class="cred-desc">Continuous wearable tracking across sleep, HRV, recovery, and performance metrics.</p>
+          </div>
+        </div>
+        <div class="cred-item">
+          <span class="cred-icon">📚</span>
+          <div>
+            <p class="cred-title">PubMed-Referenced Content</p>
+            <p class="cred-desc">Every factual claim linked to peer-reviewed studies. No secondary sources without disclosure.</p>
+          </div>
+        </div>
+        <div class="cred-item">
+          <span class="cred-icon">🚫</span>
+          <div>
+            <p class="cred-title">No Supplement Sponsorships</p>
+            <p class="cred-desc">We do not accept payment to feature or endorse specific products in editorial content.</p>
+          </div>
+        </div>
+        <div class="cred-item">
+          <span class="cred-icon">🔗</span>
+          <div>
+            <p class="cred-title">Transparent Affiliate Disclosure</p>
+            <p class="cred-desc">Affiliate links clearly disclosed. Recommendations are editorially independent.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDITORIAL STANDARDS -->
+    <section class="standards">
+      <h2>How we label our content</h2>
+      <p>
+        Not all information carries the same weight. We make that explicit so you always know
+        what you are reading and how much confidence to place in it.
+      </p>
+      <div class="evidence-levels">
+        <div class="evidence-row">
+          <span class="evidence-badge badge-research">🔬 Research-backed</span>
+          <div class="evidence-text">
+            <strong>Peer-reviewed evidence</strong>
+            Based on published studies from PubMed, clinical trials, or systematic reviews.
+            Primary source linked directly in the article.
+          </div>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-badge badge-expert">👤 Expert opinion</span>
+          <div class="evidence-text">
+            <strong>Named expert perspective</strong>
+            Attributed to a specific researcher, clinician, or recognized authority.
+            Not a substitute for peer-reviewed research.
+          </div>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-badge badge-anecdote">💬 Anecdotal</span>
+          <div class="evidence-text">
+            <strong>Personal or community experience</strong>
+            Based on self-reported data, n=1 experiments, or community observations.
+            Clearly labeled and not presented as clinical evidence.
+          </div>
+        </div>
+        <div class="evidence-row">
+          <span class="evidence-badge badge-editorial">✏️ Editorial</span>
+          <div class="evidence-text">
+            <strong>Novrello's perspective</strong>
+            Our interpretation, synthesis, or recommendation based on the available
+            evidence. Always identified as editorial opinion.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DISCLAIMER -->
+    <section class="disclaimer">
+      <div class="disclaimer-box">
+        <h3>Medical Disclaimer</h3>
+        <p>
+          The content published on Novrello is intended for informational and educational
+          purposes only. It does not constitute medical advice, diagnosis, or treatment.
+          Always consult a qualified healthcare professional before making changes to your
+          diet, supplementation, sleep habits, or exercise routine — particularly if you
+          have an existing medical condition or take prescription medication.
+          The fact that content is reviewed by a registered nurse does not make it a
+          substitute for individualized clinical care.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Novrello · Operated by <a href="https://janbo.io" target="_blank" rel="noopener">janbo.io</a> · <a href="/privacy">Privacy</a> · <a href="/contact">Contact</a></p>
+  </footer>
+
+</body>
+</html>

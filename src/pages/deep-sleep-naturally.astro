@@ -1,5 +1,6 @@
 ---
 import Header from '../components/Header.astro';
+import AuthorBox from '../components/AuthorBox.astro';
 
 const title = 'How to Increase Deep Sleep Naturally: What the Evidence Actually Supports';
 const description =
@@ -15,8 +16,19 @@ const articleSchema = {
   mainEntityOfPage: canonical,
   datePublished: publishedDate,
   dateModified: publishedDate,
-  author: { '@type': 'Organization', name: 'Novrello' },
-  publisher: { '@type': 'Organization', name: 'Novrello' },
+  author: {
+    '@type': 'Person',
+    name: 'Jan Tore Boe',
+    url: 'https://novrello.com/about',
+    jobTitle: 'Founder, Medical Technology Specialist',
+  },
+  reviewedBy: {
+    '@type': 'Person',
+    name: 'Linda Myreng-Boe',
+    url: 'https://novrello.com/about',
+    jobTitle: 'Registered Nurse, OR Specialty',
+  },
+  publisher: { '@type': 'Organization', name: 'Novrello', url: 'https://novrello.com' },
   articleSection: [
     'Introduction',
     'What actually happens during deep sleep (slow-wave sleep explained)',
@@ -41,7 +53,7 @@ const faqSchema = {
       name: 'How much deep sleep do I need per night?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'There is no single number that fits everyone. Younger adults typically spend more time in N3 (slow-wave sleep) than older adults, and it shifts across the night. Focus on total sleep time, regular schedule, and how you feel; if you use wearables, treat “deep sleep minutes” as noisy estimates, not ground truth.',
+        text: 'There is no single number that fits everyone. Younger adults typically spend more time in N3 (slow-wave sleep) than older adults. Focus on total sleep time, regular schedule, and how you feel; treat wearable deep sleep minutes as noisy estimates, not ground truth.',
       },
     },
     {
@@ -49,7 +61,7 @@ const faqSchema = {
       name: 'What supplements increase deep sleep?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Human trial evidence is mixed and rarely isolates N3. Oral magnesium has some randomized and meta-analytic support for insomnia symptoms in older adults. Ashwagandha has small pooled effects on sleep in meta-analyses of RCTs. Glycine has human data suggesting shorter latency to slow-wave sleep in some studies. None of these are magic levers; context, dose, and sleep behaviors matter more.',
+        text: 'Human trial evidence is mixed. Oral magnesium has some randomized and meta-analytic support for insomnia symptoms in older adults. Ashwagandha has small pooled effects on sleep in meta-analyses of RCTs. Glycine has human data suggesting shorter latency to slow-wave sleep. None are magic levers.',
       },
     },
     {
@@ -57,7 +69,7 @@ const faqSchema = {
       name: 'Does alcohol affect deep sleep?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Systematic reviews and meta-analyses in healthy adults show alcohol disrupts sleep architecture — including effects on REM timing and continuity. Some PSG findings in the first half of the night can look “sedating,” but the overall picture across the night is not restorative optimization.',
+        text: 'Yes. Systematic reviews show alcohol disrupts sleep architecture — including effects on REM timing and continuity. Some PSG findings in the first half of the night can look sedating, but the overall picture across the night is not restorative.',
       },
     },
   ],
@@ -94,11 +106,30 @@ const faqSchema = {
           <p class="kicker">Sleep Science Briefing</p>
           <h1>{title}</h1>
           <p class="dek">
-            Everyone wants more “deep sleep.” Wearables turned that desire into a scoreboard. That can be
+            Everyone wants more "deep sleep." Wearables turned that desire into a scoreboard. That can be
             useful — or a trap. This article is about slow-wave sleep (N3), what actually changes it, and
             what biohacking culture gets wrong when it promises overnight transformation.
           </p>
+          <div class="article-meta">
+            <span>By <a href="/about">Jan Tore Boe</a></span>
+            <span class="meta-sep">·</span>
+            <span>Reviewed by <a href="/about">Linda Myreng-Boe, RN</a></span>
+            <span class="meta-sep">·</span>
+            <span>Published {publishedDate}</span>
+            <span class="meta-sep">·</span>
+            <span>13 min read</span>
+          </div>
         </header>
+
+        <!-- Disclaimer box -->
+        <div class="disclaimer-box reveal">
+          <span class="disclaimer-icon">⚕️</span>
+          <p>
+            <strong>Medical disclaimer:</strong> This article is for informational purposes only and does not
+            constitute medical advice. Consult a qualified healthcare professional before changing your
+            supplementation or sleep routine, especially if you have a diagnosed sleep disorder.
+          </p>
+        </div>
 
         <figure class="hero-media reveal">
           <img
@@ -113,21 +144,21 @@ const faqSchema = {
           <h2>Introduction — why deep sleep is the most underrated health metric</h2>
           <p>
             If you only tracked one sleep variable for vanity, deep sleep would still be a strange pick.
-            Not because it’s meaningless — because the number on your wrist is a guess. The physiology,
+            Not because it's meaningless — because the number on your wrist is a guess. The physiology,
             though, is real. Slow-wave sleep is when the brain leans into low-frequency activity, body
             systems shift into repair mode, and memory consolidation machinery runs in a way that lighter
-            sleep can’t fully replace.
+            sleep can't fully replace.
           </p>
           <p>
-            I still meet people who treat “deep sleep” like a supplement stack problem. Sometimes it is,
-            marginally. Most of the time it’s a heat, light, movement, and consistency problem. If you ignore
-            those layers, you’ll eventually hit a ceiling no matter how exotic your bedtime routine looks on
+            I still meet people who treat "deep sleep" like a supplement stack problem. Sometimes it is,
+            marginally. Most of the time it's a heat, light, movement, and consistency problem. If you ignore
+            those layers, you'll eventually hit a ceiling no matter how exotic your bedtime routine looks on
             Instagram. For the behavioral foundation, our <a href="/sleep-hygiene-biohacking">sleep hygiene guide</a> is the right companion piece; here we zoom in on N3 specifically.
           </p>
           <p>
             One more bias check before we proceed: deep sleep is not the only sleep stage that matters. REM
-            has its own jobs. The architecture is cyclic for a reason. The goal isn’t to brute-force one
-            stage into dominance — it’s to stop sabotaging the cycle and occasionally nudge it in a favorable
+            has its own jobs. The architecture is cyclic for a reason. The goal isn't to brute-force one
+            stage into dominance — it's to stop sabotaging the cycle and occasionally nudge it in a favorable
             direction when evidence supports the nudge.
           </p>
           <p class="ref">
@@ -141,18 +172,18 @@ const faqSchema = {
           <p>
             In modern scoring, deep sleep maps onto N3 — non-REM sleep with prominent slow waves and high
             arousal thresholds. It clusters early in the night. That timing matters clinically: interventions
-            that only “improve sleep” on subjective surveys might miss whether the early-night slow-wave
+            that only "improve sleep" on subjective surveys might miss whether the early-night slow-wave
             window changed at all.
           </p>
           <p>
             Mechanistically, slow-wave sleep is busy. You get slow oscillations, spindles, and hippocampal
             sharp-wave ripple activity interacting in ways that support consolidation — the brain rehearsing
-            and reorganizing what you learned while awake. If you want a single takeaway, it’s this: deep
-            sleep is not passive downtime; it’s structured maintenance, and you cannibalize it when you drink
+            and reorganizing what you learned while awake. If you want a single takeaway, it's this: deep
+            sleep is not passive downtime; it's structured maintenance, and you cannibalize it when you drink
             wrong, heat wrong, or light wrong.
           </p>
           <p>
-            The biohacker fixation on “more minutes” misses the deeper point: quality and timing of slow waves
+            The biohacker fixation on "more minutes" misses the deeper point: quality and timing of slow waves
             matter, not just a label on a chart. Researchers now try to enhance slow-wave activity with audio
             pulses, stimulation, and pharmacology. Some approaches boost slow-wave power. None of that makes
             consumer wearables accurate enough to guide obsessive micro-optimization night to night.
@@ -165,37 +196,23 @@ const faqSchema = {
           <div class="diagram-wrap" aria-label="Sleep cycle diagram">
             <svg viewBox="0 0 920 220" role="img" aria-label="Hypnogram: stages across the night">
               <rect x="0" y="0" width="920" height="220" fill="transparent" />
-              <text x="24" y="28" fill="rgba(231, 240, 242, 0.75)" font-size="15" font-family="IBM Plex Mono, ui-monospace">
-                Night →
-              </text>
+              <text x="24" y="28" fill="rgba(231, 240, 242, 0.75)" font-size="15" font-family="IBM Plex Mono, ui-monospace">Night →</text>
               <line x1="60" y1="50" x2="880" y2="50" stroke="rgba(16, 217, 138, 0.25)" stroke-width="1" />
               <line x1="60" y1="100" x2="880" y2="100" stroke="rgba(231, 240, 242, 0.08)" stroke-width="1" />
               <line x1="60" y1="150" x2="880" y2="150" stroke="rgba(231, 240, 242, 0.08)" stroke-width="1" />
               <line x1="60" y1="190" x2="880" y2="190" stroke="rgba(231, 240, 242, 0.08)" stroke-width="1" />
-
               <text x="12" y="58" fill="rgba(231, 240, 242, 0.55)" font-size="13" font-family="IBM Plex Mono, ui-monospace">Awake</text>
-              <text x="12" y="108" fill="rgba(231, 240, 242, 0.55)" font-size="13" font-family="IBM Plex Mono, ui-monospace">N1–N2</text>
+              <text x="12" y="108" fill="rgba(231, 240, 242, 0.55)" font-size="13" font-family="IBM Plex Mono, ui-monospace">N1-N2</text>
               <text x="12" y="158" fill="var(--nv-accent)" font-size="13" font-family="IBM Plex Mono, ui-monospace">N3</text>
               <text x="12" y="198" fill="rgba(231, 240, 242, 0.55)" font-size="13" font-family="IBM Plex Mono, ui-monospace">REM</text>
-
-              <polyline
-                fill="none"
-                stroke="var(--nv-accent)"
-                stroke-width="3.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                points="60,50 110,95 150,105 200,152 260,158 310,100 370,95 420,155 470,160 520,98 560,102 610,158 660,162 710,195 770,188 820,95 870,105 880,198"
-              />
-
+              <polyline fill="none" stroke="var(--nv-accent)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"
+                points="60,50 110,95 150,105 200,152 260,158 310,100 370,95 420,155 470,160 520,98 560,102 610,158 660,162 710,195 770,188 820,95 870,105 880,198" />
               <rect x="188" y="144" width="92" height="22" rx="6" fill="rgba(16, 217, 138, 0.2)" stroke="var(--nv-accent)" />
               <text x="234" y="160" text-anchor="middle" fill="var(--nv-text)" font-size="12" font-family="IBM Plex Mono, ui-monospace">deep</text>
-
               <rect x="408" y="144" width="92" height="22" rx="6" fill="rgba(16, 217, 138, 0.2)" stroke="var(--nv-accent)" />
               <text x="454" y="160" text-anchor="middle" fill="var(--nv-text)" font-size="12" font-family="IBM Plex Mono, ui-monospace">deep</text>
-
               <rect x="588" y="144" width="92" height="22" rx="6" fill="rgba(16, 217, 138, 0.2)" stroke="var(--nv-accent)" />
               <text x="634" y="160" text-anchor="middle" fill="var(--nv-text)" font-size="12" font-family="IBM Plex Mono, ui-monospace">deep</text>
-
               <text x="470" y="215" text-anchor="middle" fill="rgba(231, 240, 242, 0.5)" font-size="12" font-family="IBM Plex Sans, system-ui">
                 Cyclic alternation: early night richer in N3; REM clusters later
               </text>
@@ -208,18 +225,18 @@ const faqSchema = {
           <p>
             Heat is not abstract. It is a dial on sleep depth. Controlled work shows you can change slow-wave
             expression by manipulating the relationship between core temperature and skin temperature — the
-            classic “warm skin, cooling core” handshake that helps initiate sleep. That’s why a hot bath late,
+            classic "warm skin, cooling core" handshake that helps initiate sleep. That's why a hot bath late,
             followed by a cooler room, feels like a cheat code for some people.
           </p>
           <p>
-            I don’t sell cold plunges as mandatory. I sell predictability. If your bedroom turns into an oven
-            at 2 a.m. because the building’s HVAC is fighting you, that’s not a willpower issue. It’s an
+            I don't sell cold plunges as mandatory. I sell predictability. If your bedroom turns into an oven
+            at 2 a.m. because the building's HVAC is fighting you, that's not a willpower issue. It's an
             environment issue — and it will steal depth from the early cycles where N3 concentrates. Fix the
             room, the bedding, and the airflow first. Then worry about gadgets.
           </p>
           <p>
-            Skepticism applies to brands that promise “sleep deep” mattress features without published,
-            independent validation. Thermoregulation is real. Marketing extrapolation often isn’t.
+            Skepticism applies to brands that promise "sleep deep" mattress features without published,
+            independent validation. Thermoregulation is real. Marketing extrapolation often isn't.
           </p>
           <p class="ref">
             PubMed reference:
@@ -232,27 +249,26 @@ const faqSchema = {
           <p>
             Exercise is the boring intervention with a strong signal. It improves sleep quality in the messy,
             real-world sense — fewer thrashing nights, better continuity for many people, and measurable EEG
-            changes in slow-wave measures in controlled work. It’s also where bro science goes wrong by
-            turning “evening training is bad” into a universal law.
+            changes in slow-wave measures in controlled work. It's also where bro science goes wrong by
+            turning "evening training is bad" into a universal law.
           </p>
           <p>
             A large systematic review found evening exercise could actually increase slow-wave sleep by small
             but statistically significant margins on average, while also changing REM latency and stage 1
-            sleep. That doesn’t mean you should crush a max-effort lift 20 minutes before lights-out. It means
-            the timing and intensity moderators matter — especially body temperature at bedtime and how “hard”
+            sleep. That doesn't mean you should crush a max-effort lift 20 minutes before lights-out. It means
+            the timing and intensity moderators matter — especially body temperature at bedtime and how "hard"
             the session was relative to your baseline.
           </p>
           <p>
             If you want N3-friendly training, bias toward consistent aerobic work you can recover from, and
             keep the panic sessions earlier when possible. Deep sleep likes a cooled-down nervous system more
             than it likes your new PR badge. Controlled exercise interventions also show objective delta-power
-            shifts in slow-wave sleep even when people do not report feeling “more rested” yet — the EEG can
+            shifts in slow-wave sleep even when people do not report feeling "more rested" yet — the EEG can
             move before subjective scores catch up.
           </p>
           <p class="ref">
             PubMed references:
-            <a href="https://pubmed.ncbi.nlm.nih.gov/30374942/" target="_blank" rel="noopener noreferrer">PMID: 30374942</a>
-            ;
+            <a href="https://pubmed.ncbi.nlm.nih.gov/30374942/" target="_blank" rel="noopener noreferrer">PMID: 30374942</a>;
             <a href="https://pubmed.ncbi.nlm.nih.gov/33627708/" target="_blank" rel="noopener noreferrer">PMID: 33627708</a>
           </p>
         </section>
@@ -273,17 +289,17 @@ const faqSchema = {
           <h2>Alcohol: why it destroys deep sleep architecture</h2>
           <p>
             Alcohol is the classic sedative lie. It can make you feel sleepy. It can even change the first part
-            of the night’s EEG in ways that look superficially “deeper” at high doses. Pull back to the full
+            of the night's EEG in ways that look superficially "deeper" at high doses. Pull back to the full
             night, and the architecture story stops being comforting — fragmentation, REM disruption, and
             dose-response effects show up across reviews.
           </p>
           <p>
-            I’m not here to moralize about drinks. I’m here to be precise: if your goal is more restorative
-            slow-wave sleep across the whole night, alcohol is usually on the wrong side of the ledger. It’s
+            I'm not here to moralize about drinks. I'm here to be precise: if your goal is more restorative
+            slow-wave sleep across the whole night, alcohol is usually on the wrong side of the ledger. It's
             a trade. Know the price before you pay it.
           </p>
           <p>
-            This is also where “I sleep fine on whiskey” misses the point — subjective sleep and objective
+            This is also where "I sleep fine on whiskey" misses the point — subjective sleep and objective
             architecture diverge all the time. Your confidence is not a polysomnography lab.
           </p>
           <p class="ref">
@@ -297,51 +313,48 @@ const faqSchema = {
           <p>
             Magnesium gets oversold as a blanket sedative. The better-framed claim is narrower: in older
             adults with insomnia, pooled RCT data suggest magnesium can improve some sleep-onset measures, with
-            the usual caveats about bias and effect sizes. That’s not the same as “guaranteed deep sleep boost
-            for everyone.” If you want the full mechanistic breakdown focused on glycinate specifically, read
+            the usual caveats about bias and effect sizes. That's not the same as "guaranteed deep sleep boost
+            for everyone." If you want the full mechanistic breakdown focused on glycinate specifically, read
             <a href="/magnesium-glycinate-sleep">magnesium glycinate for sleep</a> — we keep the claims tied to trials there.
           </p>
           <p>
             Ashwagandha is the adaptogen people love to stack. Meta-analyses of RCTs report small improvements in
             sleep measures, with stronger-looking effects at higher doses and longer courses in insomnia
-            populations. It’s not risk-free; it’s also not a substitute for light, temperature, and schedule.
+            populations. It's not risk-free; it's also not a substitute for light, temperature, and schedule.
             Glycine has human data suggesting it can shorten latency to slow-wave sleep and improve subjective
-            sleep quality in constrained designs; the effect sizes won’t turn a wrecked routine into elite
+            sleep quality in constrained designs; the effect sizes won't turn a wrecked routine into elite
             recovery by themselves.
           </p>
           <p>
             My rule: one compound at a time, minimum four weeks for fair testing, and no stacking three sedating
-            supplements when you haven’t fixed caffeine after lunch. That isn’t caution as personality — it’s
+            supplements when you haven't fixed caffeine after lunch. That isn't caution as personality — it's
             how you learn what actually moves your nights.
           </p>
           <p class="ref">
             PubMed references:
-            <a href="https://pubmed.ncbi.nlm.nih.gov/33865376/" target="_blank" rel="noopener noreferrer">PMID: 33865376</a>
-            (magnesium);
-            <a href="https://pubmed.ncbi.nlm.nih.gov/34559859/" target="_blank" rel="noopener noreferrer">PMID: 34559859</a>
-            (ashwagandha);
-            <a href="https://pubmed.ncbi.nlm.nih.gov/22529837/" target="_blank" rel="noopener noreferrer">PMID: 22529837</a>
-            (glycine)
+            <a href="https://pubmed.ncbi.nlm.nih.gov/33865376/" target="_blank" rel="noopener noreferrer">PMID: 33865376</a> (magnesium);
+            <a href="https://pubmed.ncbi.nlm.nih.gov/34559859/" target="_blank" rel="noopener noreferrer">PMID: 34559859</a> (ashwagandha);
+            <a href="https://pubmed.ncbi.nlm.nih.gov/22529837/" target="_blank" rel="noopener noreferrer">PMID: 22529837</a> (glycine)
           </p>
         </section>
 
         <section id="light" class="reveal">
           <h2>Light exposure and circadian alignment</h2>
           <p>
-            Deep sleep doesn’t exist in a vacuum. It’s scheduled by circadian and homeostatic processes. If
-            your brain thinks it’s two hours earlier than your alarm admits, you’ll fight the night. Morning
+            Deep sleep doesn't exist in a vacuum. It's scheduled by circadian and homeostatic processes. If
+            your brain thinks it's two hours earlier than your alarm admits, you'll fight the night. Morning
             bright-light protocols can phase-advance melatonin rhythms and are a first-line tool in clinical
-            circadian work — not because they “hack deep sleep directly,” but because they tighten the timing
+            circadian work — not because they "hack deep sleep directly," but because they tighten the timing
             system that gates when slow-wave pressure expresses itself.
           </p>
           <p>
             Evening light is the opposite lever. Bright, blue-enriched screens late can delay melatonin and
-            reshape sleep onset — which shifts where N3 lands. I’m less interested in fearmongering than in
+            reshape sleep onset — which shifts where N3 lands. I'm less interested in fearmongering than in
             dose: photons, distance, duration. Dim, warm, and boring wins most nights.
           </p>
           <p>
             If you only do one circadian habit without buying anything, make it outdoor light shortly after
-            wake. Pair that with the behavioral spine in our <a href="/sleep-hygiene-biohacking">sleep hygiene guide</a> and you’ve built a real foundation.
+            wake. Pair that with the behavioral spine in our <a href="/sleep-hygiene-biohacking">sleep hygiene guide</a> and you've built a real foundation.
           </p>
           <p class="ref">
             PubMed reference:
@@ -352,7 +365,7 @@ const faqSchema = {
         <section id="myths" class="reveal">
           <h2>What doesn't work (debunking common myths)</h2>
           <p>
-            Myth one: your wearable’s “deep sleep” minutes are medical truth. Validation studies show a wide
+            Myth one: your wearable's "deep sleep" minutes are medical truth. Validation studies show a wide
             spread in how well consumer devices agree with polysomnography. You can use the trend line — I do
             sometimes — but treating night-to-night stage minutes like a gradesheet is a recipe for
             orthosomnia-style anxiety.
@@ -385,7 +398,7 @@ const faqSchema = {
           <p>
             If insomnia is chronic, behavioral therapy principles belong in the conversation. Cognitive
             behavioral therapy for insomnia packages stimulus control, sleep restriction, and cognitive work
-            with evidence that embarrasses most gadget-first stacks. It’s not flashy. It works.
+            with evidence that embarrasses most gadget-first stacks. It's not flashy. It works.
           </p>
           <p>
             We publish long-form work slowly; our index of <a href="/articles">research articles</a> is the place to watch for new pieces that pass that bar.
@@ -399,12 +412,12 @@ const faqSchema = {
         <section id="conclusion" class="reveal">
           <h2>Conclusion</h2>
           <p>
-            Deep sleep rewards basics done consistently: thermoregulation that doesn’t fight you, light that
-            respects the clock, alcohol that isn’t stealing the second half of the night, and exercise that’s
+            Deep sleep rewards basics done consistently: thermoregulation that doesn't fight you, light that
+            respects the clock, alcohol that isn't stealing the second half of the night, and exercise that's
             hard enough to matter but not so late that you carry a furnace into bed.
           </p>
           <p>
-            Supplements can be small amplifiers for some people. They’re not the engine. The engine is the
+            Supplements can be small amplifiers for some people. They're not the engine. The engine is the
             daily loop your biology recognizes — regularity, contrast between day and night, and enough sleep
             opportunity to let N3 show up where it belongs. Everything else is detailing on the car.
           </p>
@@ -420,27 +433,28 @@ const faqSchema = {
 
         <section id="faq" class="faq reveal">
           <h2>FAQ</h2>
-
           <h3>How much deep sleep do I need per night?</h3>
           <p>
-            There’s no universal quota. N3 varies by age and night-to-night context; wearables estimate it
+            There's no universal quota. N3 varies by age and night-to-night context; wearables estimate it
             imperfectly. Prioritize adequate total sleep, stable timing, and daytime function — then use
             trends cautiously if you track.
           </p>
-
           <h3>What supplements increase deep sleep?</h3>
           <p>
             Evidence is mixed and rarely N3-specific. Magnesium, ashwagandha, and glycine each have human
-            trials or meta-analyses worth reading before you buy tubs of powder. Treat them as experiments, not
-            guarantees.
+            trials or meta-analyses worth reading before you buy tubs of powder. Treat them as experiments,
+            not guarantees.
           </p>
-
           <h3>Does alcohol affect deep sleep?</h3>
           <p>
             Yes. Reviews in healthy adults show alcohol disrupts sleep architecture; sedating onset is not the
             same as healthy slow-wave-heavy continuity across the night.
           </p>
         </section>
+
+        <!-- Author box -->
+        <AuthorBox reviewedByLinda={true} />
+
       </article>
     </main>
 
@@ -462,230 +476,127 @@ const faqSchema = {
     --nv-muted: rgba(231, 240, 242, 0.78);
     --nv-border: rgba(16, 217, 138, 0.24);
   }
-
   :global(body) {
     margin: 0;
     background: var(--nv-bg);
     color: var(--nv-text);
     font-family: 'IBM Plex Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   }
-
   .article-page {
     width: min(860px, calc(100% - 2rem));
     margin: 0 auto;
     padding: 2.7rem 0 4rem;
   }
-
   .breadcrumbs {
     display: inline-flex;
     align-items: center;
     gap: 0.55rem;
     color: var(--nv-muted);
-    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-      'Courier New', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.84rem;
     margin-bottom: 1.45rem;
   }
-
-  .breadcrumbs a {
-    color: var(--nv-muted);
-    text-decoration: none;
-  }
-
-  .breadcrumbs a:hover {
-    color: var(--nv-accent);
-  }
-
+  .breadcrumbs a { color: var(--nv-muted); text-decoration: none; }
+  .breadcrumbs a:hover { color: var(--nv-accent); }
   .article-header {
     border-bottom: 1px solid var(--nv-border);
     padding-bottom: 1.1rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.25rem;
   }
-
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0;
+    align-items: center;
+    margin-top: 1rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--nv-muted);
+  }
+  .article-meta a { color: var(--nv-accent); text-decoration: none; }
+  .article-meta a:hover { text-decoration: underline; }
+  .meta-sep { margin: 0 0.4rem; opacity: 0.4; }
+  .disclaimer-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: rgba(16, 217, 138, 0.05);
+    border: 1px solid rgba(16, 217, 138, 0.25);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .disclaimer-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.15rem; }
+  .disclaimer-box p { margin: 0; font-size: 0.84rem; color: var(--nv-muted); line-height: 1.6; }
+  .disclaimer-box strong { color: var(--nv-text); }
   .kicker {
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--nv-accent);
-    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-      'Courier New', monospace;
-    font-size: 0.83rem;
+    margin: 0; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--nv-accent); font-family: 'IBM Plex Mono', monospace; font-size: 0.83rem;
   }
-
-  h1,
-  h2,
-  h3 {
-    font-family: 'DM Serif Display', Georgia, 'Times New Roman', Times, serif;
-    letter-spacing: 0.01em;
-  }
-
-  h1 {
-    margin: 0.55rem 0 0.65rem;
-    font-size: clamp(2rem, 5vw, 3.15rem);
-    line-height: 1.08;
-  }
-
-  .dek {
-    margin: 0;
-    color: var(--nv-muted);
-    font-size: 1.08rem;
-    line-height: 1.75;
-  }
-
-  h2 {
-    margin: 2rem 0 0.8rem;
-    font-size: clamp(1.55rem, 3vw, 2.12rem);
-  }
-
-  h3 {
-    margin: 1.25rem 0 0.4rem;
-    font-size: 1.32rem;
-  }
-
-  p,
-  li {
-    font-size: 1.06rem;
-    line-height: 1.9;
-  }
-
-  p {
-    margin: 0 0 1rem;
-    color: #dce8eb;
-  }
-
-  .article a {
-    color: var(--nv-accent);
-    text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
-  }
-
-  .article a:hover {
-    color: #6ff0be;
-  }
-
+  h1, h2, h3 { font-family: 'DM Serif Display', Georgia, serif; letter-spacing: 0.01em; }
+  h1 { margin: 0.55rem 0 0.65rem; font-size: clamp(2rem, 5vw, 3.15rem); line-height: 1.08; }
+  .dek { margin: 0; color: var(--nv-muted); font-size: 1.08rem; line-height: 1.75; }
+  h2 { margin: 2rem 0 0.8rem; font-size: clamp(1.55rem, 3vw, 2.12rem); }
+  h3 { margin: 1.25rem 0 0.4rem; font-size: 1.32rem; }
+  p, li { font-size: 1.06rem; line-height: 1.9; }
+  p { margin: 0 0 1rem; color: #dce8eb; }
+  .article a { color: var(--nv-accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .article a:hover { color: #6ff0be; }
   .ref {
-    margin-top: 0.55rem;
-    color: var(--nv-muted);
-    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-      'Courier New', monospace;
-    font-size: 0.82rem;
-    line-height: 1.7;
+    margin-top: 0.55rem; color: var(--nv-muted);
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem; line-height: 1.7;
   }
-
-  .hero-media,
-  .inline-media {
-    margin: 1.15rem 0 1.6rem;
-  }
-
+  .hero-media, .inline-media { margin: 1.15rem 0 1.6rem; }
   .hero-media img {
-    width: 100%;
-    max-height: 420px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 1px solid rgba(16, 217, 138, 0.18);
+    width: 100%; max-height: 420px; object-fit: cover;
+    border-radius: 8px; border: 1px solid rgba(16, 217, 138, 0.18);
   }
-
   .inline-media img {
-    width: 100%;
-    max-height: 350px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 1px solid rgba(16, 217, 138, 0.18);
+    width: 100%; max-height: 350px; object-fit: cover;
+    border-radius: 8px; border: 1px solid rgba(16, 217, 138, 0.18);
   }
-
   .inline-media figcaption {
-    margin-top: 0.55rem;
-    color: var(--nv-muted);
-    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-      'Courier New', monospace;
-    font-size: 0.82rem;
-    line-height: 1.7;
+    margin-top: 0.55rem; color: var(--nv-muted);
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem; line-height: 1.7;
   }
-
   .diagram-wrap {
-    margin: 1rem 0 1.5rem;
-    padding: 0.85rem;
-    border: 1px solid rgba(16, 217, 138, 0.18);
-    border-radius: 12px;
-    background: rgba(16, 217, 138, 0.04);
-    overflow-x: auto;
+    margin: 1rem 0 1.5rem; padding: 0.85rem;
+    border: 1px solid rgba(16, 217, 138, 0.18); border-radius: 12px;
+    background: rgba(16, 217, 138, 0.04); overflow-x: auto;
   }
-
-  .diagram-wrap svg {
-    width: 100%;
-    min-width: 640px;
-    height: auto;
-    display: block;
-  }
-
+  .diagram-wrap svg { width: 100%; min-width: 640px; height: auto; display: block; }
   .faq {
-    margin-top: 2rem;
-    padding: 1rem 1rem 0.3rem;
-    border: 1px solid var(--nv-border);
-    border-radius: 14px;
+    margin-top: 2rem; padding: 1rem 1rem 0.3rem;
+    border: 1px solid var(--nv-border); border-radius: 14px;
     background: rgba(16, 217, 138, 0.05);
   }
-
   .site-footer {
     width: min(1120px, calc(100% - 2rem));
-    margin: 0 auto;
-    padding: 2.3rem 0 2.6rem;
+    margin: 0 auto; padding: 2.3rem 0 2.6rem;
     border-top: 1px solid rgba(16, 217, 138, 0.18);
-    color: var(--nv-muted);
-    font-size: 0.93rem;
+    color: var(--nv-muted); font-size: 0.93rem;
   }
-
-  .site-footer p {
-    margin: 0.32rem 0;
-  }
-
+  .site-footer p { margin: 0.32rem 0; }
   .disclaimer {
-    max-width: 90ch;
-    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-      'Courier New', monospace;
-    font-size: 0.8rem;
+    max-width: 90ch; font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem;
   }
-
   .reveal {
-    opacity: 0;
-    transform: translateY(16px);
+    opacity: 0; transform: translateY(16px);
     animation: fade-up 650ms ease-out forwards;
     animation-timeline: view();
     animation-range: entry 12% cover 34%;
   }
-
   @keyframes fade-up {
-    from {
-      opacity: 0;
-      transform: translateY(16px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-
   @media (max-width: 680px) {
-    .article-page {
-      padding-top: 2.1rem;
-    }
-
-    p,
-    li {
-      line-height: 1.82;
-      font-size: 1.01rem;
-    }
-
-    .faq {
-      padding: 0.85rem 0.8rem 0.25rem;
-    }
+    .article-page { padding-top: 2.1rem; }
+    p, li { line-height: 1.82; font-size: 1.01rem; }
+    .faq { padding: 0.85rem 0.8rem 0.25rem; }
+    .article-meta { font-size: 0.72rem; }
   }
-
   @media (prefers-reduced-motion: reduce) {
-    .reveal {
-      animation: none !important;
-      opacity: 1;
-      transform: none;
-    }
+    .reveal { animation: none !important; opacity: 1; transform: none; }
   }
 </style>

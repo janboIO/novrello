@@ -1,5 +1,6 @@
 ---
 import Header from '../components/Header.astro';
+import AuthorBox from '../components/AuthorBox.astro';
 
 const title = 'Sleep Hygiene for Biohackers: The Evidence Behind the Habits That Actually Work';
 const description =
@@ -15,8 +16,19 @@ const articleSchema = {
   mainEntityOfPage: canonical,
   datePublished: publishedDate,
   dateModified: publishedDate,
-  author: { '@type': 'Organization', name: 'Novrello' },
-  publisher: { '@type': 'Organization', name: 'Novrello' },
+  author: {
+    '@type': 'Person',
+    name: 'Jan Tore Boe',
+    url: 'https://novrello.com/about',
+    jobTitle: 'Founder, Medical Technology Specialist',
+  },
+  reviewedBy: {
+    '@type': 'Person',
+    name: 'Linda Myreng-Boe',
+    url: 'https://novrello.com/about',
+    jobTitle: 'Registered Nurse, OR Specialty',
+  },
+  publisher: { '@type': 'Organization', name: 'Novrello', url: 'https://novrello.com' },
   articleSection: [
     'Introduction',
     'Temperature',
@@ -40,7 +52,7 @@ const faqSchema = {
       name: 'What temperature should my bedroom be for optimal sleep?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Most people sleep best in a cool room. A practical starting point is roughly 16–19°C (60–67°F), then adjust based on comfort, bedding, and whether you wake hot or cold. The goal is to support the natural drop in core body temperature around sleep onset.',
+        text: 'Most people sleep best in a cool room. A practical starting point is roughly 16-19°C (60-67°F), then adjust based on comfort, bedding, and whether you wake hot or cold.',
       },
     },
     {
@@ -48,7 +60,7 @@ const faqSchema = {
       name: 'Does alcohol help you sleep?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Alcohol can shorten sleep onset for some people, but the data show it disrupts sleep architecture—especially later in the night—by increasing fragmentation and reducing or delaying REM sleep. “Fall asleep faster” is not the same as “sleep better.”',
+        text: 'Alcohol can shorten sleep onset for some people, but the data show it disrupts sleep architecture — especially later in the night — by increasing fragmentation and reducing REM sleep.',
       },
     },
     {
@@ -56,7 +68,7 @@ const faqSchema = {
       name: 'How long before bed should I stop drinking caffeine?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'A controlled study found 400 mg caffeine taken 6 hours before bedtime still significantly disrupted sleep. A conservative rule is to stop caffeine at least 6–8 hours before bed, and earlier if you are sensitive or struggle with sleep onset.',
+        text: 'A controlled study found 400 mg caffeine taken 6 hours before bedtime still significantly disrupted sleep. A conservative rule is to stop caffeine at least 6-8 hours before bed.',
       },
     },
   ],
@@ -93,12 +105,31 @@ const faqSchema = {
           <p class="kicker">The Human Lab</p>
           <h1>{title}</h1>
           <p class="dek">
-            Sleep hygiene is supposed to be the simple stuff. Don’t drink coffee at midnight. Don’t scroll
+            Sleep hygiene is supposed to be the simple stuff. Don't drink coffee at midnight. Don't scroll
             in bed. Make your room dark. Fine. But most advice stops right where it starts: generic,
             context-free, and weirdly proud of being obvious. This is the version I wish more people wrote
             — the one that respects your brain, your schedule, and the data.
           </p>
+          <div class="article-meta">
+            <span>By <a href="/about">Jan Tore Boe</a></span>
+            <span class="meta-sep">·</span>
+            <span>Reviewed by <a href="/about">Linda Myreng-Boe, RN</a></span>
+            <span class="meta-sep">·</span>
+            <span>Published {publishedDate}</span>
+            <span class="meta-sep">·</span>
+            <span>14 min read</span>
+          </div>
         </header>
+
+        <!-- Disclaimer box -->
+        <div class="disclaimer-box reveal">
+          <span class="disclaimer-icon">⚕️</span>
+          <p>
+            <strong>Medical disclaimer:</strong> This article is for informational purposes only and does not
+            constitute medical advice. Consult a qualified healthcare professional before making changes to
+            your sleep routine, especially if you have a diagnosed sleep disorder.
+          </p>
+        </div>
 
         <figure class="hero-media reveal">
           <img
@@ -112,47 +143,42 @@ const faqSchema = {
         <section id="introduction" class="reveal">
           <h2>Introduction — why most sleep hygiene advice is generic and useless</h2>
           <p>
-            The problem with classic sleep hygiene lists is not that they’re wrong. It’s that they’re
-            incomplete and often misframed. “Avoid screens.” Okay… but what kind of screen, how bright, how
-            close to your face, and at what time relative to your circadian phase? “Keep a consistent
-            bedtime.” Sure… but if you’re forcing bedtime while your biology is still wide awake, you’ll
-            spend a lot of time “being good” and not a lot of time sleeping.
+            The problem with classic sleep hygiene lists is not that they're wrong. It's that they're
+            incomplete and often misframed. "Avoid screens." Okay… but what kind of screen, how bright, how
+            close to your face, and at what time relative to your circadian phase? "Keep a consistent
+            bedtime." Sure… but if you're forcing bedtime while your biology is still wide awake, you'll
+            spend a lot of time "being good" and not a lot of time sleeping.
           </p>
           <p>
-            I’m also skeptical of how sleep hygiene gets marketed as a standalone fix. If you have chronic
+            I'm also skeptical of how sleep hygiene gets marketed as a standalone fix. If you have chronic
             insomnia, a checklist is rarely enough. Behavioral treatments like CBT-I have strong evidence,
-            and “sleep hygiene education” by itself tends to produce smaller effects. That doesn’t mean
-            hygiene habits don’t matter. It means the habits need to be chosen, sequenced, and tested like
+            and "sleep hygiene education" by itself tends to produce smaller effects. That doesn't mean
+            hygiene habits don't matter. It means the habits need to be chosen, sequenced, and tested like
             a protocol — not treated as a moral virtue.
           </p>
           <p>
-            Think of this page as a practical filter. We’ll keep the levers that reliably move physiology,
-            ditch the stuff that’s mostly vibe, and build a framework you can iterate. And yes, supplements
-            show up here too — but only as small tools in a bigger system. If you’re curious about one of
+            Think of this page as a practical filter. We'll keep the levers that reliably move physiology,
+            ditch the stuff that's mostly vibe, and build a framework you can iterate. And yes, supplements
+            show up here too — but only as small tools in a bigger system. If you're curious about one of
             the few that has real trial data in older adults, see our piece on <a href="/magnesium-glycinate-sleep">magnesium glycinate</a>.
           </p>
           <p class="ref">
             PubMed reference:
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/29194467/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >PMID: 29194467</a
-            >
+            <a href="https://pubmed.ncbi.nlm.nih.gov/29194467/" target="_blank" rel="noopener noreferrer">PMID: 29194467</a>
           </p>
         </section>
 
         <section id="temperature" class="reveal">
           <h2>Temperature: the most underrated sleep lever</h2>
           <p>
-            If you forced me to pick one lever that’s consistently underestimated, I’d pick temperature.
-            Not because it’s trendy — because it’s boring. And boring levers are often the ones with real
+            If you forced me to pick one lever that's consistently underestimated, I'd pick temperature.
+            Not because it's trendy — because it's boring. And boring levers are often the ones with real
             physiology behind them. Sleep onset is tightly linked to a drop in core body temperature. You
-            don’t have to memorize that. Just notice the pattern: most people fall asleep more easily when
-            they feel slightly cool, and they wake more often when they’re too warm.
+            don't have to memorize that. Just notice the pattern: most people fall asleep more easily when
+            they feel slightly cool, and they wake more often when they're too warm.
           </p>
           <p>
-            The biohacker mistake is to treat “cold” as a badge of honor. You don’t win points for shivering.
+            The biohacker mistake is to treat "cold" as a badge of honor. You don't win points for shivering.
             The goal is to support the natural temperature curve: warm your skin if needed, then let core
             temperature drift downward. A hot shower can help some people precisely because it increases
             peripheral blood flow, which can speed heat loss afterward. A cooler bedroom can help for the
@@ -169,97 +195,58 @@ const faqSchema = {
                   <stop offset="100%" stop-color="rgba(16, 217, 138, 0.45)" />
                 </linearGradient>
               </defs>
-
               <rect x="20" y="20" width="940" height="200" rx="16" fill="rgba(16, 217, 138, 0.04)" stroke="rgba(16, 217, 138, 0.18)" />
-
-              <text x="50" y="55" fill="rgba(231, 240, 242, 0.78)" font-size="18" font-family="IBM Plex Mono, ui-monospace">
-                Core body temperature (relative)
-              </text>
-
+              <text x="50" y="55" fill="rgba(231, 240, 242, 0.78)" font-size="18" font-family="IBM Plex Mono, ui-monospace">Core body temperature (relative)</text>
               <line x1="60" y1="190" x2="920" y2="190" stroke="rgba(231, 240, 242, 0.12)" stroke-width="2" />
               <line x1="60" y1="80" x2="920" y2="80" stroke="rgba(231, 240, 242, 0.08)" stroke-width="2" />
-
-              <path
-                d="M 80 95
-                   C 220 95, 260 120, 340 150
-                   C 430 186, 520 194, 610 178
-                   C 700 162, 760 138, 820 120
-                   C 880 104, 910 98, 920 98"
-                fill="none"
-                stroke="url(#curveGlow)"
-                stroke-width="6"
-                stroke-linecap="round"
-              />
-
+              <path d="M 80 95 C 220 95, 260 120, 340 150 C 430 186, 520 194, 610 178 C 700 162, 760 138, 820 120 C 880 104, 910 98, 920 98" fill="none" stroke="url(#curveGlow)" stroke-width="6" stroke-linecap="round" />
               <circle cx="330" cy="146" r="6" fill="var(--nv-accent)" />
-              <text x="330" y="132" text-anchor="middle" fill="var(--nv-accent)" font-size="16" font-family="IBM Plex Mono, ui-monospace">
-                sleep onset
-              </text>
-
+              <text x="330" y="132" text-anchor="middle" fill="var(--nv-accent)" font-size="16" font-family="IBM Plex Mono, ui-monospace">sleep onset</text>
               <circle cx="860" cy="114" r="6" fill="var(--nv-accent)" />
-              <text x="860" y="100" text-anchor="middle" fill="var(--nv-accent)" font-size="16" font-family="IBM Plex Mono, ui-monospace">
-                pre-wake rise
-              </text>
-
-              <text x="80" y="235" fill="rgba(231, 240, 242, 0.6)" font-size="16" font-family="IBM Plex Mono, ui-monospace">
-                evening
-              </text>
-              <text x="480" y="235" text-anchor="middle" fill="rgba(231, 240, 242, 0.6)" font-size="16" font-family="IBM Plex Mono, ui-monospace">
-                middle of night
-              </text>
-              <text x="920" y="235" text-anchor="end" fill="rgba(231, 240, 242, 0.6)" font-size="16" font-family="IBM Plex Mono, ui-monospace">
-                morning
-              </text>
+              <text x="860" y="100" text-anchor="middle" fill="var(--nv-accent)" font-size="16" font-family="IBM Plex Mono, ui-monospace">pre-wake rise</text>
+              <text x="80" y="235" fill="rgba(231, 240, 242, 0.6)" font-size="16" font-family="IBM Plex Mono, ui-monospace">evening</text>
+              <text x="480" y="235" text-anchor="middle" fill="rgba(231, 240, 242, 0.6)" font-size="16" font-family="IBM Plex Mono, ui-monospace">middle of night</text>
+              <text x="920" y="235" text-anchor="end" fill="rgba(231, 240, 242, 0.6)" font-size="16" font-family="IBM Plex Mono, ui-monospace">morning</text>
             </svg>
           </div>
 
           <p>
             Practically: try a cooler room (many people land somewhere around 16–19°C / 60–67°F), breathable
-            bedding, and a plan for heat spikes. If you wake at 3 a.m. sweaty, that’s a signal. I would fix
+            bedding, and a plan for heat spikes. If you wake at 3 a.m. sweaty, that's a signal. I would fix
             that before I start micro-optimizing supplements. For some people, a fan is more powerful than a
             stack of capsules.
           </p>
           <p class="ref">
             PubMed reference:
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/31105512/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >PMID: 31105512</a
-            >
+            <a href="https://pubmed.ncbi.nlm.nih.gov/31105512/" target="_blank" rel="noopener noreferrer">PMID: 31105512</a>
           </p>
         </section>
 
         <section id="light" class="reveal">
           <h2>Light: what the research actually says about blue light</h2>
           <p>
-            “Blue light” became a meme because it’s easy to visualize. But the biology isn’t a meme. Light
+            "Blue light" became a meme because it's easy to visualize. But the biology isn't a meme. Light
             in the evening can delay circadian timing, suppress melatonin, and push sleep later — especially
-            when it’s bright, close to your eyes, and happening during your natural wind-down window. What I
-            don’t love is when this turns into a moral panic about the color blue instead of a practical
+            when it's bright, close to your eyes, and happening during your natural wind-down window. What I
+            don't love is when this turns into a moral panic about the color blue instead of a practical
             conversation about intensity, timing, and behavior.
           </p>
           <p>
             A well-known study comparing reading on light-emitting eReaders vs printed books showed worse
             sleep outcomes with the eReader: delayed circadian timing, melatonin suppression, longer sleep
-            latency, and changes in REM. That doesn’t mean your phone automatically ruins sleep. It means
+            latency, and changes in REM. That doesn't mean your phone automatically ruins sleep. It means
             there is a dose-response relationship. Bright light late is a tax. Dim light late is a smaller
             tax. And a screen held eight inches from your face at midnight is basically a tax audit.
           </p>
           <p>
-            If you want the “biohacker” version of light hygiene, here it is: get bright light early, keep
+            If you want the "biohacker" version of light hygiene, here it is: get bright light early, keep
             light dim late, and treat your last hour like a runway. The best upgrade is not a $200 pair of
-            glasses. It’s choosing an evening that signals “downshift” instead of “second daytime.” And then
+            glasses. It's choosing an evening that signals "downshift" instead of "second daytime." And then
             doing it consistently enough that your body believes you.
           </p>
           <p class="ref">
             PubMed reference:
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/25535358/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >PMID: 25535358</a
-            >
+            <a href="https://pubmed.ncbi.nlm.nih.gov/25535358/" target="_blank" rel="noopener noreferrer">PMID: 25535358</a>
           </p>
         </section>
 
@@ -271,73 +258,62 @@ const faqSchema = {
             decoding="async"
           />
           <figcaption>
-            Morning light exposure within 30 minutes of waking is one of the most powerful circadian anchors
-            available.
+            Morning light exposure within 30 minutes of waking is one of the most powerful circadian anchors available.
           </figcaption>
         </figure>
 
         <section id="caffeine" class="reveal">
           <h2>Caffeine timing: the adenosine mechanism explained</h2>
           <p>
-            Caffeine is not “energy.” It’s debt manipulation. The simplest model is adenosine: as the day
+            Caffeine is not "energy." It's debt manipulation. The simplest model is adenosine: as the day
             goes on, adenosine pressure builds and your brain reads it as sleepiness. Caffeine blocks that
             signal. You feel alert, not because you recovered, but because you put tape over the warning
             light. That can be useful. It can also be a mess if you keep blocking the signal deep into the
-            afternoon and then wonder why you can’t shut off at night.
+            afternoon and then wonder why you can't shut off at night.
           </p>
           <p>
             The reason timing matters is that caffeine lasts. In a controlled study, 400 mg caffeine taken
-            even 6 hours before bedtime still significantly disrupted sleep. That is not an edge case. That’s
-            a reminder that “I can fall asleep” is a weak metric. Many people can fall asleep with caffeine
+            even 6 hours before bedtime still significantly disrupted sleep. That is not an edge case. That's
+            a reminder that "I can fall asleep" is a weak metric. Many people can fall asleep with caffeine
             onboard and still lose total sleep time or fragment later stages.
           </p>
           <p>
-            My advice is blunt: if you’re troubleshooting sleep, pull caffeine earlier than you think you
-            need. Start with a 6–8 hour cutoff and then move it forward if you’re sensitive. If you want to
-            keep the ritual, swap in decaf and be honest about what’s driving the habit — taste, routine, or
+            My advice is blunt: if you're troubleshooting sleep, pull caffeine earlier than you think you
+            need. Start with a 6–8 hour cutoff and then move it forward if you're sensitive. If you want to
+            keep the ritual, swap in decaf and be honest about what's driving the habit — taste, routine, or
             stimulation. Then design around that.
           </p>
           <p class="ref">
             PubMed reference:
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/24235903/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >PMID: 24235903</a
-            >
+            <a href="https://pubmed.ncbi.nlm.nih.gov/24235903/" target="_blank" rel="noopener noreferrer">PMID: 24235903</a>
           </p>
         </section>
 
         <section id="alcohol" class="reveal">
           <h2>Alcohol and sleep architecture: the data is brutal</h2>
           <p>
-            Alcohol is the most socially accepted sleep disruptor. It’s also the one people defend the
+            Alcohol is the most socially accepted sleep disruptor. It's also the one people defend the
             hardest because the short-term effect can feel like a benefit. You drink. You feel sedated. You
-            fall asleep faster. You tell yourself it “helps.” Then you wake up at 3 a.m. with your heart
+            fall asleep faster. You tell yourself it "helps." Then you wake up at 3 a.m. with your heart
             slightly faster than it should be, your mouth dry, and your sleep feeling thin. That second-half
             penalty is the story.
           </p>
           <p>
             Meta-analytic data in healthy adults supports what most of us have experienced: alcohol changes
             sleep architecture. It can reduce REM sleep, delay REM onset, and increase fragmentation. Even if
-            you don’t consciously wake up, your sleep can become lighter and less restorative. And if you
+            you don't consciously wake up, your sleep can become lighter and less restorative. And if you
             snore or have any tendency toward sleep-disordered breathing, alcohol often makes the situation
             worse.
           </p>
           <p>
-            If you want a practical rule that isn’t puritanical: treat alcohol like a trade. Decide what
-            you’re buying (social bonding, taste, relaxation) and decide what you’re willing to pay in next-day
+            If you want a practical rule that isn't puritanical: treat alcohol like a trade. Decide what
+            you're buying (social bonding, taste, relaxation) and decide what you're willing to pay in next-day
             performance. For many people, moving alcohol earlier, reducing dose, and keeping a hard cutoff
             before bedtime is enough to avoid the worst of the architecture disruption.
           </p>
           <p class="ref">
             PubMed reference:
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/39631226/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >PMID: 39631226</a
-            >
+            <a href="https://pubmed.ncbi.nlm.nih.gov/39631226/" target="_blank" rel="noopener noreferrer">PMID: 39631226</a>
           </p>
         </section>
 
@@ -345,16 +321,16 @@ const faqSchema = {
           <h2>Exercise timing: when it helps and when it hurts</h2>
           <p>
             Exercise is one of the few interventions that tends to make sleep better over time. But timing
-            matters more than most people admit, mostly because “exercise” is not one thing. A slow jog at
-            6 p.m. is not the same as a heavy deadlift session at 9:30 p.m. The body doesn’t just log “I
-            moved.” It logs heat load, catecholamines, and whether you’re still revved up at bedtime.
+            matters more than most people admit, mostly because "exercise" is not one thing. A slow jog at
+            6 p.m. is not the same as a heavy deadlift session at 9:30 p.m. The body doesn't just log "I
+            moved." It logs heat load, catecholamines, and whether you're still revved up at bedtime.
           </p>
           <p>
-            The evidence is more nuanced than the old rule “never exercise at night.” A systematic review and
+            The evidence is more nuanced than the old rule "never exercise at night." A systematic review and
             meta-analysis found evening exercise is generally neutral or even slightly beneficial for sleep in
             healthy adults, with the big caveat that vigorous sessions ending very close to bedtime can impair
-            sleep for some people. That matches real life. If your workout ends and you feel calm, you’re
-            probably fine. If your workout ends and you feel like you could argue with a wall, you’re not.
+            sleep for some people. That matches real life. If your workout ends and you feel calm, you're
+            probably fine. If your workout ends and you feel like you could argue with a wall, you're not.
           </p>
           <p>
             My practical heuristic: do intense work earlier and do easy movement later. If evening is your
@@ -364,151 +340,117 @@ const faqSchema = {
           </p>
           <p class="ref">
             PubMed reference:
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/30374942/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >PMID: 30374942</a
-            >
+            <a href="https://pubmed.ncbi.nlm.nih.gov/30374942/" target="_blank" rel="noopener noreferrer">PMID: 30374942</a>
           </p>
         </section>
 
         <section id="bedroom" class="reveal">
           <h2>The bedroom environment: what matters and what doesn't</h2>
           <p>
-            Biohacking culture loves turning bedrooms into labs. Sometimes that’s useful. Often it’s a
+            Biohacking culture loves turning bedrooms into labs. Sometimes that's useful. Often it's a
             distraction. The biggest environmental wins are not exotic: light, temperature, and noise. If your
             room is bright at 11 p.m., warm at 2 a.m., and loud at 5 a.m., you can buy every supplement on the
             internet and still lose.
           </p>
           <p>
-            Noise is the one people underestimate because you can “get used to it.” Your conscious brain can.
-            Your sleeping brain often can’t. Field studies using polysomnography show that traffic and rail
-            noise measurably alters sleep parameters. If you live in a noisy area, the best “sleep hygiene” may
+            Noise is the one people underestimate because you can "get used to it." Your conscious brain can.
+            Your sleeping brain often can't. Field studies using polysomnography show that traffic and rail
+            noise measurably alters sleep parameters. If you live in a noisy area, the best "sleep hygiene" may
             be a combination of physical sound dampening (seals, curtains), strategic placement (bed away from
-            the loudest wall), and — yes — earplugs if they’re comfortable.
+            the loudest wall), and — yes — earplugs if they're comfortable.
           </p>
           <p>
             What matters less than people think: perfect pillow brands, special crystals, and obsessively
-            tracking every sleep metric every morning. I’m not anti-data. I’m anti-data that creates anxiety.
+            tracking every sleep metric every morning. I'm not anti-data. I'm anti-data that creates anxiety.
             If your sleep tech makes you stressed about sleep, you are working against yourself.
           </p>
           <p class="ref">
             PubMed reference:
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/21682396/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >PMID: 21682396</a
-            >
+            <a href="https://pubmed.ncbi.nlm.nih.gov/21682396/" target="_blank" rel="noopener noreferrer">PMID: 21682396</a>
           </p>
         </section>
 
         <section id="protocol" class="reveal">
           <h2>Building your personal sleep protocol</h2>
           <p>
-            Here’s where generic advice becomes useful: when it turns into a protocol you can run. I like a
+            Here's where generic advice becomes useful: when it turns into a protocol you can run. I like a
             simple order of operations. First, lock the wake time. Not the bedtime — the wake time. A stable
             wake time anchors your circadian rhythm and makes the rest of the system easier to steer.
           </p>
           <p>
             Second, fix the big environmental errors: too hot, too bright, too noisy. Third, set behavior
             guardrails that actually fit your life: caffeine cutoff, alcohol cutoff, and a realistic evening
-            wind-down routine. Then, and only then, consider small extras. Maybe you test <a href="/magnesium-glycinate-sleep">magnesium glycinate</a>. Maybe you don’t. If you’re experimenting, change one variable at a time and track a real outcome: sleep onset latency, wake after sleep onset, or next-day alertness.
+            wind-down routine. Then, and only then, consider small extras. Maybe you test <a href="/magnesium-glycinate-sleep">magnesium glycinate</a>. Maybe you don't. If you're experimenting, change one variable at a time and track a real outcome: sleep onset latency, wake after sleep onset, or next-day alertness.
           </p>
           <p>
-            If insomnia is persistent, don’t confuse “hygiene” with “treatment.” CBT-I exists for a reason.
-            Components like sleep restriction and stimulus control are not intuitive, but they’re effective.
+            If insomnia is persistent, don't confuse "hygiene" with "treatment." CBT-I exists for a reason.
+            Components like sleep restriction and stimulus control are not intuitive, but they're effective.
             If you want a deeper map of what we publish (slowly, and only when we can defend it), see our
             index of <a href="/articles">research articles</a>.
           </p>
           <p class="ref">
             PubMed reference:
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/36908717/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >PMID: 36908717</a
-            >
+            <a href="https://pubmed.ncbi.nlm.nih.gov/36908717/" target="_blank" rel="noopener noreferrer">PMID: 36908717</a>
           </p>
         </section>
 
         <section id="conclusion" class="reveal">
           <h2>Conclusion</h2>
           <p>
-            The best sleep hygiene advice is specific. It’s measurable. And it respects trade-offs. If your
-            nights are bad, don’t start by buying things. Start by removing friction from the physiology:
+            The best sleep hygiene advice is specific. It's measurable. And it respects trade-offs. If your
+            nights are bad, don't start by buying things. Start by removing friction from the physiology:
             cool your room, dim your lights at night, get bright light in the morning, and stop pouring
             stimulants into your system late enough that your brain has to fight them.
           </p>
           <p>
             And if a claim feels overhyped, treat it like it is. Sleep is too valuable to be driven by
             marketing. Build a protocol you can live with, run it long enough to learn something, and then
-            iterate. That’s the biohacker mindset I actually respect: skeptical, curious, and anchored to the
+            iterate. That's the biohacker mindset I actually respect: skeptical, curious, and anchored to the
             real world.
           </p>
           <p class="ref">
             PubMed reference:
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/40449065/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >PMID: 40449065</a
-            >
+            <a href="https://pubmed.ncbi.nlm.nih.gov/40449065/" target="_blank" rel="noopener noreferrer">PMID: 40449065</a>
           </p>
         </section>
 
         <section id="faq" class="faq reveal">
           <h2>FAQ</h2>
-
           <h3>What temperature should my bedroom be for optimal sleep?</h3>
           <p>
             Most people do best in a cool room. A realistic starting point is roughly 16–19°C (60–67°F), then
             adjust based on your bedding and whether you wake hot. The goal is to support the natural core
-            temperature drop at sleep onset, not to “sleep cold” as a performance stunt.
+            temperature drop at sleep onset, not to "sleep cold" as a performance stunt.
           </p>
           <p class="ref">
             PubMed reference:
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/31105512/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >PMID: 31105512</a
-            >
+            <a href="https://pubmed.ncbi.nlm.nih.gov/31105512/" target="_blank" rel="noopener noreferrer">PMID: 31105512</a>
           </p>
-
           <h3>Does alcohol help you sleep?</h3>
           <p>
             Alcohol can reduce sleep onset latency, but the data show it disrupts sleep architecture and
-            increases fragmentation, especially later in the night. “Knocked out” is not the same thing as
+            increases fragmentation, especially later in the night. "Knocked out" is not the same thing as
             restorative sleep.
           </p>
           <p class="ref">
             PubMed reference:
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/39631226/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >PMID: 39631226</a
-            >
+            <a href="https://pubmed.ncbi.nlm.nih.gov/39631226/" target="_blank" rel="noopener noreferrer">PMID: 39631226</a>
           </p>
-
           <h3>How long before bed should I stop drinking caffeine?</h3>
           <p>
             A controlled study found caffeine taken 6 hours before bedtime still significantly disrupted
-            sleep. If you’re troubleshooting, start with a 6–8 hour cutoff and move it earlier if your sleep
+            sleep. If you're troubleshooting, start with a 6–8 hour cutoff and move it earlier if your sleep
             onset is still slow.
           </p>
           <p class="ref">
             PubMed reference:
-            <a
-              href="https://pubmed.ncbi.nlm.nih.gov/24235903/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >PMID: 24235903</a
-            >
+            <a href="https://pubmed.ncbi.nlm.nih.gov/24235903/" target="_blank" rel="noopener noreferrer">PMID: 24235903</a>
           </p>
         </section>
+
+        <!-- Author box -->
+        <AuthorBox reviewedByLinda={true} />
+
       </article>
     </main>
 
@@ -530,232 +472,136 @@ const faqSchema = {
     --nv-muted: rgba(231, 240, 242, 0.78);
     --nv-border: rgba(16, 217, 138, 0.24);
   }
-
   :global(body) {
     margin: 0;
     background: var(--nv-bg);
     color: var(--nv-text);
     font-family: 'IBM Plex Sans', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   }
-
   .article-page {
     width: min(860px, calc(100% - 2rem));
     margin: 0 auto;
     padding: 2.7rem 0 4rem;
   }
-
   .breadcrumbs {
     display: inline-flex;
     align-items: center;
     gap: 0.55rem;
     color: var(--nv-muted);
-    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-      'Courier New', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.84rem;
     margin-bottom: 1.45rem;
   }
-
-  .breadcrumbs a {
-    color: var(--nv-muted);
-    text-decoration: none;
-  }
-
-  .breadcrumbs a:hover {
-    color: var(--nv-accent);
-  }
-
+  .breadcrumbs a { color: var(--nv-muted); text-decoration: none; }
+  .breadcrumbs a:hover { color: var(--nv-accent); }
   .article-header {
     border-bottom: 1px solid var(--nv-border);
     padding-bottom: 1.1rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.25rem;
   }
-
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0;
+    align-items: center;
+    margin-top: 1rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--nv-muted);
+  }
+  .article-meta a { color: var(--nv-accent); text-decoration: none; }
+  .article-meta a:hover { text-decoration: underline; }
+  .meta-sep { margin: 0 0.4rem; opacity: 0.4; }
+  .disclaimer-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: rgba(16, 217, 138, 0.05);
+    border: 1px solid rgba(16, 217, 138, 0.25);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .disclaimer-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.15rem; }
+  .disclaimer-box p { margin: 0; font-size: 0.84rem; color: var(--nv-muted); line-height: 1.6; }
+  .disclaimer-box strong { color: var(--nv-text); }
   .kicker {
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--nv-accent);
-    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-      'Courier New', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.83rem;
   }
-
-  h1,
-  h2,
-  h3 {
-    font-family: 'DM Serif Display', Georgia, 'Times New Roman', Times, serif;
-    letter-spacing: 0.01em;
-  }
-
-  h1 {
-    margin: 0.55rem 0 0.65rem;
-    font-size: clamp(2rem, 5vw, 3.15rem);
-    line-height: 1.08;
-  }
-
-  .dek {
-    margin: 0;
-    color: var(--nv-muted);
-    font-size: 1.08rem;
-    line-height: 1.75;
-  }
-
-  h2 {
-    margin: 2rem 0 0.8rem;
-    font-size: clamp(1.55rem, 3vw, 2.12rem);
-  }
-
-  h3 {
-    margin: 1.25rem 0 0.4rem;
-    font-size: 1.32rem;
-  }
-
-  p,
-  li {
-    font-size: 1.06rem;
-    line-height: 1.9;
-  }
-
-  p {
-    margin: 0 0 1rem;
-    color: #dce8eb;
-  }
-
-  .article a {
-    color: var(--nv-accent);
-    text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
-  }
-
-  .article a:hover {
-    color: #6ff0be;
-  }
-
+  h1, h2, h3 { font-family: 'DM Serif Display', Georgia, serif; letter-spacing: 0.01em; }
+  h1 { margin: 0.55rem 0 0.65rem; font-size: clamp(2rem, 5vw, 3.15rem); line-height: 1.08; }
+  .dek { margin: 0; color: var(--nv-muted); font-size: 1.08rem; line-height: 1.75; }
+  h2 { margin: 2rem 0 0.8rem; font-size: clamp(1.55rem, 3vw, 2.12rem); }
+  h3 { margin: 1.25rem 0 0.4rem; font-size: 1.32rem; }
+  p, li { font-size: 1.06rem; line-height: 1.9; }
+  p { margin: 0 0 1rem; color: #dce8eb; }
+  .article a { color: var(--nv-accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  .article a:hover { color: #6ff0be; }
   .ref {
     margin-top: 0.55rem;
     color: var(--nv-muted);
-    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-      'Courier New', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.82rem;
     line-height: 1.7;
   }
-
-  .hero-media,
-  .inline-media {
-    margin: 1.15rem 0 1.6rem;
-  }
-
+  .hero-media, .inline-media { margin: 1.15rem 0 1.6rem; }
   .hero-media img {
-    width: 100%;
-    max-height: 420px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 1px solid rgba(16, 217, 138, 0.18);
+    width: 100%; max-height: 420px; object-fit: cover;
+    border-radius: 8px; border: 1px solid rgba(16, 217, 138, 0.18);
   }
-
   .inline-media img {
-    width: 100%;
-    max-height: 350px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 1px solid rgba(16, 217, 138, 0.18);
+    width: 100%; max-height: 350px; object-fit: cover;
+    border-radius: 8px; border: 1px solid rgba(16, 217, 138, 0.18);
   }
-
   .inline-media figcaption {
-    margin-top: 0.55rem;
-    color: var(--nv-muted);
-    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-      'Courier New', monospace;
-    font-size: 0.82rem;
-    line-height: 1.7;
+    margin-top: 0.55rem; color: var(--nv-muted);
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem; line-height: 1.7;
   }
-
   .temp-curve {
-    margin: 0.9rem 0 1.15rem;
-    padding: 0.9rem 0.9rem 0.8rem;
-    border: 1px solid rgba(16, 217, 138, 0.18);
-    border-radius: 12px;
-    background: rgba(16, 217, 138, 0.04);
-    overflow-x: auto;
+    margin: 0.9rem 0 1.15rem; padding: 0.9rem 0.9rem 0.8rem;
+    border: 1px solid rgba(16, 217, 138, 0.18); border-radius: 12px;
+    background: rgba(16, 217, 138, 0.04); overflow-x: auto;
   }
-
-  .temp-curve svg {
-    width: 100%;
-    min-width: 820px;
-    height: auto;
-    display: block;
-  }
-
+  .temp-curve svg { width: 100%; min-width: 820px; height: auto; display: block; }
   .faq {
-    margin-top: 2rem;
-    padding: 1rem 1rem 0.3rem;
-    border: 1px solid var(--nv-border);
-    border-radius: 14px;
+    margin-top: 2rem; padding: 1rem 1rem 0.3rem;
+    border: 1px solid var(--nv-border); border-radius: 14px;
     background: rgba(16, 217, 138, 0.05);
   }
-
   .site-footer {
     width: min(1120px, calc(100% - 2rem));
-    margin: 0 auto;
-    padding: 2.3rem 0 2.6rem;
+    margin: 0 auto; padding: 2.3rem 0 2.6rem;
     border-top: 1px solid rgba(16, 217, 138, 0.18);
-    color: var(--nv-muted);
-    font-size: 0.93rem;
+    color: var(--nv-muted); font-size: 0.93rem;
   }
-
-  .site-footer p {
-    margin: 0.32rem 0;
-  }
-
+  .site-footer p { margin: 0.32rem 0; }
   .disclaimer {
     max-width: 90ch;
-    font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-      'Courier New', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 0.8rem;
   }
-
   .reveal {
-    opacity: 0;
-    transform: translateY(16px);
+    opacity: 0; transform: translateY(16px);
     animation: fade-up 650ms ease-out forwards;
     animation-timeline: view();
     animation-range: entry 12% cover 34%;
   }
-
   @keyframes fade-up {
-    from {
-      opacity: 0;
-      transform: translateY(16px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-
   @media (max-width: 680px) {
-    .article-page {
-      padding-top: 2.1rem;
-    }
-
-    p,
-    li {
-      line-height: 1.82;
-      font-size: 1.01rem;
-    }
-
-    .faq {
-      padding: 0.85rem 0.8rem 0.25rem;
-    }
+    .article-page { padding-top: 2.1rem; }
+    p, li { line-height: 1.82; font-size: 1.01rem; }
+    .faq { padding: 0.85rem 0.8rem 0.25rem; }
+    .article-meta { font-size: 0.72rem; }
   }
-
   @media (prefers-reduced-motion: reduce) {
-    .reveal,
-    .pulse-dot {
-      animation: none !important;
-      opacity: 1;
-      transform: none;
-    }
+    .reveal { animation: none !important; opacity: 1; transform: none; }
   }
 </style>
-

@@ -1,0 +1,137 @@
+---
+// src/components/AuthorBox.astro
+// Usage in any article page:
+// import AuthorBox from '../components/AuthorBox.astro';
+// <AuthorBox reviewedByLinda={true} />
+
+interface Props {
+  reviewedByLinda?: boolean; // set to false for non-health articles
+}
+
+const { reviewedByLinda = true } = Astro.props;
+---
+
+<div class="author-box">
+
+  <!-- Written by -->
+  <div class="author-row">
+    <div class="avatar">JT</div>
+    <div class="author-info">
+      <p class="author-label">Written by</p>
+      <p class="author-name">Jan Tore Boe</p>
+      <p class="author-role">Founder · 30+ years in medical technology · Garmin Epix, 10+ years of biometric tracking</p>
+    </div>
+  </div>
+
+  <!-- Reviewed by Linda (conditional) -->
+  {reviewedByLinda && (
+    <div class="author-row reviewer">
+      <div class="avatar reviewer-avatar">LM</div>
+      <div class="author-info">
+        <p class="author-label reviewed-label">Medically reviewed by</p>
+        <p class="author-name">Linda Myreng-Boe, RN</p>
+        <p class="author-role">Registered Nurse · OR specialty · Apple Watch Ultra, 10+ years of biometric tracking</p>
+      </div>
+    </div>
+  )}
+
+  <!-- About link -->
+  <div class="about-link-row">
+    <a href="/about" class="about-link">Learn more about our team and editorial standards →</a>
+  </div>
+
+</div>
+
+<style>
+  .author-box {
+    margin-top: 3rem;
+    border-top: 1px solid #1e293b;
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .author-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .reviewer {
+    padding-top: 1.25rem;
+    border-top: 1px solid #1e293b;
+  }
+
+  .avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #065f46;
+    border: 2px solid #10b981;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 1rem;
+    color: #10b981;
+    flex-shrink: 0;
+  }
+
+  .reviewer-avatar {
+    background: rgba(99, 102, 241, 0.15);
+    border-color: #818cf8;
+    color: #818cf8;
+  }
+
+  .author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .author-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #10b981;
+    margin: 0;
+  }
+
+  .reviewed-label {
+    color: #818cf8;
+  }
+
+  .author-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin: 0;
+  }
+
+  .author-role {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .about-link-row {
+    padding-top: 1rem;
+  }
+
+  .about-link {
+    font-size: 0.8rem;
+    color: #10b981;
+    text-decoration: none;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.03em;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+
+  .about-link:hover {
+    opacity: 1;
+  }
+</style>
